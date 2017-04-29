@@ -1,5 +1,6 @@
 ﻿using ProjectAirline.Classes;
 using ProjectAirline.Interfaces;
+using ProjectAirline.Serialize;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,24 +13,36 @@ namespace ProjectAirline
     {
         static void Main(string[] args)
         {
-            Airline airline = new Airline(
-                new List<IAirplane>()
-                {
-                    new Cargo(1,"An2","antonov",2,132,2000,500),
-                    new Passenger(2,"TU204","tupolev",4,600,107500,100,10,3),
-                    new Charter(3,"A321","aerobus",5,1000,89000,100,10,3),
-                    new Charter(4,"757-200","boing",6,3000,108800,100,15,4)
-                },"Aeroflot","Fly in order for fly"
-                );
-            //int x, y;            
-            //Console.WriteLine(string.Join("\r\n", airline.SortByRange()));
-            //Console.WriteLine("Write first fuel range...");
-            //int.TryParse(Console.ReadLine(),out x);
-            //Console.WriteLine("Write roofer fuel range...");
-            //int.TryParse(Console.ReadLine(), out y);
-            //Console.WriteLine(string.Join("\r\n", airline.FindByFuelConsumption(x, y)));
-            GUI.Airline = airline;
-            GUI.Start();
+            //Airline airline = new Airline(
+            //    new List<IAirplane>()
+            //    {
+            //        new Cargo(1,"An2","antonov",2,132,2000,500),
+            //        new Passenger(2,"TU204","tupolev",4,600,107500,100,10,3),
+            //        new Charter(3,"A321","aerobus",5,1000,89000,100,10,3),
+            //        new Charter(4,"757-200","boing",6,3000,108800,100,15,4)
+            //    },"Aeroflot","Fly in order for fly"
+            //    );
+            ////int x, y;            
+            ////Console.WriteLine(string.Join("\r\n", airline.SortByRange()));
+            ////Console.WriteLine("Write first fuel range...");
+            ////int.TryParse(Console.ReadLine(),out x);
+            ////Console.WriteLine("Write roofer fuel range...");
+            ////int.TryParse(Console.ReadLine(), out y);
+            ////Console.WriteLine(string.Join("\r\n", airline.FindByFuelConsumption(x, y)));
+            //GUI.Airline = airline;
+            //GUI.Start();
+            Creator[] creator = 
+            {
+                new CreatorPassenger(1, "13313", "123", 1, 1, 1, 1, 1, 1),
+                new CreatorCargo(1, "13313", "123", 1, 1, 1, 1),
+                new CreatorCharter(1, "13313", "123", 1, 1, 1, 1, 1, 1),
+
+            };
+
+            foreach (var item in creator)
+            {
+                Console.WriteLine(item.GetAirplane().GetType());
+            }
         }
     }
 }

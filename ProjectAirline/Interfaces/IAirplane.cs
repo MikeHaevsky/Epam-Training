@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjectAirline.Serialize;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,5 +26,6 @@ namespace ProjectAirline.Interfaces
         int GetCapacity();
         int GetRage();
         string GetInfo();
+        Creator GetCreator();
     }
 }

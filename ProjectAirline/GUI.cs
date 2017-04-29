@@ -14,13 +14,17 @@ namespace ProjectAirline
         private static Airline _airline;
         public static void Start()
         {
-            Console.Clear();
-            Console.WriteLine(" Hollo, master!\n What are you want from me?\n Choose your operation.....");
-            Console.WriteLine("{0}",separator);
-            Console.WriteLine("1.Show airline info\n2.Exit program");
-            string choseAction = Console.ReadLine();
-            ChooseAction1(choseAction);
-            Console.ReadLine();
+            //if (flag == 0)
+            {
+                Console.Clear();
+                Console.WriteLine(" Hollo, master!\n What are you want from me?\n Choose your operation.....");
+                Console.WriteLine("{0}", separator);
+                Console.WriteLine("1.Show airline info\n2.Exit program");
+                string choseAction = Console.ReadLine();
+                ChooseAction1(choseAction);
+                Console.ReadLine();
+            }
+        //    if
         }
         private static void ChooseAction1(string s)
         {
@@ -31,7 +35,8 @@ namespace ProjectAirline
                     Console.WriteLine("{0}",_airline.ShowInfo());
                     Console.ReadKey();
                     break;
-                case "2":
+                //case "2":break;
+                case "3":
                     Console.Clear();
                     Console.WriteLine("Exit program");
                     Environment.Exit(0);
@@ -49,7 +54,7 @@ namespace ProjectAirline
             int.TryParse(Console.ReadLine(),out x);
             Console.WriteLine("Write roofer fuel range...");
             int.TryParse(Console.ReadLine(), out y);
-            Console.WriteLine(string.Join("\r\n", _airline.FindByFuelConsumption(x, y)));
+            Console.WriteLine(string.Join("\n", _airline.FindByFuelConsumption(x, y)));
         }
         private static void Error()
         {
