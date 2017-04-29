@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ProjectAirline.AirlineFactory.AirlineCreator" Collapsed="true">
+    <Position X="4.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>AirlineFactory\AirlineCreator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectAirline.AirlineFactory.AirlineData" Collapsed="true">
+    <Position X="13.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>AirlineFactory\AirlineData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectAirline.AirlineFactory.Creator" Collapsed="true">
+    <Position X="4.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>AirlineFactory\Creator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectAirline.Classes.Airline" Collapsed="true">
+    <Position X="12" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAABAAAAAAAAAAAAAAAAAAACAAAAAAAAA=</HashCode>
+      <FileName>Classes\Airline.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectAirline.Classes.Airplane" Collapsed="true">
+    <Position X="7.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAEABgAAAAQgAQgAAAAAAQQFAAAQgAQAAAAAA=</HashCode>
+      <FileName>Classes\Airplane.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProjectAirline.Classes.Cargo" Collapsed="true">
+    <Position X="5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAgAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Cargo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectAirline.Classes.Charter" Collapsed="true">
+    <Position X="7.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAEgAAAAAAAAAAAAABAAAEAAAAAAAAAAAMA=</HashCode>
+      <FileName>Classes\Charter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProjectAirline.Classes.Passenger" Collapsed="true">
+    <Position X="9.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAEgAAAAAAAAAAAAABAAAEAAAAAAAAAAAMA=</HashCode>
+      <FileName>Classes\Passenger.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="ProjectAirline.Interfaces.IAirplane" Collapsed="true">
+    <Position X="12" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAgAAAAQAAAAAAAAAAQAFAAAQgAQAAAAAA=</HashCode>
+      <FileName>Interfaces\IAirplane.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProjectAirline.Interfaces.IPassenger" Collapsed="true">
+    <Position X="13.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIA=</HashCode>
+      <FileName>Interfaces\IPassenger.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
