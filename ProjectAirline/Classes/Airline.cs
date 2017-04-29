@@ -44,22 +44,23 @@ namespace ProjectAirline.Classes
         public IEnumerable<string> FindByFuelConsumption(int x, int y)
         {
             //return airplanes.Select(item=>string.Format("{1}{0} | TotalLoad:{2} \n", item.Model,item.Producer,item.TotalLoad).Where(x=>x.;
-            IEnumerable<string> temp = _airplanes
-                .Where(item => (item.FuelConsumption > x) & (item.FuelConsumption < y))
-                .Select(item => string.Format("{1}{0} | TotalLoad:{2} \n", item.Model, item.Producer, item.FuelConsumption));
+            //IEnumerable<string> temp = _airplanes
+            //    .Where(item => (item.FuelConsumption > x) & (item.FuelConsumption < y))
+            //    .Select(item => string.Format("{1}{0} | TotalLoad:{2} \n", item.Model, item.Producer, item.FuelConsumption));
             return _airplanes
                 .Where(item => (item.FuelConsumption > x) & (item.FuelConsumption < y))
                 .Select(item => string.Format("{1}{0} | TotalLoad:{2} \n", item.Model, item.Producer, item.FuelConsumption));
         }
-        public void ShowAirlineInfo()
-        {
-            string AirlineName = _name;
-            Console.WriteLine("Airline:{0}",AirlineName);
-        }
-        public IEnumerable<string> ShowInfo()
-        {
-            return _airplanes.Select(item=>string.Format("{1}{0} | TotalLoad:{2} \n", item.Model, item.Producer, item.FuelConsumption));
-        }
+        //public void ShowAirlineInfo()
+        //{
+        //    string AirlineName = _name;
+        //    Console.WriteLine("Airline:{0}",AirlineName);
+        //}
+        //public IEnumerable<string> ShowInfo()
+        //{
+        //    return _airplanes.Select(item=>string
+        //        .Format("{1}{0} | TotalLoad:{2} \n", item.Model, item.Producer, item.FuelConsumption));
+        //}
         public string Name
         {
             get
@@ -73,6 +74,12 @@ namespace ProjectAirline.Classes
             {
                 return _slogan;
             }
+        }
+        public string ShowInfo()
+        {
+            string s = string.Format("Airline: {0}\nSlogan:{1}\n{2}\n{3}", _name, _slogan,GUI.separator, string.
+                Join("\n"+GUI.pseparator+"\n", _airplanes.Select(item => item.GetInfo())));
+            return s;
         }
     }
 }

@@ -21,13 +21,14 @@ namespace ProjectAirline
                     new Charter(4,"757-200","boing",6,3000,108800,100,15,4)
                 },"Aeroflot","Fly in order for fly"
                 );
-            int x, y;            
+            //int x, y;            
             //Console.WriteLine(string.Join("\r\n", airline.SortByRange()));
             //Console.WriteLine("Write first fuel range...");
             //int.TryParse(Console.ReadLine(),out x);
             //Console.WriteLine("Write roofer fuel range...");
             //int.TryParse(Console.ReadLine(), out y);
             //Console.WriteLine(string.Join("\r\n", airline.FindByFuelConsumption(x, y)));
+            GUI.Airline = airline;
             GUI.Start();
         }
     }

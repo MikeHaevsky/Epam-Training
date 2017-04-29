@@ -23,7 +23,7 @@ namespace ProjectAirline.Classes
         }
         public override string GetInfo()
         {
-            return string.Format("{0} | {1} | {2} | {3} | {4} | {5} | {6} | {7} | {8}", Model, Producer, Crew, FuelCapacity, TotalLoad, FuelConsumption, GetCapacity(), GetRage());
+            return string.Format("{0}{1}\nCrew:{2}\nFuel capacity:{3}\nTotal load:{4}\nFuel consumption:{5}\nCapacity:{6}\nRange:{7}", Producer, Model, Crew, FuelCapacity, TotalLoad, FuelConsumption, GetCapacity(), GetRage());
         }
     }
 }

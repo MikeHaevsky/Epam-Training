@@ -4,3 +4,9 @@ c:\users\администратор\documents\visual studio 2013\Projects\EpamTr
 c:\users\администратор\documents\visual studio 2013\Projects\EpamTraining\ProjectAirline\bin\Debug\ProjectAirline.pdb
 c:\users\администратор\documents\visual studio 2013\Projects\EpamTraining\ProjectAirline\obj\Debug\ProjectAirline.exe
 c:\users\администратор\documents\visual studio 2013\Projects\EpamTraining\ProjectAirline\obj\Debug\ProjectAirline.pdb
+C:\Users\Администратор\Documents\Visual Studio 2013\Projects\Epam-Training\ProjectAirline\bin\Debug\ProjectAirline.exe.config
+C:\Users\Администратор\Documents\Visual Studio 2013\Projects\Epam-Training\ProjectAirline\obj\Debug\ProjectAirline.exe
+C:\Users\Администратор\Documents\Visual Studio 2013\Projects\Epam-Training\ProjectAirline\obj\Debug\ProjectAirline.pdb
+C:\Users\Администратор\Documents\Visual Studio 2013\Projects\Epam-Training\ProjectAirline\bin\Debug\ProjectAirline.exe
+C:\Users\Администратор\Documents\Visual Studio 2013\Projects\Epam-Training\ProjectAirline\bin\Debug\ProjectAirline.pdb
+C:\Users\Администратор\Documents\Visual Studio 2013\Projects\Epam-Training\ProjectAirline\obj\Debug\ProjectAirline.csprojResolveAssemblyReference.cache
