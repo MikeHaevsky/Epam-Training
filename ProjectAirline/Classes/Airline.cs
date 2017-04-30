@@ -40,6 +40,11 @@ namespace ProjectAirline.Classes
         {
             return _airplanes.Sum(item => item.GetCapacity());   
         }
+        public int GetSumRange()
+        {
+            return _airplanes.Sum(item => item.GetRage());
+        }
+            
         public IEnumerable<string> SortByRange()
         {
             //return _airplanes.OrderBy(item => item.GetRage()).
@@ -86,6 +91,10 @@ namespace ProjectAirline.Classes
                 return _slogan;
             }
         }
+        //public string ShowAirlineInfo()
+        //{
+        //    string s = string.Format("Airline: {0}\nSlogan:{1}\n{2}\n{3}",_name,_slogan,_airplanes.Ge)
+        //}
         public string ShowInfo()
         {
             string s = string.Format("Airline: {0}\nSlogan:{1}\n{2}\n{3}", _name, _slogan,GUI.separator, string.
