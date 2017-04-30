@@ -1,4 +1,5 @@
 ﻿using ProjectAirline.Classes;
+using ProjectAirline.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,13 +8,15 @@ using System.Threading.Tasks;
 
 namespace ProjectAirline.Serialize
 {
-    class CreatorCargo: Creator
+    [Serializable]
+    public class CreatorCargo : Creator
     {
+        public CreatorCargo() { }
         public CreatorCargo(int id, string model, string producer, int crew, int fuelCapacity, int totalLoad, int fuelConsumption)
             :base (id, model, producer, crew, fuelCapacity, totalLoad, fuelConsumption)
         { }
 
-        public override Interfaces.IAirplane GetAirplane()
+        public override IAirplane GetAirplane()
         {
             return new Cargo(_id, _model, _producer, _crew, _fuelCapacity, _totalLoad, _fuelConsumption);
         }

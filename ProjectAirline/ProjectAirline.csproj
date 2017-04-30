@@ -51,10 +51,12 @@
     <Compile Include="Interfaces\IPassenger.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Serialize\Container.cs" />
     <Compile Include="Serialize\Creator.cs" />
     <Compile Include="Serialize\CreatorCargo.cs" />
     <Compile Include="Serialize\CreatorCharter.cs" />
     <Compile Include="Serialize\CreatorPassenger.cs" />
+    <Compile Include="Serialize\XmlData.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

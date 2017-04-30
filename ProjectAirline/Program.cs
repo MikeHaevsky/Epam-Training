@@ -13,15 +13,15 @@ namespace ProjectAirline
     {
         static void Main(string[] args)
         {
-            //Airline airline = new Airline(
-            //    new List<IAirplane>()
-            //    {
-            //        new Cargo(1,"An2","antonov",2,132,2000,500),
-            //        new Passenger(2,"TU204","tupolev",4,600,107500,100,10,3),
-            //        new Charter(3,"A321","aerobus",5,1000,89000,100,10,3),
-            //        new Charter(4,"757-200","boing",6,3000,108800,100,15,4)
-            //    },"Aeroflot","Fly in order for fly"
-            //    );
+            Airline airline = new Airline(
+                new List<IAirplane>()
+                {
+                    new Cargo(1,"An2","antonov",2,132,2000,500),
+                    new Passenger(2,"TU204","tupolev",4,600,107500,100,10,3),
+                    new Charter(3,"A321","aerobus",5,1000,89000,100,10,3),
+                    new Charter(4,"757-200","boing",6,3000,108800,100,15,4)
+                }, "Aeroflot", "Fly in order for fly"
+                );
             ////int x, y;            
             ////Console.WriteLine(string.Join("\r\n", airline.SortByRange()));
             ////Console.WriteLine("Write first fuel range...");
@@ -31,18 +31,29 @@ namespace ProjectAirline
             ////Console.WriteLine(string.Join("\r\n", airline.FindByFuelConsumption(x, y)));
             //GUI.Airline = airline;
             //GUI.Start();
-            Creator[] creator = 
-            {
-                new CreatorPassenger(1, "13313", "123", 1, 1, 1, 1, 1, 1),
-                new CreatorCargo(1, "13313", "123", 1, 1, 1, 1),
-                new CreatorCharter(1, "13313", "123", 1, 1, 1, 1, 1, 1),
 
-            };
+            //Creator[] creator = 
+            //{
+            //    new CreatorPassenger(2,"TU204","tupolev",4,600,107500,100,10,3),
+            //    new CreatorCargo(1,"An2","antonov",2,132,2000,500),
+            //    new CreatorCharter(3,"A321","aerobus",5,1000,89000,100,10,3),
+            //    new CreatorCharter(4,"757-200","boing",6,3000,108800,100,15,4)
+            //};
+            //Container container = new Container(creator, "Aeroflot", "Fly in order for fly");
+            //GUI.Airline = (Airline)container;
+            GUI.Airline = airline;
+            GUI.Start();
 
-            foreach (var item in creator)
-            {
-                Console.WriteLine(item.GetAirplane().GetType());
-            }
+
+            //foreach (var item in creator)
+            //{
+            //    Console.WriteLine(item.GetAirplane().GetType());
+            //}
+            //XmlData data = new XmlData();
+            //data.Write();
+            //string.Join("\n",data.Read());
+            //data.Read();
+            
         }
     }
 }

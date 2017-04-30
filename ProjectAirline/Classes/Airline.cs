@@ -1,4 +1,5 @@
 ﻿using ProjectAirline.Interfaces;
+using ProjectAirline.Serialize;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,17 +12,17 @@ namespace ProjectAirline.Classes
 {
     public class Airline
     {
-        private ICollection<IAirplane> _airplanes;
-        string _name;
-        string _slogan;
-        public Airline(ICollection<IAirplane> airplanes, string name, string slogan)
+        public IEnumerable<IAirplane> _airplanes;
+        public string _name;
+        public string _slogan;
+        public Airline(IEnumerable<IAirplane> airplanes, string name, string slogan)
         {
             _airplanes = airplanes;
             _name = name;
             _slogan = slogan;
         }
 
-        public ICollection<IAirplane> Airplanes
+        public IEnumerable<IAirplane> Airplanes
         {
             get
             {
@@ -81,5 +82,9 @@ namespace ProjectAirline.Classes
                 Join("\n"+GUI.pseparator+"\n", _airplanes.Select(item => item.GetInfo())));
             return s;
         }
+        //public Serialize.Container GetContainer()
+        //{
+        //    return new Airline(Airplanes, Name, Slogan);
+        //}
     }
 }

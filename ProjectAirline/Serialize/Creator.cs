@@ -4,18 +4,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace ProjectAirline.Serialize
 {
+    [Serializable]
+    [XmlInclude(typeof(CreatorCargo))]
+    [XmlInclude(typeof(CreatorPassenger))]
+    [XmlInclude(typeof(CreatorCharter))]
     public abstract class Creator
     {
-        protected int _id;
-        protected string _model;
-        protected string _producer;
-        protected int _crew;
-        protected int _fuelCapacity;
-        protected int _totalLoad;
-        protected int _fuelConsumption;
+        public int _id;
+        public string _model;
+        public string _producer;
+        public int _crew;
+        public int _fuelCapacity;
+        public int _totalLoad;
+        public int _fuelConsumption;
+        public Creator() { }
         public Creator(int id, string model, string producer, int crew, int fuelCapacity, int totalLoad, int fuelConsumption)
         {
             _id = id;
