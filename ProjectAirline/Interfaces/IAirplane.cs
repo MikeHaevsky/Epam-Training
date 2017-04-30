@@ -26,6 +26,6 @@ namespace ProjectAirline.Interfaces
         int GetCapacity();
         int GetRage();
         string GetInfo();
-        Creator GetCreator();
+        CreatorAirplane GetCreator();
     }
 }

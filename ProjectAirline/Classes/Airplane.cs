@@ -127,6 +127,6 @@ namespace ProjectAirline.Classes
         }
 
 
-        public abstract Serialize.Creator GetCreator();
+        public abstract Serialize.CreatorAirplane GetCreator();
     }
 }

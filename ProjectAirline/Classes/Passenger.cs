@@ -45,7 +45,7 @@ namespace ProjectAirline.Classes
         {
             return string.Format("{0}{1}\nCrew:{2}\nFuel capacity:{3}\nTotal load:{4}\nFuel consumption:{5}\nCapacity:{6}\nRange:{7}\nStewardess:{8}\nClasses:{9}", Producer, Model, Crew, FuelCapacity, TotalLoad, FuelConsumption, GetCapacity(), GetRage(), Stewardess, Classes); ;
         }
-        public override Serialize.Creator GetCreator()
+        public override Serialize.CreatorAirplane GetCreator()
         {
             return new CreatorPassenger(Id, Model, Producer, Crew, FuelCapacity, TotalLoad, FuelCapacity, Stewardess, Classes);
         }

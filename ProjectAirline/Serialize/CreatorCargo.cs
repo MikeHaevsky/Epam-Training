@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace ProjectAirline.Serialize
 {
     [Serializable]
-    public class CreatorCargo : Creator
+    public class CreatorCargo : CreatorAirplane
     {
         public CreatorCargo() { }
         public CreatorCargo(int id, string model, string producer, int crew, int fuelCapacity, int totalLoad, int fuelConsumption)

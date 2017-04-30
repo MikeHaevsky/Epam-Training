@@ -1,4 +1,5 @@
-﻿using ProjectAirline.Interfaces;
+﻿using ProjectAirline.Classes;
+using ProjectAirline.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -23,11 +24,22 @@ namespace ProjectAirline.Serialize
         //    xmlSerializer.Serialize(sw, cont);
         //    sw.Close();
         //}
-        public Container Read()
+        public void Write(Airline airline)
+        {
+            CreatorAirplane[] creator = airline.Airplanes.Select(item => item.GetCreator()).ToArray();
+
+            CreatorAirline cont = new CreatorAirline(airline.Name, airline.Slogan,creator);
+
+            StreamWriter sw = new StreamWriter("D:\\Data.xml");
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(CreatorAirline));
+            xmlSerializer.Serialize(sw, cont);
+            sw.Close();
+        }
+        public Airline Read()
         {
             StreamReader sr = new StreamReader("D:\\Data.xml");
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(Container));
-            Container creator = (Container)xmlSerializer.Deserialize(sr);
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(CreatorAirline));
+            CreatorAirline creator = (CreatorAirline)xmlSerializer.Deserialize(sr);
             sr.Close();
             //string filename = "D:\\Data.xml";
             //XmlSerializer dataSerializer = new XmlSerializer(typeof(Container));
@@ -37,7 +49,7 @@ namespace ProjectAirline.Serialize
             //Container cont = (Container)dataSerializer.Deserialize(xmlReader);
             //sr.Close();
             //return cont;
-            return creator;
+            return new Airline(creator._creator.Select(item => item.GetAirplane()), creator._name, creator._slogan);
         }
 
 

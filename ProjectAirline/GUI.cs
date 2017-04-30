@@ -19,7 +19,7 @@ namespace ProjectAirline
                 Console.Clear();
                 Console.WriteLine(" Hollo, master!\n What are you want from me?\n Choose your operation.....");
                 Console.WriteLine("{0}", separator);
-                Console.WriteLine("1.Show airline info\n0.Exit program");
+                Console.WriteLine("1.Begin and show airline info\n0.Exit program");
                 string choseAction = Console.ReadLine();
                 ChooseAction0(choseAction);
                 Console.ReadLine();
@@ -45,10 +45,10 @@ namespace ProjectAirline
                     Environment.Exit(0);
                     break;
                 default:
-                    Error();
+                    Error("level0");
                     break;
             }
-            Start();
+            //Start();
         } 
         private static void ChooseAction1(string s)
         {
@@ -56,7 +56,8 @@ namespace ProjectAirline
             {
                 case "1":
                     Console.Clear();
-                    Console.WriteLine(_airline.SortByRange());
+                    SortItems();
+                    Console.WriteLine(separator);
                     Console.WriteLine("Press any key to return");
                     Console.ReadKey();
                     break;
@@ -74,10 +75,13 @@ namespace ProjectAirline
                     Environment.Exit(0);
                     break;
                 default:
-                    Error();
+                    Error("level1");
                     break;
-
             }
+        }
+        private static void SortItems()
+        {
+            Console.WriteLine(string.Join("\n",_airline.SortByRange()));
         }
         private static void FindItems()
         {
@@ -90,10 +94,19 @@ namespace ProjectAirline
             Console.WriteLine("Search airplane with a fuel consumption more than {0} and less than {1}\nResult you searching :",x,y);
             Console.WriteLine(string.Join("\n", _airline.FindByFuelConsumption(x, y)));
         }
-        private static void Error()
+        private static void Error(string level)
         {
             Console.WriteLine("ERROR\nWrong key!\n!Please follow the instruction!");
             System.Threading.Thread.Sleep(1500);
+            switch (level)
+            {
+                case "level0":
+                    Start();
+                    break;
+                case "level1":
+                    ChooseAction0("1");
+                    break;
+            }
             Start();
         }
         public static Airline Airline

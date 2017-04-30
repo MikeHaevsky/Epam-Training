@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace ProjectAirline.Serialize
 {
     [Serializable]
-    public class CreatorCharter: Creator
+    public class CreatorCharter: CreatorAirplane
     {
         public int _steardess;
         public int _classes;

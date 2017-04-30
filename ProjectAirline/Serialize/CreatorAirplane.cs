@@ -12,7 +12,7 @@ namespace ProjectAirline.Serialize
     [XmlInclude(typeof(CreatorCargo))]
     [XmlInclude(typeof(CreatorPassenger))]
     [XmlInclude(typeof(CreatorCharter))]
-    public abstract class Creator
+    public abstract class CreatorAirplane
     {
         public int _id;
         public string _model;
@@ -21,8 +21,8 @@ namespace ProjectAirline.Serialize
         public int _fuelCapacity;
         public int _totalLoad;
         public int _fuelConsumption;
-        public Creator() { }
-        public Creator(int id, string model, string producer, int crew, int fuelCapacity, int totalLoad, int fuelConsumption)
+        public CreatorAirplane() { }
+        public CreatorAirplane(int id, string model, string producer, int crew, int fuelCapacity, int totalLoad, int fuelConsumption)
         {
             _id = id;
             _model = model;

@@ -8,14 +8,17 @@ using System.Xml.Serialization;
 
 namespace ProjectAirline.Serialize
 {
-    public  class Container
+    [Serializable]
+    public  class CreatorAirline
     {
-        public IEnumerable< Creator> _creator;
+        //public IEnumerable< Creator> _creator;
+        public CreatorAirplane[] _creator;
         public string _name;
         public string _slogan;
 
-        public Container() { }
-        public Container(IEnumerable<Creator> creator,string name, string slogan)
+        public CreatorAirline() { }
+        //public Container(IEnumerable<Creator> creator,string name, string slogan)
+        public CreatorAirline(string name, string slogan, CreatorAirplane[] creator)
         {
             _creator = creator;
             _name = name;

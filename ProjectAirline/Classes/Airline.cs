@@ -15,6 +15,9 @@ namespace ProjectAirline.Classes
         public IEnumerable<IAirplane> _airplanes;
         public string _name;
         public string _slogan;
+        private CreatorAirplane[] creator;
+        //private string p1;
+        //private string p2;
         public Airline(IEnumerable<IAirplane> airplanes, string name, string slogan)
         {
             _airplanes = airplanes;
@@ -39,8 +42,15 @@ namespace ProjectAirline.Classes
         }
         public IEnumerable<string> SortByRange()
         {
+            //return _airplanes.OrderBy(item => item.GetRage()).
+            //    Select(item => string.Format("{1}{0} | TotalLoad:{2} \n", item.Model, item.Producer, item.FuelConsumption));
+
             return _airplanes.OrderBy(item => item.GetRage()).
-                Select(item => string.Format("{1}{0} | TotalLoad:{2} \n", item.Model, item.Producer, item.FuelConsumption));
+                Select(item => string.Join("\n" + GUI.pseparator + "\n", _airplanes.Select(items => items.GetInfo())));
+
+            //string s = string.Format("\n{0}\n",_airplanes.OrderBy(item => item.GetRage()).
+            //    Select(item => string.Join("\n" + GUI.pseparator + "\n", _airplanes.Select(items => items.GetInfo()))));
+            //return s;
         }
         public IEnumerable<string> FindByFuelConsumption(int x, int y)
         {
