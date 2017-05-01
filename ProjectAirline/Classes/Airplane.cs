@@ -16,6 +16,7 @@ namespace ProjectAirline.Classes
         public int _fuelCapacity;
         public int _totalLoad;
         public int _fuelConsumption;
+        private int _speed = 900;
         public Airplane(int id, string model, string producer, int crew, int fuelCapacity, int totalLoad, int fuelConsumprion)
         {
             _id = id;
@@ -118,7 +119,7 @@ namespace ProjectAirline.Classes
         //дальность полёта
         public int GetRage()
         {
-            int gr = _fuelCapacity / _fuelConsumption;
+            int gr = (_fuelCapacity / _fuelConsumption)*_speed;
             return gr;
         }
         public virtual string GetInfo()

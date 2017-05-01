@@ -50,8 +50,11 @@ namespace ProjectAirline.Classes
             //return _airplanes.OrderBy(item => item.GetRage()).
             //    Select(item => string.Format("{1}{0} | TotalLoad:{2} \n", item.Model, item.Producer, item.FuelConsumption));
 
+            //return _airplanes.OrderBy(item => item.GetRage()).
+            //    Select(item => string.Join("\n" + GUI.pseparator + "\n", _airplanes.Select(items => items.GetInfo())));
+
             return _airplanes.OrderBy(item => item.GetRage()).
-                Select(item => string.Join("\n" + GUI.pseparator + "\n", _airplanes.Select(items => items.GetInfo())));
+                Select(item =>item.GetInfo());
 
             //string s = string.Format("\n{0}\n",_airplanes.OrderBy(item => item.GetRage()).
             //    Select(item => string.Join("\n" + GUI.pseparator + "\n", _airplanes.Select(items => items.GetInfo()))));
