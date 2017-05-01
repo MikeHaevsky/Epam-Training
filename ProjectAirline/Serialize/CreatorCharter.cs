@@ -20,7 +20,6 @@ namespace ProjectAirline.Serialize
             _steardess = stewardess;
             _classes = classes;
         }
-
         public override IAirplane GetAirplane()
         {
             return new Charter(_id, _model, _producer, _crew, _fuelCapacity, _totalLoad, _fuelConsumption, _steardess, _classes);

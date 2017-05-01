@@ -25,8 +25,7 @@ namespace ProjectAirline
                 Console.WriteLine(separator);
                 Console.WriteLine("1.Begin and show airline info\n"+
                     "0.Exit program");
-                string choseAction = Console.ReadLine();
-                ChooseAction0(choseAction,"level0");
+                ChooseAction0(Console.ReadLine(), "level0");
                 Console.ReadLine();
             }
         }
@@ -56,20 +55,19 @@ namespace ProjectAirline
                     Console.Clear();
                     SortItems();
                     Console.WriteLine(separator);
-                    Wait(p);
-                    ChooseAction0("1","level1");
+                    Action0("level1");
                     break;
                 case"2":
                     Console.Clear();
                     FindItems();
-                    Wait(p);
-                    ChooseAction0("1","level1");
+                    Console.WriteLine(separator);
+                    Action0("level1");
                     break;
                 case"3":
                     Console.Clear();
                     ShowAirlineInfo();
+                    Console.WriteLine(separator);
                     Action0("level1");
-                    Wait(p);
                     break;
                 case "4":
                     if (level == "level1")
@@ -124,23 +122,10 @@ namespace ProjectAirline
             Console.WriteLine("Search airplane with a fuel consumption more than {0} and less than {1}\nResult your searching :",x,y);
             Console.WriteLine(string.Join("\n", _airline.FindByFuelConsumption(x, y)));
         }
-        private static void Wait(string value)
-        {
-            switch (value)
-            {
-                case "pause":
-                    Console.WriteLine("Press any key to return");
-                    Console.ReadKey();
-                    break;
-                case "time":
-                    System.Threading.Thread.Sleep(time);
-                    break;
-            }
-        }
         private static void Error(string level)
         {
             Console.WriteLine("ERROR\nWrong key!\n!Please follow the instruction!");
-            Wait(t);
+            System.Threading.Thread.Sleep(time);
             switch (level)
             {
                 case "level0":

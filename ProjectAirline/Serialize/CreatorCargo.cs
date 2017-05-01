@@ -15,7 +15,6 @@ namespace ProjectAirline.Serialize
         public CreatorCargo(int id, string model, string producer, int crew, int fuelCapacity, int totalLoad, int fuelConsumption)
             :base (id, model, producer, crew, fuelCapacity, totalLoad, fuelConsumption)
         { }
-
         public override IAirplane GetAirplane()
         {
             return new Cargo(_id, _model, _producer, _crew, _fuelCapacity, _totalLoad, _fuelConsumption);

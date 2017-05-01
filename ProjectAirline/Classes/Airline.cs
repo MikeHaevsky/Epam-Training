@@ -16,8 +16,6 @@ namespace ProjectAirline.Classes
         public string _name;
         public string _slogan;
         private CreatorAirplane[] creator;
-        //private string p1;
-        //private string p2;
         public Airline(IEnumerable<IAirplane> airplanes, string name, string slogan)
         {
             _airplanes = airplanes;
@@ -47,39 +45,15 @@ namespace ProjectAirline.Classes
             
         public IEnumerable<string> SortByRange()
         {
-            //return _airplanes.OrderBy(item => item.GetRage()).
-            //    Select(item => string.Format("{1}{0} | TotalLoad:{2} \n", item.Model, item.Producer, item.FuelConsumption));
-
-            //return _airplanes.OrderBy(item => item.GetRage()).
-            //    Select(item => string.Join("\n" + GUI.pseparator + "\n", _airplanes.Select(items => items.GetInfo())));
-
             return _airplanes.OrderBy(item => item.GetRage()).
                 Select(item =>item.GetInfo());
-
-            //string s = string.Format("\n{0}\n",_airplanes.OrderBy(item => item.GetRage()).
-            //    Select(item => string.Join("\n" + GUI.pseparator + "\n", _airplanes.Select(items => items.GetInfo()))));
-            //return s;
         }
         public IEnumerable<string> FindByFuelConsumption(int x, int y)
         {
-            //return airplanes.Select(item=>string.Format("{1}{0} | TotalLoad:{2} \n", item.Model,item.Producer,item.TotalLoad).Where(x=>x.;
-            //IEnumerable<string> temp = _airplanes
-            //    .Where(item => (item.FuelConsumption > x) & (item.FuelConsumption < y))
-            //    .Select(item => string.Format("{1}{0} | TotalLoad:{2} \n", item.Model, item.Producer, item.FuelConsumption));
             return _airplanes
                 .Where(item => (item.FuelConsumption > x) & (item.FuelConsumption < y))
                 .Select(item => string.Format("{1}{0} | TotalLoad:{2} \n", item.Model, item.Producer, item.FuelConsumption));
         }
-        //public void ShowAirlineInfo()
-        //{
-        //    string AirlineName = _name;
-        //    Console.WriteLine("Airline:{0}",AirlineName);
-        //}
-        //public IEnumerable<string> ShowInfo()
-        //{
-        //    return _airplanes.Select(item=>string
-        //        .Format("{1}{0} | TotalLoad:{2} \n", item.Model, item.Producer, item.FuelConsumption));
-        //}
         public string Name
         {
             get
@@ -94,19 +68,11 @@ namespace ProjectAirline.Classes
                 return _slogan;
             }
         }
-        //public string ShowAirlineInfo()
-        //{
-        //    string s = string.Format("Airline: {0}\nSlogan:{1}\n{2}\n{3}",_name,_slogan,_airplanes.Ge)
-        //}
         public string ShowInfo()
         {
             string s = string.Format("Airline: {0}\nSlogan:{1}\n{2}\n{3}", _name, _slogan,GUI.separator, string.
                 Join("\n"+GUI.pseparator+"\n", _airplanes.Select(item => item.GetInfo())));
             return s;
         }
-        //public Serialize.Container GetContainer()
-        //{
-        //    return new Airline(Airplanes, Name, Slogan);
-        //}
     }
 }

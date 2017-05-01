@@ -8,7 +8,7 @@ namespace ProjectAirline.Interfaces
 {
     interface IPassenger
     {
-        int Stewardess { get; set; }
-        int Classes { get; set; }
+        int Stewardess { get; }
+        int Classes { get; }
     }
 }

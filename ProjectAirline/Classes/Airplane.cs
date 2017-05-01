@@ -34,20 +34,12 @@ namespace ProjectAirline.Classes
             {
                 return _id;
             }
-            set
-            {
-                _id = value;
-            }
         }
         public string Model
         {
             get
             {
                 return _model;
-            }
-            set
-            {
-                _model = value;
             }
         }
 
@@ -57,10 +49,6 @@ namespace ProjectAirline.Classes
             {
                 return _producer;
             }
-            set
-            {
-                _producer = value;
-            }
         }
 
         public int Crew
@@ -69,20 +57,12 @@ namespace ProjectAirline.Classes
             {
                 return _crew;
             }
-            set
-            {
-                _crew = value;
-            }
         }
         public int FuelCapacity
         {
             get
             {
                 return _fuelCapacity;
-            }
-            set
-            {
-                _fuelCapacity = value;
             }
         }
 
@@ -92,10 +72,6 @@ namespace ProjectAirline.Classes
             {
                 return _totalLoad;
             }
-            set
-            {
-                _totalLoad = value;
-            }
         }
 
         public int FuelConsumption
@@ -104,13 +80,7 @@ namespace ProjectAirline.Classes
             {
                 return _fuelConsumption;
             }
-            set
-            {
-                _fuelConsumption = value;
-            }
         }
-        //(метод по умолчанию)средний вес человека на земле составляет 62 кг, а в чартерах мест в среднем больше на 10%
-        //исходя из этого, находим грузоподъёмность
         public virtual int GetCapacity()
         {
             int gc = (((_totalLoad - _fuelConsumption) / 62) / 100) * 80 - _crew;

@@ -24,10 +24,6 @@ namespace ProjectAirline.Classes
             {
                 return _steardess;
             }
-            set
-            {
-                _steardess = value;
-            }
         }
 
         public int Classes
@@ -35,10 +31,6 @@ namespace ProjectAirline.Classes
             get
             {
                 return _classes;
-            }
-            set
-            {
-                _classes = value;
             }
         }
         public override string GetInfo()

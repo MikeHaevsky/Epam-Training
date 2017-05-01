@@ -9,20 +9,13 @@ namespace ProjectAirline.Interfaces
 {
     public interface IAirplane
     {
-        int Id { get; set; }
-        //модель
-        string Model { get; set; }
-        //производитель
-        string Producer { get; set; }
-        //экипаж
-        int Crew { get; set; }
-        //количество топлива, кг
-        int FuelCapacity { get; set; }
-        //вес с полной загрузкой
-        int TotalLoad { get; set; }
-        //расход топлива кг/ч
-        int FuelConsumption { get; set; }
-        //last
+        int Id { get; }
+        string Model { get; }
+        string Producer { get; }
+        int Crew { get; }
+        int FuelCapacity { get; }
+        int TotalLoad { get; }
+        int FuelConsumption { get; }
         int GetCapacity();
         int GetRage();
         string GetInfo();

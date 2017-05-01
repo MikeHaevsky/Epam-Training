@@ -24,30 +24,19 @@ namespace ProjectAirline.Classes
             {
                 return _steardess;
             }
-            set
-            {
-                _steardess = value;
-            }
         }
-
         public int Classes
         {
             get
             {
                 return _classes;
             }
-            set
-            {
-                _classes = value;
-            }
         }
-
         public override int GetCapacity()
         {
             int gc = (((_totalLoad - _fuelConsumption) / 62) / 100) * 90 - _crew;
             return gc;
         }
-
         public override string GetInfo()
         {
             return string.Format("{0}{1}\nCrew:{2}\nFuel capacity:{3}\nTotal load:{4}\nFuel consumption:{5}\nCapacity:{6}\nRange:{7}\nStewardess:{8}\nClasses:{9}", Producer, Model, Crew, FuelCapacity, TotalLoad, FuelConsumption, GetCapacity(), GetRage(), Stewardess, Classes);

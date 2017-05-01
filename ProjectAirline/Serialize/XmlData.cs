@@ -13,17 +13,6 @@ namespace ProjectAirline.Serialize
 {
     class XmlData
     {
-        //public void Write(IEnumerable<IAirplane> data)
-        //{
-        //    IEnumerable<Creator> creator = data.Select(item => item.GetCreator());
-
-        //    Container cont = new Container("12", "23e", creator);
-
-        //    StreamWriter sw = new StreamWriter("D:\\Data.xml");
-        //    XmlSerializer xmlSerializer = new XmlSerializer(typeof(Container));
-        //    xmlSerializer.Serialize(sw, cont);
-        //    sw.Close();
-        //}
         public void Write(Airline airline)
         {
             CreatorAirplane[] creator = airline.Airplanes.Select(item => item.GetCreator()).ToArray();
@@ -41,17 +30,7 @@ namespace ProjectAirline.Serialize
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(CreatorAirline));
             CreatorAirline creator = (CreatorAirline)xmlSerializer.Deserialize(sr);
             sr.Close();
-            //string filename = "D:\\Data.xml";
-            //XmlSerializer dataSerializer = new XmlSerializer(typeof(Container));
-            //StreamReader sr = new StreamReader(filename);
-            //XmlReader xmlReader = XmlReader.Create(sr);
-            ////Container cont;
-            //Container cont = (Container)dataSerializer.Deserialize(xmlReader);
-            //sr.Close();
-            //return cont;
             return new Airline(creator._creator.Select(item => item.GetAirplane()), creator._name, creator._slogan);
         }
-
-
     }
 }
