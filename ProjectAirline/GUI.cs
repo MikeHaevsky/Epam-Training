@@ -9,20 +9,19 @@ namespace ProjectAirline
 {
     static class GUI
     {
-        public const string separator = "_____________________________";
-        public const string pseparator = "- - - - - - - - - - - - - - -";
+        public const string strSeparator = "_____________________________";
+        public const string strPSeparator = "- - - - - - - - - - - - - - -";
         private const int time = 1000;
-        private const string p = "pause";
-        private const string t = "time";
         private static Airline _airline;
-        public static void Start()
+        public static void Start( Airline airline)
         {
+            _airline = airline;
             {
                 Console.Clear();
                 Console.WriteLine(" Hollo, master!\n"+
                     "What are you want from me?\n"+
                     "Choose your operation.....");
-                Console.WriteLine(separator);
+                Console.WriteLine(strSeparator);
                 Console.WriteLine("1.Begin and show airline info\n"+
                     "0.Exit program");
                 ChooseAction0(Console.ReadLine(), "level0");
@@ -36,7 +35,7 @@ namespace ProjectAirline
                 case "1":
                     Console.Clear();
                     Console.WriteLine(_airline.ShowInfo());
-                    Console.WriteLine(separator);
+                    Console.WriteLine(strSeparator);
                     Action0("level0");
                     break;
                 case "0":
@@ -54,19 +53,19 @@ namespace ProjectAirline
                 case "1":
                     Console.Clear();
                     SortItems();
-                    Console.WriteLine(separator);
+                    Console.WriteLine(strSeparator);
                     Action0("level1");
                     break;
                 case"2":
                     Console.Clear();
                     FindItems();
-                    Console.WriteLine(separator);
+                    Console.WriteLine(strSeparator);
                     Action0("level1");
                     break;
                 case"3":
                     Console.Clear();
                     ShowAirlineInfo();
-                    Console.WriteLine(separator);
+                    Console.WriteLine(strSeparator);
                     Action0("level1");
                     break;
                 case "4":
@@ -89,7 +88,7 @@ namespace ProjectAirline
         }
         private static void Action0(string level)
         {
-            Console.WriteLine(separator);
+            Console.WriteLine(strSeparator);
             Console.WriteLine("Choose your operation.....\n" +
                 "1.Sort airplanes by the range of fly\n" +
                 "2.Find airplanes about the range of fuel consumption\n" +
@@ -103,13 +102,14 @@ namespace ProjectAirline
             Console.WriteLine("Airline: {0}\n" +
                 "Slogan: {1}\n" +
                 "Sum rage: {2}\n" +
-                "Sum capacity: {3}",
-                _airline._name, _airline._slogan, _airline.GetSumRange(), _airline.GetSumCopacity());
+                "Sum capacity: {3}\n"+
+                "Sum total load: {4}",
+                _airline.Name, _airline.Slogan, _airline.GetSumRange(), _airline.GetSumCapacity(),_airline.GetSumTotalLoad());
         }
         private static void SortItems()
         {
-            Console.WriteLine(string.Join("\n"+pseparator+"\n",_airline.SortByRange()));
-            Console.WriteLine(separator);
+            Console.WriteLine(string.Join("\n" + strPSeparator + "\n", _airline.SortByRange()));
+            Console.WriteLine(strSeparator);
         }
         private static void FindItems()
         {
@@ -119,7 +119,7 @@ namespace ProjectAirline
             Console.WriteLine("Write roofer fuel range...");
             int.TryParse(Console.ReadLine(), out y);
             Console.Clear();
-            Console.WriteLine("Search airplane with a fuel consumption more than {0} and less than {1}\nResult your searching :",x,y);
+            Console.WriteLine("Search airplane with a fuel consumption more than {0} and less than {1}\nResult your searching :", x, y);
             Console.WriteLine(string.Join("\n", _airline.FindByFuelConsumption(x, y)));
         }
         private static void Error(string level)
@@ -129,7 +129,7 @@ namespace ProjectAirline
             switch (level)
             {
                 case "level0":
-                    Start();
+                    Start(_airline);
                     break;
                 case "level1":
                     ChooseAction0("1","level1");
@@ -141,16 +141,12 @@ namespace ProjectAirline
             switch (level)
             {
                 case "level0":
-                    Start();
+                    Start(_airline);
                     break;
                 case "level1":
                     ChooseAction0("1","level1");
                     break;
             }
-        }
-        public static Airline Airline
-        {
-            set { _airline = value; }
         }
     }
 }

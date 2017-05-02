@@ -12,12 +12,13 @@ namespace ProjectAirline.Classes
         private int _id;
         private string _model;
         private string _producer;
-        public int _crew;
-        public int _fuelCapacity;
-        public int _totalLoad;
-        public int _fuelConsumption;
-        private int _speed = 900;
-        public Airplane(int id, string model, string producer, int crew, int fuelCapacity, int totalLoad, int fuelConsumprion)
+        private int _crew;
+        private int _fuelCapacity;
+        private int _totalLoad;
+        private int _fuelConsumption;
+        private const int intAverageSpeed = 900;
+        protected const int intAverageHumanWeight = 62;
+        public Airplane(int id, string model, string producer, int crew, int fuelCapacity, int totalLoad, int fuelConsumption)
         {
             _id = id;
             _model = model;
@@ -25,7 +26,7 @@ namespace ProjectAirline.Classes
             _crew = crew;
             _fuelCapacity = fuelCapacity;
             _totalLoad = totalLoad;
-            _fuelConsumption = fuelConsumprion;
+            _fuelConsumption = fuelConsumption;
         }
 
         public int Id
@@ -83,21 +84,13 @@ namespace ProjectAirline.Classes
         }
         public virtual int GetCapacity()
         {
-            int gc = (((_totalLoad - _fuelConsumption) / 62) / 100) * 80 - _crew;
-            return gc;
+            return (((_totalLoad - _fuelConsumption) / intAverageHumanWeight) / 100) * 80 - _crew;
         }
-        //дальность полёта
         public int GetRage()
         {
-            int gr = (_fuelCapacity / _fuelConsumption)*_speed;
-            return gr;
+            return (_fuelCapacity / _fuelConsumption)*intAverageSpeed;
         }
-        public virtual string GetInfo()
-        {
-            return string.Format("{0} | {1} | {2} | {3} | {4} | {5} | {6} | {7} | {8}", Model, Producer, Crew, FuelCapacity, TotalLoad, FuelConsumption, GetCapacity(), GetRage());
-        }
-
-
+        public abstract string GetInfo();
         public abstract Serialize.CreatorAirplane GetCreator();
     }
 }

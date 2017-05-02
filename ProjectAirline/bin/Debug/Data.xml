@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CreatorAirline xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <_creator>
+    <CreatorAirplane xsi:type="CreatorCargo">
+      <_id>1</_id>
+      <_model>An2</_model>
+      <_producer>antonov</_producer>
+      <_crew>2</_crew>
+      <_fuelCapacity>500</_fuelCapacity>
+      <_totalLoad>2000</_totalLoad>
+      <_fuelConsumption>132</_fuelConsumption>
+    </CreatorAirplane>
+    <CreatorAirplane xsi:type="CreatorPassenger">
+      <_id>2</_id>
+      <_model>TU204</_model>
+      <_producer>tupolev</_producer>
+      <_crew>4</_crew>
+      <_fuelCapacity>600</_fuelCapacity>
+      <_totalLoad>107500</_totalLoad>
+      <_fuelConsumption>100</_fuelConsumption>
+      <_steardess>10</_steardess>
+      <_classes>3</_classes>
+    </CreatorAirplane>
+    <CreatorAirplane xsi:type="CreatorCharter">
+      <_id>3</_id>
+      <_model>A321</_model>
+      <_producer>aerobus</_producer>
+      <_crew>5</_crew>
+      <_fuelCapacity>1000</_fuelCapacity>
+      <_totalLoad>89000</_totalLoad>
+      <_fuelConsumption>100</_fuelConsumption>
+      <_steardess>10</_steardess>
+      <_classes>3</_classes>
+    </CreatorAirplane>
+    <CreatorAirplane xsi:type="CreatorCharter">
+      <_id>4</_id>
+      <_model>757-200</_model>
+      <_producer>boeing</_producer>
+      <_crew>6</_crew>
+      <_fuelCapacity>3000</_fuelCapacity>
+      <_totalLoad>108800</_totalLoad>
+      <_fuelConsumption>100</_fuelConsumption>
+      <_steardess>15</_steardess>
+      <_classes>4</_classes>
+    </CreatorAirplane>
+    <CreatorAirplane xsi:type="CreatorCharter">
+      <_id>5</_id>
+      <_model>TU154</_model>
+      <_producer>tupolev</_producer>
+      <_crew>4</_crew>
+      <_fuelCapacity>4000</_fuelCapacity>
+      <_totalLoad>102000</_totalLoad>
+      <_fuelConsumption>150</_fuelConsumption>
+      <_steardess>10</_steardess>
+      <_classes>2</_classes>
+    </CreatorAirplane>
+  </_creator>
+  <_name>Aeroflot</_name>
+  <_slogan>Fly in order for fly</_slogan>
+</CreatorAirline>

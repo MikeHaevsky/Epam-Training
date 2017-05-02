@@ -13,20 +13,20 @@ namespace ProjectAirline.Serialize
 {
     class XmlData
     {
-        public void Write(Airline airline)
+        public void Write(Airline airline, string path)
         {
             CreatorAirplane[] creator = airline.Airplanes.Select(item => item.GetCreator()).ToArray();
 
-            CreatorAirline cont = new CreatorAirline(airline.Name, airline.Slogan,creator);
+            CreatorAirline cont = new CreatorAirline(airline.Name, airline.Slogan, creator);
 
-            StreamWriter sw = new StreamWriter("D:\\Data.xml");
+            StreamWriter sw = new StreamWriter(path);
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(CreatorAirline));
             xmlSerializer.Serialize(sw, cont);
             sw.Close();
         }
-        public Airline Read()
+        public Airline Read(string path)
         {
-            StreamReader sr = new StreamReader("D:\\Data.xml");
+            StreamReader sr = new StreamReader(path);
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(CreatorAirline));
             CreatorAirline creator = (CreatorAirline)xmlSerializer.Deserialize(sr);
             sr.Close();

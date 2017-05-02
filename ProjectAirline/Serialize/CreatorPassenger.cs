@@ -14,8 +14,8 @@ namespace ProjectAirline.Serialize
         public int _steardess;
         public int _classes;
         public CreatorPassenger() { }
-        public CreatorPassenger(int id, string model, string producer, int crew, int fuelCapacity, int totalLoad, int fuelConsumprion, int stewardess, int classes)
-            : base(id, model, producer, crew, fuelCapacity, totalLoad, fuelConsumprion)
+        public CreatorPassenger(int id, string model, string producer, int crew, int fuelCapacity, int totalLoad, int fuelConsumption, int stewardess, int classes)
+            : base(id, model, producer, crew, fuelCapacity, totalLoad, fuelConsumption)
         {
             _steardess = stewardess;
             _classes = classes;
