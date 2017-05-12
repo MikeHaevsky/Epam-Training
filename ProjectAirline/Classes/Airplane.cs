@@ -90,7 +90,16 @@ namespace ProjectAirline.Classes
         {
             return (_fuelCapacity / _fuelConsumption)*intAverageSpeed;
         }
-        public abstract string GetInfo();
+        public virtual string GetInfo()
+        {
+            return string.Format("{0}{1}\nCrew:{2}\n"+
+                "Fuel capacity:{3}\n"+
+                "Total load:{4}\n"+
+                "Fuel consumption:{5}\n"+
+                "Capacity:{6}\n"+
+                "Range:{7}",
+                Producer, Model, Crew, FuelCapacity, TotalLoad, FuelConsumption, GetCapacity(), GetRage());
+        }
         public abstract Serialize.CreatorAirplane GetCreator();
     }
 }

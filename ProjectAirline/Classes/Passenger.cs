@@ -35,15 +35,10 @@ namespace ProjectAirline.Classes
         }
         public override string GetInfo()
         {
-            return string.Format("{0}{1}\nCrew:{2}\n"+
-                "Fuel capacity:{3}\n"+
-                "Total load:{4}\n"+
-                "Fuel consumption:{5}\n"+
-                "Capacity:{6}\n"+
-                "Range:{7}\n"+
+            return string.Format("{0}\n" +
                 "Stewardess:{8}\n"+
                 "Classes:{9}",
-                Producer, Model, Crew, FuelCapacity, TotalLoad, FuelConsumption, GetCapacity(), GetRage(), Stewardess, Classes); ;
+                base.GetInfo(), Stewardess, Classes); ;
         }
         public override Serialize.CreatorAirplane GetCreator()
         {
