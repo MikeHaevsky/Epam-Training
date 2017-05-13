@@ -41,24 +41,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Implementation\TextItems\Paragraph.cs" />
     <Compile Include="Implementation\TextItems\Sentence.cs" />
     <Compile Include="Implementation\TextItems\SentenceItems\Digit.cs" />
     <Compile Include="Implementation\TextItems\SentenceItems\Punctuation.cs" />
     <Compile Include="Implementation\TextItems\SentenceItems\Symbol.cs" />
     <Compile Include="Implementation\TextItems\SentenceItems\Word.cs" />
-    <Compile Include="Implementation\TextItems\SentenceItems\WordSeparator.cs" />
-    <Compile Include="Implementation\TextItems\ParagraphSeparator.cs" />
     <Compile Include="Implementation\Text.cs" />
     <Compile Include="Implementation\TextItems\Separators.cs" />
     <Compile Include="Interfaces\ISentence.cs" />
     <Compile Include="Interfaces\ISentenceItem.cs" />
-    <Compile Include="Interfaces\ISentenceItemFactory.cs" />
     <Compile Include="Interfaces\ITextItem.cs" />
-    <Compile Include="Parser\Factories\SentenceItemFactory.cs" />
-    <Compile Include="Parser\Factories\SentenceSeparatorFactory.cs" />
-    <Compile Include="Parser\Factories\WordFactory.cs" />
-    <Compile Include="Parser\Factories\WordSeparatorFactory.cs" />
     <Compile Include="Parser\FirstParser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
