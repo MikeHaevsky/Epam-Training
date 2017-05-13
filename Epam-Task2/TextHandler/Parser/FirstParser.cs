@@ -33,7 +33,8 @@ namespace TextHandler.Parser
             reader.Read(result, 0, (int)reader.BaseStream.Length);
             Text text = new Text();
             int i=0;
-            int n;
+            int n=0;
+            int j=0;
             int n2=0;
             //ParserBufer bufer = new ParserBufer();
             //ICollection<String> Str;
@@ -45,16 +46,20 @@ namespace TextHandler.Parser
                 switch (c)
                 {
                     case '\r':
+                        n = j;
+                        i = ++i;
+                        j = ++j;
                         break;
                     case '\n':
-                        n = i;
                         argRes = new char[n];
                         Array.Copy(result, n2, argRes, 0, n);
                         i = ++i;
+                        j = 0;
                         n2 = i;
                         break;
                     default:
                         i = ++i;
+                        j = ++j;
                         break;
                 }
                 //if (c == '\r' || c == '\n')
