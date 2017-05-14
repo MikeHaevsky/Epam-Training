@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TextHandler.Implementation;
+using TextHandler.Implementation.TextItems;
 using TextHandler.Implementation.TextItems.SentenceItems;
 
 namespace TextHandler.Parser
@@ -15,6 +16,7 @@ namespace TextHandler.Parser
         char[] result;
         //ICollection<String> Str;
         char[] argRes;
+        char[] argSen;
         char[] argSymb;
         //char[] result1;
         //string str;
@@ -33,6 +35,9 @@ namespace TextHandler.Parser
             result = new char[reader.BaseStream.Length];
             reader.Read(result, 0, (int)reader.BaseStream.Length);
             Text text = new Text();
+            
+            //paragraphNumber for sentence
+            int pn=0;
 
             //first cycle counts
             int i = 0;
@@ -40,11 +45,16 @@ namespace TextHandler.Parser
             int j = 0;
             int n2 = 0;
 
-            //second cycle counts
+            //second cyrcle count
+            int sen = 0;
+            int sen1 = 0;
+            int sen2 = 0;
+
+            //third cycle counts
             int x = 0;
             int y = 0;
-            int z = 0;
-            int m = 0;
+            //int z = 0;
+            //int m = 0;
 
             //ParserBufer bufer = new ParserBufer();
             //ICollection<String> Str;
@@ -64,81 +74,188 @@ namespace TextHandler.Parser
                         break;
                     case '\n':
                         argRes = new char[n];
+                        pn = ++pn;
+                        //Sentence sentence = new Sentence();
+                        //sentence.paragraphNumber = pn;
                         Array.Copy(result, n2, argRes, 0, n);
                         //construct the buisness logics
                         foreach (char s in argRes)
                         {
-                            if (char.IsLetter(s))
+                            sen1 = ++sen1;
+                            sen2 = ++sen2;
+                            if (s == '.')
                             {
-                                x = ++x;
-                                y = ++y;
-                                if (char.IsLetter(argRes[x]))
+                                if (sen1 >= argRes.Length)
                                 {
-                                    continue;
+                                    Sentence sentence = new Sentence();
+                                    sentence.paragraphNumber = pn;
+                                    argSen = new char[sen2];
+                                    Array.Copy(argRes, sen1 - sen2, argSen, 0, sen2);
                                 }
                                 else
                                 {
-                                    z = y - 1;
-                                    argSymb = new char[z];
-                                    Array.Copy(argRes, x - 1, argSymb, 0, z);
-                                    y = 0;
+                                    if (char.IsWhiteSpace(argRes[sen1]) && char.IsUpper(argRes[sen1 + 1]) || char.IsUpper(argRes[sen1]))
+                                    {
+                                        Sentence sentence = new Sentence();
+                                        sentence.paragraphNumber = pn;
+                                        argSen = new char[sen2];
+                                        Array.Copy(argRes, sen1 - sen2, argSen, 0, sen2);
+                                        //ошибка it нужно поменять
+                                        //foreach (char it in argSen)
+                                        //{
+                                        //    if (char.IsLetter(s))
+                                        //    {
+                                        //        x = ++x;
+                                        //        y = ++y;
+                                        //        if (x >= argSen.Length)
+                                        //        {
+                                        //            argSymb = new char[y];
+                                        //            Array.Copy(argSen, x - y, argSymb, 0, y);
+                                        //            Word word = new Word();
+                                        //            word.letters = argSymb;
+                                        //            sentence.items.Add(word);
+                                        //            y = 0;
+                                        //            x = 0;
+                                        //        }
+                                        //        else
+                                        //        {
+                                        //            if (char.IsLetter(argSen[x]) == false)
+                                        //            {
+                                        //                argSymb = new char[y];
+                                        //                Array.Copy(argSen, x - y, argSymb, 0, y);
+                                        //                Word word = new Word();
+                                        //                //word.letters = argSymb;
+                                        //                word.letters = argSymb;
+                                        //                sentence.items.Add(word);
+                                        //                //sentence.items.Add(word);
+                                        //                //sentence.items = word;
+                                        //                y = 0;
+                                        //            }
+                                        //        }
+                                        //    }
+                                        //    else
+                                        //    {
+                                        //        if (char.IsDigit(s))
+                                        //        {
+                                        //            x = ++x;
+                                        //            y = ++y;
+                                        //            if (x >= argSen.Length)
+                                        //            {
+                                        //                argSymb = new char[y];
+                                        //                Array.Copy(argSen, x - y, argSymb, 0, y);
+                                        //                Digit digit = new Digit();
+                                        //                digit.symbols = argSymb;
+                                        //                sentence.items.Add(digit);
+                                        //                y = 0;
+                                        //                x = 0;
+                                        //            }
+                                        //            else
+                                        //            {
+                                        //                if (char.IsDigit(argSen[x]) == false)
+                                        //                {
+                                        //                    argSymb = new char[y];
+                                        //                    Array.Copy(argSen, x - y, argSymb, 0, y);
+                                        //                    Digit digit = new Digit();
+                                        //                    digit.symbols = argSymb;
+                                        //                    sentence.items.Add(digit);
+                                        //                    y = 0;
+                                        //                }
+                                        //            }
+                                        //        }
+                                        //        else
+                                        //        {
+                                        //            if (char.IsWhiteSpace(s))
+                                        //            {
+                                        //                x = ++x;
+                                        //                y = ++y;
+                                        //                if (x >= argSen.Length)
+                                        //                {
+                                        //                    argSymb = new char[y];
+                                        //                    Array.Copy(argSen, x - y, argSymb, 0, y);
+                                        //                    y = 0;
+                                        //                    x = 0;
+                                        //                }
+                                        //                else
+                                        //                {
+                                        //                    if (char.IsWhiteSpace(argSen[x]) == false)
+                                        //                    {
+                                        //                        argSymb = new char[y];
+                                        //                        Array.Copy(argSen, x - y, argSymb, 0, y);
+                                        //                        y = 0;
+                                        //                    }
+                                        //                }
+                                        //            }
+                                        //            else
+                                        //            {
+                                        //                if (char.IsPunctuation(s))
+                                        //                {
+                                        //                    x = ++x;
+                                        //                    y = ++y;
+                                        //                    if (x >= argSen.Length)
+                                        //                    {
+                                        //                        argSymb = new char[y];
+                                        //                        Array.Copy(argSen, x - y, argSymb, 0, y);
+                                        //                        Punctuation punctuation = new Punctuation();
+                                        //                        punctuation.symbols = argSymb;
+                                        //                        sentence.items.Add(punctuation);
+                                        //                        y = 0;
+                                        //                        x = 0;
+                                        //                    }
+                                        //                    else
+                                        //                    {
+                                        //                        if (char.IsPunctuation(argSen[x]) == false)
+                                        //                        {
+                                        //                            argSymb = new char[y];
+                                        //                            Array.Copy(argSen, x - y, argSymb, 0, y);
+                                        //                            Punctuation punctuation = new Punctuation();
+                                        //                            punctuation.symbols = argSymb;
+                                        //                            sentence.items.Add(punctuation);
+                                        //                            y = 0;
+                                        //                        }
+                                        //                    }
+                                        //                    //if (char.IsPunctuation(argRes[x])==false)
+                                        //                    //{
+                                        //                    //    argSymb = new char[y];
+                                        //                    //    Array.Copy(argRes, x - y, argSymb, 0, y);
+                                        //                    //    y = 0;
+                                        //                    //}
+                                        //                }
+                                        //                else
+                                        //                {
+                                        //                    x = ++x;
+                                        //                    y = ++y;
+                                        //                    if (x >= argSen.Length)
+                                        //                    {
+                                        //                        argSymb = new char[y];
+                                        //                        Array.Copy(argSen, x - y, argSymb, 0, y);
+                                        //                        y = 0;
+                                        //                        x = 0;
+                                        //                    }
+                                        //                    else
+                                        //                    {
+                                        //                        if (char.IsLetter(argSen[x]) == false ||
+                                        //                            char.IsDigit(argSen[x]) == false ||
+                                        //                            char.IsWhiteSpace(argSen[x]) == false ||
+                                        //                            char.IsPunctuation(argSen[x]) == false)
+                                        //                        {
+                                        //                            argSymb = new char[y];
+                                        //                            Array.Copy(argSen, x - y, argSymb, 0, y);
+                                        //                            y = 0;
+                                        //                        }
+                                        //                    }
+                                        //                }
+                                        //            }
+                                        //        }
+                                        //    }
+                                        //}
+                                        text.TextItems.Add(sentence);
+                                        sen2 = 0;
+                                    }
                                 }
                             }
-                            else
-                            {
-                                if (char.IsDigit(s))
-                                {
-                                    x = ++x;
-                                    y = ++y;
-                                    if (char.IsDigit(argRes[x]))
-                                    {
-                                        continue;
-                                    }
-                                    else
-                                    {
-                                        z = y - 1;
-                                        argSymb = new char[z];
-                                        Array.Copy(argRes, x - 1, argSymb, 0, z);
-                                        y = 0;
-                                    }
-                                }
-                                else
-                                {
-                                    if (char.IsWhiteSpace(s))
-                                    {
-                                        x = ++x;
-                                        y = ++y;
-                                        if (char.IsWhiteSpace(argRes[x]))
-                                        {
-                                            continue;
-                                        }
-                                        else
-                                        {
-                                            z = y - 1;
-                                            argSymb = new char[z];
-                                            Array.Copy(argRes, x - 1, argSymb, 0, z);
-                                            y = 0;
-                                        }
-                                    }
-                                    else
-                                    {
-                                        x = ++x;
-                                        y = ++y;
-                                        if (char.IsPunctuation(argRes[x]))
-                                        {
-                                            continue;
-                                        }
-                                        else
-                                        {
-                                            z = y - 1;
-                                            argSymb = new char[z];
-                                            Array.Copy(argRes, x - 1, argSymb, 0, z);
-                                            y = 0;
-                                        }
-                                    }
-                                }
-                            }
+                            
                         }
+                        //text.TextItems.Add(sentence);
                         i = ++i;
                         j = 0;
                         n2 = i;
@@ -149,9 +266,44 @@ namespace TextHandler.Parser
                     break;
                 }
             }
+
         }
     }
 }
+
+
+//if (x >= argRes.Length) 
+//{
+
+//    y = ++y;
+//    argSymb = new char[y];
+//    Array.Copy(argRes, x - y, argSymb, 0, y);
+//    y = 0;
+//}
+////break;
+//else
+//{
+
+//if (x >= argRes.Length)
+//{
+//    y = ++y;
+//    argSymb = new char[y];
+//    Array.Copy(argRes, x - y, argSymb, 0, y);
+//    y = 0;
+//    break;
+//}
+//x = ++x;
+//y = ++y;
+//if ()
+
+//if (char.IsPunctuation(argRes[x]) == false)
+//{
+//    argSymb = new char[y];
+//    Array.Copy(argRes, x - y, argSymb, 0, y);
+//    y = 0;
+//}
+                                        
+                                    
 //line = builder.ToString(0, builder.Length);
 //Console.WriteLine("Its done!");
 //Console.ReadKey();

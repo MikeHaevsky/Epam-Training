@@ -52,6 +52,7 @@
     <Compile Include="Interfaces\ISentenceItem.cs" />
     <Compile Include="Interfaces\ITextItem.cs" />
     <Compile Include="Parser\FirstParser.cs" />
+    <Compile Include="Parser\ThirdParse.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

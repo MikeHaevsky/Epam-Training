@@ -35,19 +35,19 @@ namespace TextHandler.Implementation.TextItems
             }
         }
 
-        //public Sentence()
-        //{
-        //    Items = new List<ISentenceItem>();
-        //}
+        public Sentence()
+        {
+            Items = new List<ISentenceItem>();
+        }
 
-        //public Sentence(IEnumerable<ISentenceItem> source)
-        //    : this()
-        //{
-        //    foreach (var c in source)
-        //    {
-        //        Items.Add(c);
-        //    }
-        //}
+        public Sentence(IEnumerable<ISentenceItem> source)
+            : this()
+        {
+            foreach (var c in source)
+            {
+                Items.Add(c);
+            }
+        }
         //public Separator TypeSeparator
         //{
         //    get

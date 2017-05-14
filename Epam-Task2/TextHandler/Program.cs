@@ -16,6 +16,8 @@ namespace TextHandler
             //string path = string.Concat(Directory.GetCurrentDirectory()," ", filename);
             string path = "D:\\Data.txt";
             FirstParser parser = new FirstParser(path);
+            Console.WriteLine("It's done");
+            Console.ReadKey();
         }
     }
 }

@@ -7,6 +7,6 @@ c:\users\администратор\documents\visual studio 2013\Projects\Epam-T
 c:\Users\Администратор\Documents\Visual Studio 2013\Projects\Epam-Training\Epam-Task2\TextHandler\bin\Debug\TextHandler.exe.config
 c:\Users\Администратор\Documents\Visual Studio 2013\Projects\Epam-Training\Epam-Task2\TextHandler\obj\Debug\TextHandler.exe
 c:\Users\Администратор\Documents\Visual Studio 2013\Projects\Epam-Training\Epam-Task2\TextHandler\obj\Debug\TextHandler.pdb
-c:\Users\Администратор\Documents\Visual Studio 2013\Projects\Epam-Training\Epam-Task2\TextHandler\obj\Debug\TextHandler.csprojResolveAssemblyReference.cache
 c:\Users\Администратор\Documents\Visual Studio 2013\Projects\Epam-Training\Epam-Task2\TextHandler\bin\Debug\TextHandler.exe
 c:\Users\Администратор\Documents\Visual Studio 2013\Projects\Epam-Training\Epam-Task2\TextHandler\bin\Debug\TextHandler.pdb
+c:\Users\Администратор\Documents\Visual Studio 2013\Projects\Epam-Training\Epam-Task2\TextHandler\obj\Debug\TextHandler.csprojResolveAssemblyReference.cache
