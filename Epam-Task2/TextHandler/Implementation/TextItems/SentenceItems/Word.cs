@@ -9,38 +9,49 @@ namespace TextHandler.Implementation.TextItems.SentenceItems
 {
     public class Word : ISentenceItem
     {
-        public Symbol[] symbols;
-        public Word(string chars)
-        {
-            if (chars != null)
-            {
-                this.symbols = chars.Select(x => new Symbol(x)).ToArray();
-            }
-            else
-            {
-                this.symbols = null;
-            }
-        }
-        public Symbol GetSymbol(int i)
-        {
-            return symbols[i];
-        }
-        public string Chars
+        public char[] letters;
+        public char[] Symbols
         {
             get
             {
-                StringBuilder sb = new StringBuilder();
-                foreach (var s in this.symbols)
-                {
-                    sb.Append(s.Chars);
-                }
-                return sb.ToString();
+                return letters;
             }
             set
             {
-                Console.WriteLine("WordItem");
+                letters=value;
             }
         }
+        //public Word(string chars)
+        //{
+        //    if (chars != null)
+        //    {
+        //        this.symbols = chars.Select(x => new Symbol(x)).ToArray();
+        //    }
+        //    else
+        //    {
+        //        this.symbols = null;
+        //    }
+        //}
+        //public Symbol GetSymbol(int i)
+        //{
+        //    return symbols[i];
+        //}
+        //public string Chars
+        //{
+        //    get
+        //    {
+        //        StringBuilder sb = new StringBuilder();
+        //        foreach (var s in this.symbols)
+        //        {
+        //            sb.Append(s.Chars);
+        //        }
+        //        return sb.ToString();
+        //    }
+        //    set
+        //    {
+        //        Console.WriteLine("WordItem");
+        //    }
+        //}
         //    public IEnumerator<Symbol> GetEnumerator()
         //    {
         //        //foreach (var s in symbols)

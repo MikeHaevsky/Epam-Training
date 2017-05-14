@@ -8,7 +8,7 @@ namespace TextHandler.Interfaces
 {
     public interface ISentenceItem
     {
-        string Chars
+        char[] Symbols
         {
             get;
             set;

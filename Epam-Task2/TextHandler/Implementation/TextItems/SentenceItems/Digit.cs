@@ -9,34 +9,45 @@ namespace TextHandler.Implementation.TextItems.SentenceItems
 {
     public class Digit: ISentenceItem
     {
-        public Symbol[] symbols;
-        public Digit(string chars)
-        {
-            if (chars != null)
-            {
-                this.symbols = chars.Select(x => new Symbol(x)).ToArray();
-            }
-            else
-            {
-                this.symbols = null;
-            }
-        }
-
-        public string Chars
+        public char[] symbols;
+        public char[] Symbols
         {
             get
             {
-                StringBuilder sb = new StringBuilder();
-                foreach (var s in this.symbols)
-                {
-                    sb.Append(s.Chars);
-                }
-                return sb.ToString();
+                return symbols;
             }
             set
             {
-                Console.WriteLine("Digit");
+                symbols = value;
             }
         }
+        //public Digit(string chars)
+        //{
+        //    if (chars != null)
+        //    {
+        //        this.symbols = chars.Select(x => new Symbol(x)).ToArray();
+        //    }
+        //    else
+        //    {
+        //        this.symbols = null;
+        //    }
+        //}
+
+        //public string Symbols
+        //{
+        //    get
+        //    {
+        //        StringBuilder sb = new StringBuilder();
+        //        foreach (var s in this.symbols)
+        //        {
+        //            sb.Append(s.Chars);
+        //        }
+        //        return sb.ToString();
+        //    }
+        //    set
+        //    {
+        //        Console.WriteLine("Digit");
+        //    }
+        //}
     }
 }

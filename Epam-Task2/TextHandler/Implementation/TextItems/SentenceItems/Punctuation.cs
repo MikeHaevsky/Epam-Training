@@ -9,34 +9,45 @@ namespace TextHandler.Implementation.TextItems.SentenceItems
 {
     class Punctuation:ISentenceItem
     {
-        public Symbol[] symbols;
-        public Punctuation(string chars)
-        {
-            if (chars != null)
-            {
-                this.symbols = chars.Select(items=>new Symbol(items)).ToArray();
-            }
-            else
-            {
-                this.symbols=null;
-            }
-        }
-
-        public string Chars
+        public char[] symbols;
+        public char[] Symbols
         {
             get
             {
-                StringBuilder sb = new StringBuilder();
-                foreach (var s in this.symbols)
-                {
-                    sb.Append(s.Chars);
-                }
-                return sb.ToString();
+                return symbols;
             }
             set
             {
-                Console.WriteLine("PunctuationItem");
+                symbols = value;
             }
         }
+        //public Punctuation(string chars)
+        //{
+        //    if (chars != null)
+        //    {
+        //        this.symbols = chars.Select(items=>new Symbol(items)).ToArray();
+        //    }
+        //    else
+        //    {
+        //        this.symbols=null;
+        //    }
+        //}
+
+        //public string Chars
+        //{
+        //    get
+        //    {
+        //        StringBuilder sb = new StringBuilder();
+        //        foreach (var s in this.symbols)
+        //        {
+        //            sb.Append(s.Chars);
+        //        }
+        //        return sb.ToString();
+        //    }
+        //    set
+        //    {
+        //        Console.WriteLine("PunctuationItem");
+        //    }
+        //}
     }
 }

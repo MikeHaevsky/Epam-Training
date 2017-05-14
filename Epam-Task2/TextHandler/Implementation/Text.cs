@@ -11,15 +11,21 @@ namespace TextHandler.Implementation
 {
     class Text
     {
-        private ICollection<ISentence> textItem;
-        public ICollection<ISentence> TextItems
+        private ICollection<Sentence> textItems;
+        public ICollection<Sentence> TextItems
         {
-            get;
-            set;
+            get
+            {
+                return textItems;
+            }
+            set
+            {
+                textItems = value;
+            }
         }
         public Text()
         {
-            TextItems = new List<ISentence>();
+            TextItems = new List<Sentence>();
         }
         //public int GetCountWords(){
         //    //return textItem.OfType<Paragraph>().Count<Word>();
