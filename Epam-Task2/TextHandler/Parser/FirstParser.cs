@@ -16,11 +16,11 @@ namespace TextHandler.Parser
         char[] result;
         //ICollection<String> Str;
         char[] argRes;
-        char[] argSen;
-        char[] argSymb;
+        //char[] argSen;
+        //char[] argSymb;
         //char[] result1;
         //string str;
-        public FirstParser(string path)
+        public Text FirstParser(string path)
         {
             //WordFactory wf = new WordFactory();
             StringBuilder builder = new StringBuilder();
@@ -35,8 +35,8 @@ namespace TextHandler.Parser
             result = new char[reader.BaseStream.Length];
             reader.Read(result, 0, (int)reader.BaseStream.Length);
             Text text = new Text();
-
-            ThirdParse thirdParse = new ThirdParse();
+            SecondParser secondParser=new SecondParser();
+            //ThirdParse thirdParse = new ThirdParse();
             //paragraphNumber for sentence
             int pn=0;
 
@@ -48,13 +48,13 @@ namespace TextHandler.Parser
 
             //second cyrcle count
             //int sen = 0;
-            int sen1 = 0;
-            int sen2 = 0;
-            int sen3 = 0;
+            //int sen1 = 0;
+            //int sen2 = 0;
+            //int sen3 = 0;
 
             //third cycle counts
-            int x = 0;
-            int y = 0;
+            //int x = 0;
+            //int y = 0;
             //int z = 0;
             //int m = 0;
 
@@ -80,72 +80,9 @@ namespace TextHandler.Parser
                         //Sentence sentence = new Sentence();
                         //sentence.paragraphNumber = pn;
                         Array.Copy(result, n2, argRes, 0, n);
+                        text = secondParser.Parse(argRes, pn);
                         //construct the buisness logics
-                        foreach (char s in argRes)
-                        {
-                            sen1 = ++sen1;
-                            sen2 = ++sen2;
-                            if (s == '.')
-                            {
-                                if (sen1 >= argRes.Length)
-                                {
-                                    Sentence sentence = new Sentence();
-                                    sentence.paragraphNumber = pn;
-                                    argSen = new char[sen2];
-                                    //sen3 = sen1;
-                                    //Array.Copy(argRes, sen1 - sen2, argSen, 0, sen2+1);
-                                    Array.Copy(argRes, sen1-sen2, argSen, 0, sen2);
-                                    //sen3 = sen1+1;
-                                    //ThirdParse thirdParse = new ThirdParse(argSen,pn);
-                                    sentence = thirdParse.Parse(argSen, pn);
-                                    text.TextItems.Add(sentence);
-                                    sen1 = 0;
-                                    sen2 = 0;
-                                    sen3 = 0;
 
-                                    //sentence.items=
-                                    //sentence.Items.Add(thirdParse.Parse(argSen, pn));
-                                    //sentence.items.Add(thirdParse.Parse(argSen, pn));
-                                    
-
-                                }
-                                else
-                                {
-                                    if (char.IsWhiteSpace(argRes[sen1]) && char.IsUpper(argRes[sen1 + 1]) || char.IsUpper(argRes[sen1]))
-                                    {
-                                        Sentence sentence = new Sentence();
-                                        sentence.paragraphNumber = pn;
-                                        argSen = new char[sen2];
-                                        //sen3 = sen1;
-                                        Array.Copy(argRes, sen1-sen2, argSen, 0, sen2);
-                                        //sen3 = sen1 + 1;
-                                        sentence = thirdParse.Parse(argSen, pn);
-                                        text.TextItems.Add(sentence);
-                                        sen2 = 0;
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                if (sen1 >= argRes.Length)
-                                {
-                                    Sentence sentence = new Sentence();
-                                    sentence.paragraphNumber = pn;
-                                    argSen = new char[sen2];
-                                    //sen3 = sen1;
-                                    //Array.Copy(argRes, sen1 - sen2, argSen, 0, sen2+1);
-                                    Array.Copy(argRes, sen1 - sen2, argSen, 0, sen2);
-                                    //sen3 = sen1+1;
-                                    //ThirdParse thirdParse = new ThirdParse(argSen,pn);
-                                    sentence = thirdParse.Parse(argSen, pn);
-                                    text.TextItems.Add(sentence);
-                                    sen1 = 0;
-                                    sen2 = 0;
-                                    sen3 = 0;
-                                }
-                            }
-                            
-                        }
                         //text.TextItems.Add(sentence);
                         i = ++i;
                         j = 0;
@@ -157,10 +94,76 @@ namespace TextHandler.Parser
                     break;
                 }
             }
-
+            return text;
         }
     }
 }
+
+//foreach (char s in argRes)
+//{
+//    sen1 = ++sen1;
+//    sen2 = ++sen2;
+//    if (s == '.')
+//    {
+//        if (sen1 >= argRes.Length)
+//        {
+//            Sentence sentence = new Sentence();
+//            sentence.paragraphNumber = pn;
+//            argSen = new char[sen2];
+//            //sen3 = sen1;
+//            //Array.Copy(argRes, sen1 - sen2, argSen, 0, sen2+1);
+//            Array.Copy(argRes, sen1-sen2, argSen, 0, sen2);
+//            //sen3 = sen1+1;
+//            //ThirdParse thirdParse = new ThirdParse(argSen,pn);
+//            sentence = thirdParse.Parse(argSen, pn);
+//            text.TextItems.Add(sentence);
+//            sen1 = 0;
+//            sen2 = 0;
+//            sen3 = 0;
+
+//            //sentence.items=
+//            //sentence.Items.Add(thirdParse.Parse(argSen, pn));
+//            //sentence.items.Add(thirdParse.Parse(argSen, pn));
+
+
+//        }
+//        else
+//        {
+//            if (char.IsWhiteSpace(argRes[sen1]) && char.IsUpper(argRes[sen1 + 1]) || char.IsUpper(argRes[sen1]))
+//            {
+//                Sentence sentence = new Sentence();
+//                sentence.paragraphNumber = pn;
+//                argSen = new char[sen2];
+//                //sen3 = sen1;
+//                Array.Copy(argRes, sen1-sen2, argSen, 0, sen2);
+//                //sen3 = sen1 + 1;
+//                sentence = thirdParse.Parse(argSen, pn);
+//                text.TextItems.Add(sentence);
+//                sen2 = 0;
+//            }
+//        }
+//    }
+//    else
+//    {
+//        if (sen1 >= argRes.Length)
+//        {
+//            Sentence sentence = new Sentence();
+//            sentence.paragraphNumber = pn;
+//            argSen = new char[sen2];
+//            //sen3 = sen1;
+//            //Array.Copy(argRes, sen1 - sen2, argSen, 0, sen2+1);
+//            Array.Copy(argRes, sen1 - sen2, argSen, 0, sen2);
+//            //sen3 = sen1+1;
+//            //ThirdParse thirdParse = new ThirdParse(argSen,pn);
+//            sentence = thirdParse.Parse(argSen, pn);
+//            text.TextItems.Add(sentence);
+//            sen1 = 0;
+//            sen2 = 0;
+//            sen3 = 0;
+//        }
+//    }
+
+//}
 
 //ошибка it нужно поменять
 //foreach (char it in argSen)

@@ -9,7 +9,7 @@ using TextHandler.Interfaces;
 
 namespace TextHandler.Implementation
 {
-    class Text
+    public class Text
     {
         private ICollection<Sentence> textItems;
         public ICollection<Sentence> TextItems
