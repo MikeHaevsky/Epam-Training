@@ -7,7 +7,7 @@ using TextHandler.Interfaces;
 
 namespace TextHandler.Implementation.TextItems
 {
-    class Sentence//:ISentence
+    public class Sentence//:ISentence
     {
         public ICollection<ISentenceItem> items;
         public int paragraphNumber;

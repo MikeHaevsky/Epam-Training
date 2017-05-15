@@ -8,15 +8,25 @@ using TextHandler.Implementation.TextItems.SentenceItems;
 
 namespace TextHandler.Parser
 {
-    class ThirdParse
+    public class ThirdParse
     {
-        Sentence Parse(char[] argSen,int pn)
+        //public Sentence sentence=new Sentence();
+        //public Sentence sentence;
+        //public Sentence Sentence
+        //{
+        //    set
+        //    {
+        //        sentence=value;
+        //    }
+        //}
+        public Sentence Parse(char[] argSen,int pn)
         {
             //char[] argSen;
             char[] argSymb;
             int x = 0;
             int y = 0;
             Sentence sentence = new Sentence();
+            sentence.paragraphNumber = pn;
             foreach (char s in argSen)
             {
                 if (char.IsLetter(s))
