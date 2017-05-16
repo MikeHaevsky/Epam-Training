@@ -43,14 +43,14 @@
   <ItemGroup>
     <Compile Include="Implementation\TextItems\Sentence.cs" />
     <Compile Include="Implementation\TextItems\SentenceItems\Digit.cs" />
+    <Compile Include="Implementation\TextItems\SentenceItems\OtherSymbols.cs" />
     <Compile Include="Implementation\TextItems\SentenceItems\Punctuation.cs" />
-    <Compile Include="Implementation\TextItems\SentenceItems\Symbol.cs" />
     <Compile Include="Implementation\TextItems\SentenceItems\Word.cs" />
     <Compile Include="Implementation\Text.cs" />
-    <Compile Include="Implementation\TextItems\Separators.cs" />
+    <Compile Include="Implementation\TextItems\SentenceItems\WordSeparator.cs" />
     <Compile Include="Interfaces\ISentence.cs" />
     <Compile Include="Interfaces\ISentenceItem.cs" />
-    <Compile Include="Interfaces\ITextItem.cs" />
+    <Compile Include="NewParser\MainParser.cs" />
     <Compile Include="Parser\FirstParser.cs" />
     <Compile Include="Parser\SecondParser.cs" />
     <Compile Include="Parser\ThirdParse.cs" />

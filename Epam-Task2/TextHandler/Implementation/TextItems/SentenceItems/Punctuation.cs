@@ -21,6 +21,10 @@ namespace TextHandler.Implementation.TextItems.SentenceItems
                 symbols = value;
             }
         }
+        public override string ToString()
+        {
+            return string.Join("",Symbols);
+        }
         //public Punctuation(string chars)
         //{
         //    if (chars != null)

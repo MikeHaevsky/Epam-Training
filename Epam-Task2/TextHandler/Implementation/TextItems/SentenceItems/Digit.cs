@@ -9,7 +9,7 @@ namespace TextHandler.Implementation.TextItems.SentenceItems
 {
     public class Digit: ISentenceItem
     {
-        public char[] symbols;
+        private char[] symbols;
         public char[] Symbols
         {
             get
@@ -20,6 +20,10 @@ namespace TextHandler.Implementation.TextItems.SentenceItems
             {
                 symbols = value;
             }
+        }
+        public override string ToString()
+        {
+            return string.Join("", symbols);
         }
         //public Digit(string chars)
         //{

@@ -9,7 +9,7 @@ using TextHandler.Interfaces;
 
 namespace TextHandler.Implementation
 {
-    public class Text
+    public class Text//:IComparable
     {
         private ICollection<Sentence> textItems;
         public ICollection<Sentence> TextItems
@@ -27,6 +27,46 @@ namespace TextHandler.Implementation
         {
             TextItems = new List<Sentence>();
         }
+        public string GroupByParagraph()
+        {
+            //return string.Join("\n", textItems.GroupBy(x => x.ParagraphNumber));
+            //return string.Join("\n", text.Query1().GroupBy(x => x.ParagraphNumber).Select(x => x.ToString()));
+            //return TextItems.GroupBy(items=>items.ParagraphNumber).Select(;
+            return string.Join("\n", textItems.GroupBy(x => x.ParagraphNumber).Select(x => string.Join(" ", x.Select(y => y.ToString()))));
+        }
+        //public override string ToString()
+        //{
+        //    return string.Join("\n", TextItems.GroupBy(x => x.ParagraphNumber).Select(x => string.Join(" ", x.Select(y => y.ToString()))));
+        //    //return string.Join("\n",textItems);
+        //}
+        //Вывести все предложения заданного текста в порядке возрастания количества слов в каждом из них
+        public IOrderedEnumerable<Sentence> Query1()
+        {
+            return TextItems.OrderBy(items=>items.WordCount());
+        }
+
+        //Во всех вопросительных предложениях текста найти и напечатать без повторений слова заданной длины.
+        public string Query2()
+        {
+            //return string.Join("\n", TextItems.Where(x => x.IsQuestion() == true).Select(x => string.Join(" ",x.Select(y=>y.ToString()))));
+            return string.Join("\n", TextItems.Where(x => x.IsQuestion() == true).Select(x => string.Join("",x.Items)));//x.Items));
+            //return string.Join("\n", TextItems.Select(x => x.IsQuestion()));
+        }
+
+        //public int CompareTo(Sentence sen)
+        //{
+        //    int compare;
+        //    compare=String.Compare(this.textItems)
+        //}
+        //public string GetText()
+        //{
+        //    foreach (Sentence item in textItems)
+        //    {
+                
+        //        if(item.)
+        //    }
+        //}
+
         //public int GetCountWords(){
         //    //return textItem.OfType<Paragraph>().Count<Word>();
         //    return textItem.OfType<Paragraph>().OfType<Sentence>().OfType<Word>().Count();

@@ -14,9 +14,5 @@ namespace TextHandler.Interfaces
             get;
             set;
         }
-        Separator TypeSeparator 
-        {
-            get;
-        }
     }
 }

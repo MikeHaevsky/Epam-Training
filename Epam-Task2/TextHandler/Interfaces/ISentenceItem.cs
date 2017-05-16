@@ -13,5 +13,7 @@ namespace TextHandler.Interfaces
             get;
             set;
         }
+        //string ToString();
+        //string OfType();
     }
 }

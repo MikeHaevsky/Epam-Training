@@ -10,23 +10,15 @@ namespace TextHandler.Parser
 {
     public class ThirdParse
     {
-        //public Sentence sentence=new Sentence();
-        //public Sentence sentence;
-        //public Sentence Sentence
-        //{
-        //    set
-        //    {
-        //        sentence=value;
-        //    }
-        //}
         public Sentence Parse(char[] argSen,int pn)
         {
-            //char[] argSen;
             char[] argSymb;
+            //char[] argPunct;// = new ['.','?','!']
             int x = 0;
             int y = 0;
+            char[]argPunct=new char[3] {'.','?','!'};
             Sentence sentence = new Sentence();
-            sentence.paragraphNumber = pn;
+            sentence.ParagraphNumber = pn;
             foreach (char s in argSen)
             {
                 if (char.IsLetter(s))
@@ -38,8 +30,8 @@ namespace TextHandler.Parser
                         argSymb = new char[y];
                         Array.Copy(argSen, x - y, argSymb, 0, y);
                         Word word = new Word();
-                        word.letters = argSymb;
-                        sentence.items.Add(word);
+                        word.Symbols = argSymb;
+                        sentence.Items.Add(word);
                         y = 0;
                         x = 0;
                     }
@@ -50,11 +42,8 @@ namespace TextHandler.Parser
                             argSymb = new char[y];
                             Array.Copy(argSen, x - y, argSymb, 0, y);
                             Word word = new Word();
-                            //word.letters = argSymb;
-                            word.letters = argSymb;
-                            sentence.items.Add(word);
-                            //sentence.items.Add(word);
-                            //sentence.items = word;
+                            word.Symbols = argSymb;
+                            sentence.Items.Add(word);
                             y = 0;
                         }
                     }
@@ -70,8 +59,8 @@ namespace TextHandler.Parser
                             argSymb = new char[y];
                             Array.Copy(argSen, x - y, argSymb, 0, y);
                             Digit digit = new Digit();
-                            digit.symbols = argSymb;
-                            sentence.items.Add(digit);
+                            digit.Symbols = argSymb;
+                            sentence.Items.Add(digit);
                             y = 0;
                             x = 0;
                         }
@@ -82,8 +71,8 @@ namespace TextHandler.Parser
                                 argSymb = new char[y];
                                 Array.Copy(argSen, x - y, argSymb, 0, y);
                                 Digit digit = new Digit();
-                                digit.symbols = argSymb;
-                                sentence.items.Add(digit);
+                                digit.Symbols = argSymb;
+                                sentence.Items.Add(digit);
                                 y = 0;
                             }
                         }
@@ -107,7 +96,14 @@ namespace TextHandler.Parser
                                 {
                                     argSymb = new char[y];
                                     Array.Copy(argSen, x - y, argSymb, 0, y);
+                                    WordSeparator separator = new WordSeparator();
+                                    separator.Symbols = argSymb;
+                                    sentence.items.Add(separator);
                                     y = 0;
+                                }
+                                else
+                                {
+                                    y = --y;
                                 }
                             }
                         }
@@ -139,12 +135,6 @@ namespace TextHandler.Parser
                                         y = 0;
                                     }
                                 }
-                                //if (char.IsPunctuation(argRes[x])==false)
-                                //{
-                                //    argSymb = new char[y];
-                                //    Array.Copy(argRes, x - y, argSymb, 0, y);
-                                //    y = 0;
-                                //}
                             }
                             else
                             {

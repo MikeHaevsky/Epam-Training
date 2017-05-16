@@ -10,10 +10,11 @@ namespace TextHandler.Parser
 {
     public class SecondParser
     {
+        Text text = new Text();
         public Text Parse(char[] argRes, int pn)
         {
             ThirdParse thirdParse = new ThirdParse();
-            Text text = new Text();
+            //Text text = new Text();
             char[] argSen;
             int sen1 = 0;
             int sen2 = 0;
@@ -28,22 +29,11 @@ namespace TextHandler.Parser
                         Sentence sentence = new Sentence();
                         sentence.paragraphNumber = pn;
                         argSen = new char[sen2];
-                        //sen3 = sen1;
-                        //Array.Copy(argRes, sen1 - sen2, argSen, 0, sen2+1);
                         Array.Copy(argRes, sen1 - sen2, argSen, 0, sen2);
-                        //sen3 = sen1+1;
-                        //ThirdParse thirdParse = new ThirdParse(argSen,pn);
                         sentence = thirdParse.Parse(argSen, pn);
                         text.TextItems.Add(sentence);
                         sen1 = 0;
                         sen2 = 0;
-                        //sen3 = 0;
-
-                        //sentence.items=
-                        //sentence.Items.Add(thirdParse.Parse(argSen, pn));
-                        //sentence.items.Add(thirdParse.Parse(argSen, pn));
-
-
                     }
                     else
                     {
@@ -52,9 +42,7 @@ namespace TextHandler.Parser
                             Sentence sentence = new Sentence();
                             sentence.paragraphNumber = pn;
                             argSen = new char[sen2];
-                            //sen3 = sen1;
                             Array.Copy(argRes, sen1 - sen2, argSen, 0, sen2);
-                            //sen3 = sen1 + 1;
                             sentence = thirdParse.Parse(argSen, pn);
                             text.TextItems.Add(sentence);
                             sen2 = 0;
@@ -68,16 +56,11 @@ namespace TextHandler.Parser
                         Sentence sentence = new Sentence();
                         sentence.paragraphNumber = pn;
                         argSen = new char[sen2];
-                        //sen3 = sen1;
-                        //Array.Copy(argRes, sen1 - sen2, argSen, 0, sen2+1);
                         Array.Copy(argRes, sen1 - sen2, argSen, 0, sen2);
-                        //sen3 = sen1+1;
-                        //ThirdParse thirdParse = new ThirdParse(argSen,pn);
                         sentence = thirdParse.Parse(argSen, pn);
                         text.TextItems.Add(sentence);
                         sen1 = 0;
                         sen2 = 0;
-                        //sen3 = 0;
                     }
                 }
 

@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TextHandler.Implementation.TextItems.SentenceItems;
 using TextHandler.Interfaces;
 
 namespace TextHandler.Implementation.TextItems
 {
-    public class Sentence//:ISentence
+    public class Sentence//:IComparable//:ISentence
     {
         public ICollection<ISentenceItem> items;
         public int paragraphNumber;
@@ -48,20 +49,51 @@ namespace TextHandler.Implementation.TextItems
                 Items.Add(c);
             }
         }
-        //public Separator TypeSeparator
+        public int WordCount()
+        {
+            return Items.OfType<Word>().Count();
+        }
+        
+        public bool IsQuestion()
+        {
+            char[] ch;
+            int n=Items.Last().Symbols.Length-1;
+            ch = new char[n];
+            ch = Items.Last().Symbols;
+            if (ch.Last() == '?')
+                return true;
+            else
+                return false;
+        }
+        public override string ToString()
+        {
+            return string.Join("",Items);
+        }
+        //public override string ToString()
         //{
-        //    get
-        //    {
-        //        return typeSeparator;
-        //    }
-        //}
+        //    String.Join(items=>items.
+            //foreach(ISentence)
+            //if=if++;
+            //StringBuilder sb = new StringBuilder();
+            //string s1, s2;
 
-        //public int ParagraphNumber
-        //{
-        //    get
-        //    {
-        //        return paragraphNumber;
-        //    }
+            //foreach (ISentenceItem i in items)
+            //{
+
+            //    //if (i.Equals(typeof(Word)))
+            //    //{
+            //    //    s1 = string.Concat(i, " ");
+            //    //}
+            //    //else
+            //    //{
+            //    //    if (i.Equals(typeof(Punctuation)))
+            //    //    {
+
+            //    //    }
+            //    //}
+            //}
         //}
-    }
+    
+
+}
 }

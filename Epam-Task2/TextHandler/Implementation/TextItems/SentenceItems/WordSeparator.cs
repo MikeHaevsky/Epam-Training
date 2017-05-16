@@ -7,24 +7,23 @@ using TextHandler.Interfaces;
 
 namespace TextHandler.Implementation.TextItems.SentenceItems
 {
-    public class Word : ISentenceItem
+    class WordSeparator:ISentenceItem
     {
-        private char[] letters;
+        private char[] symbol;
         public char[] Symbols
         {
             get
             {
-                return letters;
+                return symbol;
             }
             set
             {
-                letters=value;
+                symbol = value;
             }
         }
         public override string ToString()
-        {            
-            return string.Join("", Symbols);
+        {
+            return string.Join("", Symbols.ToArray());
         }
     }
 }
-
