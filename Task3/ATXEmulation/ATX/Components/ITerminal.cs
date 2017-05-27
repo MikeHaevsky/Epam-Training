@@ -12,11 +12,12 @@ namespace ATXEmulation.ATX.Components
         void BeginCall(TelephoneNumber number);
         void EndingCall();
         void AnsweringCall();
-        void IncomingCall();
+        void IncomingCall(object sender,TelephoneNumber number);
         void Connecting();
         void Disconnecting();
         #region events
-        event EventHandler <Call> Called;  
+        event EventHandler <Call> Called;
+        //event EventHandler <TelephoneNumber> IncomingCalled;
         event EventHandler Dropped;       
         event EventHandler Answered;        
         event EventHandler Connected;

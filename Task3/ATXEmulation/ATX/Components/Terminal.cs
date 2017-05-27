@@ -36,25 +36,42 @@ namespace ATXEmulation.ATX.Components
 
         public void EndingCall()
         {
+            Console.WriteLine("Terminal №{0} abort call", Id);
             OnDropped();
         }
-        public void IncomingCall()
+        public void IncomingCall(object sender,TelephoneNumber number)
         {
-            Console.WriteLine("asdasd");
+            Console.WriteLine("This is terminal№{0}", Id);
+                Console.WriteLine("Incoming call from +{0} {1} \nAnswer or Drop", number.Code, number.Number);
+                ConsoleKeyInfo key=Console.ReadKey(true);
+                switch (key.Key)
+                {
+                    case ConsoleKey.Enter :
+                        AnsweringCall();
+                        break;
+                    case ConsoleKey.Escape:
+                        EndingCall();
+                        break;
+                    default:
+                        break;
+                }
         }
         public void AnsweringCall()
         {
+            Console.WriteLine("{0} call.......",Id);
             OnAnswered();
         }
 
 
         public void Connecting()
         {
+            Console.WriteLine("Terminal {0} has connected",Id);
             OnConnected();
         }
 
         public void Disconnecting()
         {
+            Console.WriteLine("Terminal {0} has disconnected", Id);
             OnDisconnected();
         }
         #endregion
@@ -65,6 +82,7 @@ namespace ATXEmulation.ATX.Components
         private EventHandler _answered;
         private EventHandler _connected;
         private EventHandler _disconnected;
+        //private EventHandler <TelephoneNumber> _incomingCalled;
 
         public event EventHandler<Call> Called
         {
@@ -121,12 +139,27 @@ namespace ATXEmulation.ATX.Components
                 _disconnected -= value;
             }
         }
-
+        //public event EventHandler<TelephoneNumber> IncomingCalled
+        //{
+        //    add
+        //    {
+        //        _incomingCalled += value;
+        //    }
+        //    remove
+        //    {
+        //        _incomingCalled -= value;
+        //    }
+        //}
         private void OnCalled(Call call)
         {
             if (_called != null)
                 _called(this, call);
         }
+        //private void OnIncCalled(TelephoneNumber number)
+        //{
+        //    if (_incomingCalled != null)
+        //        _incomingCalled(this, number);
+        //}
         private void OnDropped()
         {
             if (_dropped != null)
@@ -155,6 +188,7 @@ namespace ATXEmulation.ATX.Components
             _disconnected = null;
             _connected = null;
             _answered = null;
+            //_incomingCalled = null;
         }
     }
 }

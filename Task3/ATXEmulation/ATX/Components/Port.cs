@@ -30,10 +30,6 @@ namespace ATXEmulation.ATX.Components
             this.Abonent = abonent;
             //this.Status = status;
         }
-        public void IncomingCall()
-        {
-
-        }
         #region Send from terminal
         public void TerminalCall(object sender,Call call)
         {
@@ -41,6 +37,10 @@ namespace ATXEmulation.ATX.Components
             call.FirstAbonent = Number;
             Status = PortStatusValue.Busy;
             OnCalled(call);
+        }
+        public void IncomingCalledPort(TelephoneNumber number)
+        {
+            OnIncomingCalled(number);
         }
         public void TerminalDrop(object sender,EventArgs e)
         {
@@ -54,17 +54,28 @@ namespace ATXEmulation.ATX.Components
         }
         public void TerminalConnect(object sender, EventArgs e)
         {
-            if (Status == PortStatusValue.Free)
-                Console.WriteLine("You're already connected");
-            Status = PortStatusValue.Free;
-            OnConnected();
+            if (Status == PortStatusValue.Busy)
+                Console.WriteLine("Finish your operation and try later.");
+            else
+            {
+                if (Status == PortStatusValue.Free)
+                    Console.WriteLine("You're already connected");
+                Status = PortStatusValue.Free;
+                OnConnected();
+            }
+
         }
         public void TerminalDisconnect(object sender, EventArgs e)
         {
-            if (Status == PortStatusValue.Disconnected)
-                Console.WriteLine("You're already disconnected");
-            Status = PortStatusValue.Disconnected;
-            OnDiscconnected();
+            if (Status == PortStatusValue.Busy)
+                Console.WriteLine("Finish your operation and try later.");
+            else
+            {
+                if (Status == PortStatusValue.Disconnected)
+                    Console.WriteLine("You're already disconnected");
+                Status = PortStatusValue.Disconnected;
+                OnDiscconnected();
+            }
         }
 #endregion
         #region Send to terminal
@@ -75,6 +86,7 @@ namespace ATXEmulation.ATX.Components
             terminal.Called += TerminalCall;
             terminal.Dropped += TerminalDrop;
             terminal.Answered += TerminalAnswer;
+            IncomingCalled += terminal.IncomingCall;
         }
         public void AbortRegistrateTerminal(ITerminal terminal)
         {
@@ -83,6 +95,7 @@ namespace ATXEmulation.ATX.Components
             terminal.Called -= TerminalCall;
             terminal.Dropped -= TerminalDrop;
             terminal.Answered -= TerminalAnswer;
+            IncomingCalled += terminal.IncomingCall;
         }
         //private void terminal_Connected(object sender, EventArgs e)
         //{
@@ -107,13 +120,14 @@ namespace ATXEmulation.ATX.Components
 #endregion
         #region Events
 
-        private EventHandler _called;
+        private EventHandler <Call> _called;
         private EventHandler _dropped;
         private EventHandler _answered;
         private EventHandler _connected;
         private EventHandler _disconnected;
+        private EventHandler <TelephoneNumber> _incomingCalled;
 
-        public event EventHandler Called
+        public event EventHandler <Call> Called
         {
             add
             {
@@ -168,11 +182,27 @@ namespace ATXEmulation.ATX.Components
                 _disconnected -= value;
             }
         }
+        public event EventHandler<TelephoneNumber> IncomingCalled
+        {
+            add
+            {
+                _incomingCalled += value;
+            }
+            remove
+            {
+                _incomingCalled -= value;
+            }
+        }
 
         private void OnCalled(Call call)
         {
             if (_called != null)
                 _called(this, call);
+        }
+        private void OnIncomingCalled(TelephoneNumber number)
+        {
+            if (_incomingCalled != null)
+                _incomingCalled(this, number);
         }
         private void OnDropped()
         {
@@ -202,6 +232,7 @@ namespace ATXEmulation.ATX.Components
             _connected = null;
             _disconnected = null;
             _dropped = null;
+            _incomingCalled = null;
         }
     }
 }

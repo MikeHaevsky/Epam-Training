@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ATXEmulation.ATX.Components
 {
-    public struct TelephoneNumber
+    public class TelephoneNumber//:EventArgs
     {
         public short _code;
         public int _number;

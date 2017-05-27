@@ -15,6 +15,10 @@ namespace ATXEmulation.ATX
         private ICollection<ITerminal> _terminals;
         private ICollection<ISession> _sessions;
         int count;
+        public ATXStation()
+        {
+            Sessions = new List<ISession>();
+        }
         public ICollection<Port> Ports
         {
             get
@@ -37,6 +41,11 @@ namespace ATXEmulation.ATX
                 _terminals = value;
             }
         }
+        public ICollection<ISession> Sessions
+        {
+            get;
+            set;
+        }
         public void Connect(Port port)
         {
             port.Connected += ConnectToStation;
@@ -55,6 +64,7 @@ namespace ATXEmulation.ATX
                 port.Called+=port_Called;
                 port.Answered+=port_Answered;
                 port.Dropped+=port_Dropped;
+                //IncomingCall += port.IncomingCalledPort;
             }
         }
         public void DisconnectFromStation(object sender, EventArgs e)
@@ -65,6 +75,7 @@ namespace ATXEmulation.ATX
                 port.Called -= port_Called;
                 port.Answered -= port_Answered;
                 port.Dropped -= port_Dropped;
+                //IncomingCall -= port.IncomingCalledPort;
             }
         }
         public void port_Called(object sender, Call call)
@@ -75,13 +86,56 @@ namespace ATXEmulation.ATX
             //Port port = Ports.FirstOrDefault(x => x.Number == outNumber);
             //Ports.Single(x=>x.Number.Number==outNumber&&x.Number.Code==outCode);
 
-            Port port = Ports.Single(x=>x.Number.Number==outNumber&&x.Number.Code==outCode);
+            //Port port = Ports.Single(x=>x.Number.Number==outNumber&&x.Number.Code==outCode);
             //Ports.Single(x=>x.Number.Number==outNumber&&x.Number.Code==outCode).Dispose();
-            if (port.Status == PortStatusValue.Free)
+            try
             {
-                Ports.Single(x => x.Number.Number == outNumber && x.Number.Code == outCode).IncomingCall();
+                //Ports.FirstOrDefault(x => x.Number == call.SecondAbonent).IncomingCalledPort(call.SecondAbonent);
+                //Ports.Single(x=>x.Status==PortStatusValue.);
+                if (Ports.Single(x => x.Number.Number == outNumber && x.Number.Code == outCode).Status == PortStatusValue.Free)
+                {
+                    //Console.WriteLine("Wait...");
+                    Ports.Single(x => x.Number.Number == outNumber && x.Number.Code == outCode).IncomingCalledPort(call.SecondAbonent);
+                    Ports.Single(x => x.Number.Number == outNumber && x.Number.Code == outCode).Status = PortStatusValue.Busy;
+                }
+                else
+                {
+                    Console.WriteLine("Abonent is busy now...\nCallback later");
+                    call.Status = SessionSatusValue.Compleated;
+                }
+                //Ports.Single(x => x.Number == call.SecondAbonent).IncomingCalledPort(call.SecondAbonent);
+                //Ports.Single(x => x.Number.Number == outNumber && x.Number.Code == outCode).IncomingCalledPort(call.SecondAbonent);
+                Console.WriteLine("working");
+            }
+            catch
+            {
+                Console.WriteLine("Local error");
+                //Call endedCall = call;
+                //Sessions.Add(call);
+            }
+            finally
+            {
+                //Sessions = new List<Call>(new Call(call));
+                Sessions.Add(call);
             }
             //Port sPort = _ports.FirstOrDefault(x => x.Number == CallNumber);
+        }
+        private EventHandler<TelephoneNumber> _incomingCall;
+        public event EventHandler<TelephoneNumber> IncomingCall
+        {
+            add
+            {
+                _incomingCall += value;
+            }
+            remove
+            {
+                _incomingCall -= value;
+            }
+        }
+        private void OnIncomingCall(TelephoneNumber number)
+        {
+            if (_incomingCall != null)
+                _incomingCall(this, number);
         }
         public void port_Answered(object sender, EventArgs e)
         {

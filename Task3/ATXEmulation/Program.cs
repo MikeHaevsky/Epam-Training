@@ -31,18 +31,24 @@ namespace ATXEmulation
             station.Ports = new List<Port>()
             {
                 new Port(new TelephoneNumber(375, 8680737), "Mike"),
-                new Port(new TelephoneNumber(375, 7853457), "Valery")};
+                new Port(new TelephoneNumber(375, 5860786), "Vadim"),
+                new Port(new TelephoneNumber(375, 7868348), "Valery")};
             station.Terminals = new List<ITerminal>()
             {
                 new Terminal(1),
                 new Terminal(2),
+                new Terminal(3),
             };
             station.Connect(station.Ports.ElementAt(0));
             station.Ports.ElementAt(0).RegistrateTerminal(station.Terminals.ElementAt(0));
             station.Connect(station.Ports.ElementAt(1));
             station.Ports.ElementAt(1).RegistrateTerminal(station.Terminals.ElementAt(1));
+            station.Connect(station.Ports.ElementAt(1));
+            station.Ports.ElementAt(2).RegistrateTerminal(station.Terminals.ElementAt(2));
             station.Terminals.ElementAt(0).Connecting();
-            TelephoneNumber calledNumber=new TelephoneNumber(375,7863457);
+            station.Terminals.ElementAt(1).Connecting();
+            station.Terminals.ElementAt(2).Connecting();
+            TelephoneNumber calledNumber = new TelephoneNumber(375, 7868348);
             station.Terminals.ElementAt(0).BeginCall(calledNumber);
             //station.Terminals.ElementAt(1).BeginCall(new TelephoneNumber());
             //i = ++i;
