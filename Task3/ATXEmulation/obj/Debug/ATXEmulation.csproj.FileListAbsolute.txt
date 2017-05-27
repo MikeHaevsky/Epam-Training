@@ -1,0 +1,6 @@
+c:\Users\Администратор\Documents\Visual Studio 2013\Projects\Task3\ATXEmulation\bin\Debug\ATXEmulation.exe.config
+c:\Users\Администратор\Documents\Visual Studio 2013\Projects\Task3\ATXEmulation\obj\Debug\ATXEmulation.csprojResolveAssemblyReference.cache
+c:\Users\Администратор\Documents\Visual Studio 2013\Projects\Task3\ATXEmulation\bin\Debug\ATXEmulation.exe
+c:\Users\Администратор\Documents\Visual Studio 2013\Projects\Task3\ATXEmulation\bin\Debug\ATXEmulation.pdb
+c:\Users\Администратор\Documents\Visual Studio 2013\Projects\Task3\ATXEmulation\obj\Debug\ATXEmulation.exe
+c:\Users\Администратор\Documents\Visual Studio 2013\Projects\Task3\ATXEmulation\obj\Debug\ATXEmulation.pdb

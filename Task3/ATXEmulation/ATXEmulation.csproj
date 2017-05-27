@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{897CE7E4-DD40-472D-94A9-F31DD1B1BF8E}</ProjectGuid>
+    <ProjectGuid>{E8111C69-FBCF-47DC-863A-9CB12D78A87A}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TextHandler</RootNamespace>
-    <AssemblyName>TextHandler</AssemblyName>
+    <RootNamespace>ATXEmulation</RootNamespace>
+    <AssemblyName>ATXEmulation</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -41,28 +41,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Implementation\TextItems\Sentence.cs" />
-    <Compile Include="Implementation\TextItems\SentenceItems\Digit.cs" />
-    <Compile Include="Implementation\TextItems\SentenceItems\OtherSymbols.cs" />
-    <Compile Include="Implementation\TextItems\SentenceItems\Punctuation.cs" />
-    <Compile Include="Implementation\TextItems\SentenceItems\Word.cs" />
-    <Compile Include="Implementation\Text.cs" />
-    <Compile Include="Implementation\TextItems\SentenceItems\WordSeparator.cs" />
-    <Compile Include="Interfaces\ISentence.cs" />
-    <Compile Include="Interfaces\ISentenceItem.cs" />
-    <Compile Include="NewParser\MainParser.cs" />
-    <Compile Include="Parser\FirstParser.cs" />
-    <Compile Include="Parser\SecondParser.cs" />
-    <Compile Include="Parser\ThirdParse.cs" />
+    <Compile Include="ATX\ATXStation.cs" />
+    <Compile Include="ATX\ATXStationEventArgs.cs" />
+    <Compile Include="ATX\Components\Channel.cs" />
+    <Compile Include="ATX\Components\ITerminal.cs" />
+    <Compile Include="ATX\Components\Port.cs" />
+    <Compile Include="ATX\Components\PortStatusValue.cs" />
+    <Compile Include="ATX\Components\TelephoneNumber.cs" />
+    <Compile Include="ATX\Components\Terminal.cs" />
+    <Compile Include="ATX\Components\TerminalTypes.cs" />
+    <Compile Include="ATX\Events\PortEventArgs.cs" />
+    <Compile Include="ATX\Events\TerminalEventArgs.cs" />
+    <Compile Include="ATX\Exchanges\TextMessage.cs" />
+    <Compile Include="ATX\Exchanges\SessionSatusValue.cs" />
+    <Compile Include="ATX\Exchanges\Call.cs" />
+    <Compile Include="ATX\Exchanges\ISession.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Implementation\ClassDiagram1.cd" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="NewFolder1\" />
+    <Folder Include="ATX\Components\TerminalEvents\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

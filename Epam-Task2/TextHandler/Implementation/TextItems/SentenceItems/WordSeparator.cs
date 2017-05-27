@@ -7,7 +7,7 @@ using TextHandler.Interfaces;
 
 namespace TextHandler.Implementation.TextItems.SentenceItems
 {
-    class WordSeparator:ISentenceItem
+    public class WordSeparator:ISentenceItem
     {
         private char[] symbol;
         public char[] Symbols

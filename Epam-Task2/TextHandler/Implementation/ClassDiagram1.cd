@@ -1,12 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="TextHandler.Implementation.Text">
-    <Position X="4" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAEAAAABAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Implementation\Text.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="TextHandler.Implementation.TextItems.Paragraph" BaseTypeListCollapsed="true">
     <Position X="3" Y="2.75" Width="1.5" />
     <TypeIdentifier>
@@ -15,26 +8,17 @@
     </TypeIdentifier>
     <Lollipop Position="0.182" />
   </Class>
-  <Class Name="TextHandler.Implementation.TextItems.ParagraphSeparator" BaseTypeListCollapsed="true">
-    <Position X="4.75" Y="2.75" Width="1.75" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Implementation\TextItems\ParagraphSeparator.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
   <Class Name="TextHandler.Implementation.TextItems.Sentence" BaseTypeListCollapsed="true">
     <Position X="3" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAACAAAAAAAAAAAAACAAAAAgAAAAAAAAAA=</HashCode>
+      <HashCode>AAEAAAAAAAAACAAEAAgAAAAAAAgAAAAAAAAABAABAAA=</HashCode>
       <FileName>Implementation\TextItems\Sentence.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" />
   </Class>
   <Class Name="TextHandler.Implementation.TextItems.SentenceItems.Digit" BaseTypeListCollapsed="true">
     <Position X="1.25" Y="6.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAEAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAEAAAABAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Implementation\TextItems\SentenceItems\Digit.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -42,54 +26,10 @@
   <Class Name="TextHandler.Implementation.TextItems.SentenceItems.Punctuation" BaseTypeListCollapsed="true">
     <Position X="3" Y="6.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAEAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAEAAAABAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Implementation\TextItems\SentenceItems\Punctuation.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="TextHandler.Implementation.TextItems.SentenceItems.Word" BaseTypeListCollapsed="true">
-    <Position X="6.5" Y="6.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAEAAAIAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Implementation\TextItems\SentenceItems\Word.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="TextHandler.Implementation.TextItems.TextItems.SentenceItems.WordSeparator" BaseTypeListCollapsed="true">
-    <Position X="4.75" Y="6.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAACAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Implementation\TextItems\SentenceItems\WordSeparator.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
-  <Struct Name="TextHandler.Implementation.TextItems.SentenceItems.Symbol">
-    <Position X="3.75" Y="9" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAIAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Implementation\TextItems\SentenceItems\Symbol.cs</FileName>
-    </TypeIdentifier>
-  </Struct>
-  <Interface Name="TextHandler.Interfaces.ISentence">
-    <Position X="6.75" Y="4" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAACAAAAAAAAAAAAACAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Interfaces\ISentence.cs</FileName>
-    </TypeIdentifier>
-  </Interface>
-  <Interface Name="TextHandler.Interfaces.ISentenceItem">
-    <Position X="8.5" Y="6" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Interfaces\ISentenceItem.cs</FileName>
-    </TypeIdentifier>
-  </Interface>
-  <Interface Name="TextHandler.Interfaces.ITextItem">
-    <Position X="6.75" Y="2" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Interfaces\ITextItem.cs</FileName>
-    </TypeIdentifier>
-  </Interface>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

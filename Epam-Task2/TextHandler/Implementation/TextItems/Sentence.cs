@@ -8,11 +8,11 @@ using TextHandler.Interfaces;
 
 namespace TextHandler.Implementation.TextItems
 {
-    public class Sentence//:IComparable//:ISentence
+    public class Sentence
     {
         public ICollection<ISentenceItem> items;
         public int paragraphNumber;
-        public ICollection<ISentenceItem> Items 
+        public ICollection<ISentenceItem> Items
         {
             get
             {
@@ -21,9 +21,8 @@ namespace TextHandler.Implementation.TextItems
             set
             {
                 items = value;
-            } 
+            }
         }
-        //public Separator typeSeparator;
         public int ParagraphNumber
         {
             get
@@ -53,11 +52,11 @@ namespace TextHandler.Implementation.TextItems
         {
             return Items.OfType<Word>().Count();
         }
-        
+
         public bool IsQuestion()
         {
             char[] ch;
-            int n=Items.Last().Symbols.Length-1;
+            int n = Items.Last().Symbols.Length - 1;
             ch = new char[n];
             ch = Items.Last().Symbols;
             if (ch.Last() == '?')
@@ -67,33 +66,7 @@ namespace TextHandler.Implementation.TextItems
         }
         public override string ToString()
         {
-            return string.Join("",Items);
+            return string.Join("", Items);
         }
-        //public override string ToString()
-        //{
-        //    String.Join(items=>items.
-            //foreach(ISentence)
-            //if=if++;
-            //StringBuilder sb = new StringBuilder();
-            //string s1, s2;
-
-            //foreach (ISentenceItem i in items)
-            //{
-
-            //    //if (i.Equals(typeof(Word)))
-            //    //{
-            //    //    s1 = string.Concat(i, " ");
-            //    //}
-            //    //else
-            //    //{
-            //    //    if (i.Equals(typeof(Punctuation)))
-            //    //    {
-
-            //    //    }
-            //    //}
-            //}
-        //}
-    
-
-}
+    }
 }

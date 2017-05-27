@@ -7,7 +7,7 @@ using TextHandler.Interfaces;
 
 namespace TextHandler.Implementation.TextItems.SentenceItems
 {
-    class OtherSymbols:ISentenceItem
+    public class OtherSymbols:ISentenceItem
     {
         private char[] symbols;
         public char[] Symbols

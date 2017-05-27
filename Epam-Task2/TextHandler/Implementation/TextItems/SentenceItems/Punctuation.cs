@@ -9,7 +9,7 @@ namespace TextHandler.Implementation.TextItems.SentenceItems
 {
     class Punctuation:ISentenceItem
     {
-        public char[] symbols;
+        private char[] symbols;
         public char[] Symbols
         {
             get

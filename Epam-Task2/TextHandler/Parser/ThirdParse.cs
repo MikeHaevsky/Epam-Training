@@ -118,7 +118,7 @@ namespace TextHandler.Parser
                                     argSymb = new char[y];
                                     Array.Copy(argSen, x - y, argSymb, 0, y);
                                     Punctuation punctuation = new Punctuation();
-                                    punctuation.symbols = argSymb;
+                                    punctuation.Symbols = argSymb;
                                     sentence.items.Add(punctuation);
                                     y = 0;
                                     x = 0;
@@ -130,7 +130,7 @@ namespace TextHandler.Parser
                                         argSymb = new char[y];
                                         Array.Copy(argSen, x - y, argSymb, 0, y);
                                         Punctuation punctuation = new Punctuation();
-                                        punctuation.symbols = argSymb;
+                                        punctuation.Symbols = argSymb;
                                         sentence.items.Add(punctuation);
                                         y = 0;
                                     }

@@ -14,16 +14,12 @@ namespace TextHandler
     {
         static void Main(string[] args)
         {
-            //const string filename = "Data.txt";
-            //string path = string.Concat(Directory.GetCurrentDirectory()," ", filename);
             string path = "D:\\Data.txt";
             
-            //FirstParser parser = new FirstParser();
-            //MainParser parser = new MainParser();
             
             Text text = new Text();
-            //text=parser.Parse(path);
-            MainParser ParseLevel1(path);
+            MainParser parser = new MainParser(); 
+            parser.ParseLevel1(path);
 
             //Console.WriteLine(text.Query2());
             //rigth queryies
