@@ -11,7 +11,7 @@ namespace ATXEmulation.ATX.Components
     {
         void BeginCall(TelephoneNumber number);
         void EndingCall();
-        void AnsweringCall();
+        //void AnsweringCall();
         void IncomingCall(object sender,TelephoneNumber number);
         void Connecting();
         void Disconnecting();

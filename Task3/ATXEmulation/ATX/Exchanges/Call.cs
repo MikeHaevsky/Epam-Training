@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ATXEmulation.ATX.Exchanges
 {
-    public class Call : EventArgs, ISession
+    public class Call :EventArgs,ISession
     {
 
         public TelephoneNumber FirstAbonent

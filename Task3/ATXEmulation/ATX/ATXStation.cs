@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ATXEmulation.ATX
 {
-    class ATXStation
+    public class ATXStation
     {
         private ICollection<Port> _ports;
         private ICollection<ITerminal> _terminals;
@@ -111,7 +111,7 @@ namespace ATXEmulation.ATX
             }
             catch
             {
-                Console.WriteLine("Local error");
+                Console.WriteLine("Please, check the called number");
                 //Call endedCall = call;
                 //Sessions.Add(call);
             }

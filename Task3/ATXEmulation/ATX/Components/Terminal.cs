@@ -56,7 +56,7 @@ namespace ATXEmulation.ATX.Components
                         break;
                 }
         }
-        public void AnsweringCall()
+        private void AnsweringCall()
         {
             Console.WriteLine("{0} call.......",Id);
             OnAnswered();
