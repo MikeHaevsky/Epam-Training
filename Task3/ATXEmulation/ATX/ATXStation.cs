@@ -92,11 +92,11 @@ namespace ATXEmulation.ATX
             {
                 //Ports.FirstOrDefault(x => x.Number == call.SecondAbonent).IncomingCalledPort(call.SecondAbonent);
                 //Ports.Single(x=>x.Status==PortStatusValue.);
-                if (Ports.Single(x => x.Number.Number == outNumber && x.Number.Code == outCode).Status == PortStatusValue.Free)
+                if (find_OutPort(call).Status == PortStatusValue.Free)
                 {
                     save_Session(call);
                     //Console.WriteLine("Wait...");
-                    Ports.Single(x => x.Number.Number == outNumber && x.Number.Code == outCode).IncomingCalledPort(call.SecondAbonent);
+                    find_OutPort(call).IncomingCalledPort(call.FirstAbonent);
                     //call.Status = SessionSatusValue.Wait;
                     
                 }
@@ -147,6 +147,8 @@ namespace ATXEmulation.ATX
         public void port_Dropped(object sender, int numberSession)
         {
             Sessions.ElementAt(numberSession).Status = SessionStatusValue.Compleated;
+            find_InPort(Sessions.ElementAt(numberSession)).Status = PortStatusValue.Free;
+            find_OutPort(Sessions.ElementAt(numberSession)).Status = PortStatusValue.Free;
         }
         private Port find_OutPort(ISession session)
         {

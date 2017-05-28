@@ -38,10 +38,10 @@ namespace ATXEmulation
             };
             station.Terminals = new List<ITerminal>()
             {
+                new Terminal(0),
                 new Terminal(1),
                 new Terminal(2),
-                new Terminal(3),
-                new Terminal(4)
+                new Terminal(3)
             };
             //station.Sessions=new List<ISession>()
             //{
@@ -53,20 +53,27 @@ namespace ATXEmulation
             //}
             station.Connect(station.Ports.ElementAt(0));
             station.Ports.ElementAt(0).RegistrateTerminal(station.Terminals.ElementAt(0));
+            station.Terminals.ElementAt(0).Connecting();
+
             station.Connect(station.Ports.ElementAt(1));
             station.Ports.ElementAt(1).RegistrateTerminal(station.Terminals.ElementAt(1));
+            station.Terminals.ElementAt(1).Connecting();
+
             station.Connect(station.Ports.ElementAt(2));
             station.Ports.ElementAt(2).RegistrateTerminal(station.Terminals.ElementAt(2));
+            station.Terminals.ElementAt(2).Connecting();
+
             station.Connect(station.Ports.ElementAt(3));
             station.Ports.ElementAt(3).RegistrateTerminal(station.Terminals.ElementAt(3));
-            station.Terminals.ElementAt(0).Connecting();
-            station.Terminals.ElementAt(1).Connecting();
-            station.Terminals.ElementAt(2).Connecting();
             station.Terminals.ElementAt(3).Connecting();
+            
+            
+            
+            
             TelephoneNumber calledNumber = new TelephoneNumber(375, 7868348);
             station.Terminals.ElementAt(0).BeginCall(calledNumber);
             station.Terminals.ElementAt(2).EndingCall();
-            calledNumber = new TelephoneNumber(375, 8833848);
+            calledNumber = new TelephoneNumber(375, 8833548);
             station.Terminals.ElementAt(1).BeginCall(calledNumber);
             //station.Terminals.ElementAt(1).BeginCall(new TelephoneNumber());
             //i = ++i;
