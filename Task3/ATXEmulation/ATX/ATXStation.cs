@@ -147,6 +147,8 @@ namespace ATXEmulation.ATX
         public void port_Dropped(object sender, int numberSession)
         {
             Sessions.ElementAt(numberSession).Status = SessionStatusValue.Compleated;
+            //Sessions.Cast<Call>(x=>x.ElementAt(numberSession));
+            //Sessions.ElementAt(numberSession).
             find_InPort(Sessions.ElementAt(numberSession)).Status = PortStatusValue.Free;
             find_OutPort(Sessions.ElementAt(numberSession)).Status = PortStatusValue.Free;
         }
@@ -162,7 +164,7 @@ namespace ATXEmulation.ATX
             short inCode = session.FirstAbonent.Code;
             return Ports.Single(x => x.Number.Number == inNumber && x.Number.Code == inCode);
         }
-        public void save_Session(ISession session)
+        public void save_Session(TextMessage session)
         {
             int outNumber = session.SecondAbonent.Number;
             int inNumber = session.FirstAbonent.Number;
@@ -170,8 +172,17 @@ namespace ATXEmulation.ATX
             short inCode = session.FirstAbonent.Code;
             find_InPort(session).SetNumberActiveSession(CountSessions);
             find_OutPort(session).SetNumberActiveSession(CountSessions);
-            //Ports.Single(x => x.Number.Number == outNumber && x.Number.Code == outCode).SetNumberActiveSession(CountSessions);
-            //Ports.Single(x => x.Number.Number == inNumber && x.Number.Code == inCode).SetNumberActiveSession(CountSessions);
+            Sessions.Add(session);
+            CountSessions = ++CountSessions;
+        }
+        public void save_Session(Call session)
+        {
+            int outNumber = session.SecondAbonent.Number;
+            int inNumber = session.FirstAbonent.Number;
+            short outCode = session.SecondAbonent.Code;
+            short inCode = session.FirstAbonent.Code;
+            find_InPort(session).SetNumberActiveSession(CountSessions);
+            find_OutPort(session).SetNumberActiveSession(CountSessions);
             Sessions.Add(session);
             CountSessions = ++CountSessions;
         }

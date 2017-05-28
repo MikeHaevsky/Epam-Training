@@ -4,16 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E8111C69-FBCF-47DC-863A-9CB12D78A87A}</ProjectGuid>
+    <ProjectGuid>{4CA2D81C-E22F-4331-8AC3-1BEDBB56B59D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ATXEmulation</RootNamespace>
-    <AssemblyName>ATXEmulation</AssemblyName>
+    <RootNamespace>BillingSystem</RootNamespace>
+    <AssemblyName>BillingSystem</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,16 +22,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -44,26 +39,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ATX\ATXStation.cs" />
-    <Compile Include="ATX\ATXStationEventArgs.cs" />
-    <Compile Include="ATX\Components\Channel.cs" />
-    <Compile Include="ATX\Components\ITerminal.cs" />
-    <Compile Include="ATX\Components\Port.cs" />
-    <Compile Include="ATX\Components\PortStatusValue.cs" />
-    <Compile Include="ATX\Components\TelephoneNumber.cs" />
-    <Compile Include="ATX\Components\Terminal.cs" />
-    <Compile Include="ATX\Components\TerminalTypes.cs" />
-    <Compile Include="ATX\Events\PortEventArgs.cs" />
-    <Compile Include="ATX\Events\TerminalEventArgs.cs" />
-    <Compile Include="ATX\Exchanges\TextMessage.cs" />
-    <Compile Include="ATX\Exchanges\SessionStatusValue.cs" />
-    <Compile Include="ATX\Exchanges\Call.cs" />
-    <Compile Include="ATX\Exchanges\ISession.cs" />
-    <Compile Include="ATXProgram.cs" />
+    <Compile Include="BillingSystem.cs" />
+    <Compile Include="Components\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ATX\Components\TerminalEvents\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

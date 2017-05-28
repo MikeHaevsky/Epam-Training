@@ -50,6 +50,7 @@ namespace ATXEmulation
         //    calledNumber = new TelephoneNumber(375, 8833548);
         //    station.Terminals.ElementAt(1).BeginCall(calledNumber);
         //}
+        
         public static ATXStation Station
         {
             get;

@@ -1,0 +1,4 @@
+C:\Users\Администратор\Documents\Visual Studio 2013\Projects\Epam-Training\Task3\BillingSystem\bin\Debug\BillingSystem.dll
+C:\Users\Администратор\Documents\Visual Studio 2013\Projects\Epam-Training\Task3\BillingSystem\bin\Debug\BillingSystem.pdb
+C:\Users\Администратор\Documents\Visual Studio 2013\Projects\Epam-Training\Task3\BillingSystem\obj\Debug\BillingSystem.dll
+C:\Users\Администратор\Documents\Visual Studio 2013\Projects\Epam-Training\Task3\BillingSystem\obj\Debug\BillingSystem.pdb
