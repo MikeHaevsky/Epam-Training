@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using ATXEmulation.ATX;
 using ATXEmulation.ATX.Exchanges;
 using ATXEmulation.ATX.Components;
+using BillingSystem;
+using BillingSystem.Components;
 
 namespace Demo
 {
@@ -34,6 +36,12 @@ namespace Demo
             get;
             set;
         }
+        public static Billing BillSystem
+        {
+            get;
+            set;
+        }
+        #region Station methods
         public static void RunATXStation()
         {
             ATXStation station = new ATXStation();
@@ -75,7 +83,35 @@ namespace Demo
         {
             Station.Terminals.ElementAt(id).BeginCall(number);
         }
+        public static void ReturnCall(object sender, Call call)
+        {
+            Station.CallSessions.Add(call);
+        }
+        public static void BlockAbonent(object sender, EventArgs e)
+        {
+            //Station.Ports
+        }
+        public static void UnblockAbonent(object sender, EventArgs e)
+        {
+            //Station.Ports
+        }
+        #endregion
 
+        #region Billing methods
+        public static void BillingConnect(Billing billing)
+        {
+            billing.VoteDemo += ReturnCall;
+            billing.BlockedClient += BlockAbonent;
+            billing.UnblockClient += UnblockAbonent;
+        }
+        public static void BillingDisconnect(Billing billing)
+        {
+            billing.VoteDemo -= ReturnCall;
+            billing.BlockedClient -= BlockAbonent;
+            billing.UnblockClient -= UnblockAbonent;
+        }
+
+        #endregion
         private static void ShowEvent(EventHandler asd, EventArgs e)
         {
             Console.WriteLine("{0}", asd);
@@ -84,6 +120,37 @@ namespace Demo
         {
             Console.WriteLine(message);
         }
+        
+        #region Methods Billing
+
+
+        //public void ConnectBillingSystem(System billingSystem)
+        //{
+            
+        //}
+        //public void DisconnectVilingSystem()
+        //{
+
+        //}
+
+        #endregion
+
+        #region Events
+
+        //private EventHandler<Call> _modifyCall;
+        //public event EventHandler<Call> ModifyCall
+        //{
+        //    add
+        //    {
+        //        _modifyCall += value;
+        //    }
+        //    remove
+        //    {
+        //        _modifyCall -= value;
+        //    }
+        //}
+
+        #endregion
         //public static void AbonentCall(this TelephoneNumber number, int id)
         //{
         //    ATXProgram.AbonentCall(id, number);

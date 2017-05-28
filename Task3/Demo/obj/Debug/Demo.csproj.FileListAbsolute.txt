@@ -6,3 +6,5 @@ c:\Users\Администратор\Documents\Visual Studio 2013\Projects\Epam-T
 c:\Users\Администратор\Documents\Visual Studio 2013\Projects\Epam-Training\Task3\Demo\obj\Debug\Demo.csprojResolveAssemblyReference.cache
 c:\Users\Администратор\Documents\Visual Studio 2013\Projects\Epam-Training\Task3\Demo\obj\Debug\Demo.exe
 c:\Users\Администратор\Documents\Visual Studio 2013\Projects\Epam-Training\Task3\Demo\obj\Debug\Demo.pdb
+c:\Users\Администратор\Documents\Visual Studio 2013\Projects\Epam-Training\Task3\Demo\bin\Debug\BillingSystem.dll
+c:\Users\Администратор\Documents\Visual Studio 2013\Projects\Epam-Training\Task3\Demo\bin\Debug\BillingSystem.pdb

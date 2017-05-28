@@ -1,5 +1,5 @@
 ﻿using ATXEmulation.ATX.Components;
-using ATXEmulation.ATX.Events;
+using ATXEmulation.ATX;
 using ATXEmulation.ATX.Exchanges;
 using System;
 using System.Collections.Generic;
@@ -46,6 +46,11 @@ namespace ATXEmulation.ATX
             get;
             set;
         }
+        public ICollection<Call> CallSessions
+        {
+            get;
+            set;
+        }
         public void Connect(Port port)
         {
             port.Connected += ConnectToStation;
@@ -56,6 +61,10 @@ namespace ATXEmulation.ATX
             port.Connected -= ConnectToStation;
             port.Disconnected -= DisconnectFromStation;
         }
+        //public void ConnectBilling(BillingSystem billingSystem)
+        //{
+
+        //}
         public void ConnectToStation(object sender, EventArgs e)
         {
             Port port = sender as Port;
@@ -147,6 +156,9 @@ namespace ATXEmulation.ATX
         public void port_Dropped(object sender, int numberSession)
         {
             Sessions.ElementAt(numberSession).Status = SessionStatusValue.Compleated;
+            Call call = Sessions.ElementAt(numberSession) as Call;
+            call.TimeOverSeconds = 180;
+            onVoteBilling(call);
             //Sessions.Cast<Call>(x=>x.ElementAt(numberSession));
             //Sessions.ElementAt(numberSession).
             find_InPort(Sessions.ElementAt(numberSession)).Status = PortStatusValue.Free;
@@ -186,6 +198,26 @@ namespace ATXEmulation.ATX
             Sessions.Add(session);
             CountSessions = ++CountSessions;
         }
+        #region Events for Billing
+        private EventHandler<Call> _voteBilling;
+        public event EventHandler<Call> VoteBilling
+        {
+            add
+            {
+                _voteBilling += value;
+            }
+            remove
+            {
+                _voteBilling -= value;
+            }
+        }
+        private void onVoteBilling(Call call)
+        {
+            if (_voteBilling != null)
+                _voteBilling(this, call);
+        }
+        //public 
+        #endregion
         //public static IEnumerable<int> IndexesWhere<T>(this IEnumerable<T> source, Func<T, bool> predicate)
         //{
         //    int index = 0;

@@ -53,8 +53,6 @@
     <Compile Include="ATX\Components\TelephoneNumber.cs" />
     <Compile Include="ATX\Components\Terminal.cs" />
     <Compile Include="ATX\Components\TerminalTypes.cs" />
-    <Compile Include="ATX\Events\PortEventArgs.cs" />
-    <Compile Include="ATX\Events\TerminalEventArgs.cs" />
     <Compile Include="ATX\Exchanges\TextMessage.cs" />
     <Compile Include="ATX\Exchanges\SessionStatusValue.cs" />
     <Compile Include="ATX\Exchanges\Call.cs" />
@@ -62,8 +60,9 @@
     <Compile Include="ATXProgram.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="ATX\Components\TerminalEvents\" />
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

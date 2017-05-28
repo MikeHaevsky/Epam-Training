@@ -29,5 +29,10 @@ namespace ATXEmulation.ATX.Exchanges
             get;
             set;
         }
+        double Coast
+        {
+            get;
+            set;
+        }
     }
 }

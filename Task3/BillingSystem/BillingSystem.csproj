@@ -39,9 +39,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BillingSystem.cs" />
+    <Compile Include="Billing.cs" />
+    <Compile Include="Components\ITarif.cs" />
+    <Compile Include="Components\Tarif1.cs" />
+    <Compile Include="Components\Tarif2.cs" />
     <Compile Include="Components\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ATXEmulation\ATXEmulation.csproj">
+      <Project>{e8111c69-fbcf-47dc-863a-9cb12d78a87a}</Project>
+      <Name>ATXEmulation</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

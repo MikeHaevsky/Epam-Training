@@ -67,6 +67,10 @@
       <Project>{e8111c69-fbcf-47dc-863a-9cb12d78a87a}</Project>
       <Name>ATXEmulation</Name>
     </ProjectReference>
+    <ProjectReference Include="..\BillingSystem\BillingSystem.csproj">
+      <Project>{4ca2d81c-e22f-4331-8ac3-1bedbb56b59d}</Project>
+      <Name>BillingSystem</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
