@@ -24,6 +24,15 @@ namespace ATXEmulation.ATX.Components
             get;
             set;
         }
+        private int NumberActiveSession
+        {
+            get;
+            set;
+        }
+        public void SetNumberActiveSession(int number)
+        {
+            NumberActiveSession = number;
+        }
         public Port(TelephoneNumber number,string abonent)
         {
             this.Number = number;
@@ -42,15 +51,15 @@ namespace ATXEmulation.ATX.Components
         {
             OnIncomingCalled(number);
         }
-        public void TerminalDrop(object sender,EventArgs e)
+        public void TerminalDrop(object sender, EventArgs e)
         {
             Status = PortStatusValue.Free;            
-            OnDropped();
+            OnDropped(NumberActiveSession);
         }
         public void TerminalAnswer(object sender,EventArgs e)
         {
             Status = PortStatusValue.Busy;
-            OnAnswered();
+            OnAnswered(NumberActiveSession);
         }
         public void TerminalConnect(object sender, EventArgs e)
         {
@@ -121,8 +130,8 @@ namespace ATXEmulation.ATX.Components
         #region Events
 
         private EventHandler <Call> _called;
-        private EventHandler _dropped;
-        private EventHandler _answered;
+        private EventHandler <int> _dropped;
+        private EventHandler <int> _answered;
         private EventHandler _connected;
         private EventHandler _disconnected;
         private EventHandler <TelephoneNumber> _incomingCalled;
@@ -138,7 +147,7 @@ namespace ATXEmulation.ATX.Components
                 _called -= value;
             }
         }
-        public event EventHandler Dropped
+        public event EventHandler <int>Dropped
         {
             add
             {
@@ -149,7 +158,7 @@ namespace ATXEmulation.ATX.Components
                 _dropped -= value;
             }
         }
-        public event EventHandler Answered
+        public event EventHandler <int>Answered
         {
             add
             {
@@ -204,15 +213,15 @@ namespace ATXEmulation.ATX.Components
             if (_incomingCalled != null)
                 _incomingCalled(this, number);
         }
-        private void OnDropped()
+        private void OnDropped(int numberActiveSession)
         {
             if (_dropped != null)
-                _dropped(this, null);
+                _dropped(this, numberActiveSession);
         }
-        private void OnAnswered()
+        private void OnAnswered(int numberActiveSession)
         {
             if (_answered != null)
-                _answered(this, null);
+                _answered(this, numberActiveSession);
         }
         private void OnConnected()
         {

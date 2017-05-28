@@ -53,7 +53,7 @@
     <Compile Include="ATX\Events\PortEventArgs.cs" />
     <Compile Include="ATX\Events\TerminalEventArgs.cs" />
     <Compile Include="ATX\Exchanges\TextMessage.cs" />
-    <Compile Include="ATX\Exchanges\SessionSatusValue.cs" />
+    <Compile Include="ATX\Exchanges\SessionStatusValue.cs" />
     <Compile Include="ATX\Exchanges\Call.cs" />
     <Compile Include="ATX\Exchanges\ISession.cs" />
     <Compile Include="Program.cs" />

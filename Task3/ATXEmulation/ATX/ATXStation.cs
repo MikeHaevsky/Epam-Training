@@ -13,8 +13,8 @@ namespace ATXEmulation.ATX
     {
         private ICollection<Port> _ports;
         private ICollection<ITerminal> _terminals;
-        private ICollection<ISession> _sessions;
-        int count;
+        //private ICollection<ISession> _sessions;
+        private int CountSessions=0;
         public ATXStation()
         {
             Sessions = new List<ISession>();
@@ -94,14 +94,16 @@ namespace ATXEmulation.ATX
                 //Ports.Single(x=>x.Status==PortStatusValue.);
                 if (Ports.Single(x => x.Number.Number == outNumber && x.Number.Code == outCode).Status == PortStatusValue.Free)
                 {
+                    save_Session(call);
                     //Console.WriteLine("Wait...");
                     Ports.Single(x => x.Number.Number == outNumber && x.Number.Code == outCode).IncomingCalledPort(call.SecondAbonent);
-                    Ports.Single(x => x.Number.Number == outNumber && x.Number.Code == outCode).Status = PortStatusValue.Busy;
+                    //call.Status = SessionSatusValue.Wait;
+                    
                 }
                 else
                 {
                     Console.WriteLine("Abonent is busy now...\nCallback later");
-                    call.Status = SessionSatusValue.Compleated;
+                    call.Status = SessionStatusValue.Compleated;
                 }
                 //Ports.Single(x => x.Number == call.SecondAbonent).IncomingCalledPort(call.SecondAbonent);
                 //Ports.Single(x => x.Number.Number == outNumber && x.Number.Code == outCode).IncomingCalledPort(call.SecondAbonent);
@@ -116,7 +118,8 @@ namespace ATXEmulation.ATX
             finally
             {
                 //Sessions = new List<Call>(new Call(call));
-                Sessions.Add(call);
+                //Sessions.Add(call);
+                //save_Session(call);
             }
             //Port sPort = _ports.FirstOrDefault(x => x.Number == CallNumber);
         }
@@ -137,14 +140,52 @@ namespace ATXEmulation.ATX
             if (_incomingCall != null)
                 _incomingCall(this, number);
         }
-        public void port_Answered(object sender, EventArgs e)
+        public void port_Answered(object sender, int numberSession)
         {
-
+            Sessions.ElementAt(numberSession).Status = SessionStatusValue.OpenChanel;
         }
-        public void port_Dropped(object sender, EventArgs e)
+        public void port_Dropped(object sender, int numberSession)
         {
-
+            Sessions.ElementAt(numberSession).Status = SessionStatusValue.Compleated;
         }
+        private Port find_OutPort(ISession session)
+        {
+            int outNumber = session.SecondAbonent.Number;
+            short outCode = session.SecondAbonent.Code;
+            return Ports.Single(x => x.Number.Number == outNumber && x.Number.Code == outCode);
+        }
+        private Port find_InPort(ISession session)
+        {
+            int inNumber = session.FirstAbonent.Number;
+            short inCode = session.FirstAbonent.Code;
+            return Ports.Single(x => x.Number.Number == inNumber && x.Number.Code == inCode);
+        }
+        public void save_Session(ISession session)
+        {
+            int outNumber = session.SecondAbonent.Number;
+            int inNumber = session.FirstAbonent.Number;
+            short outCode=session.SecondAbonent.Code;
+            short inCode = session.FirstAbonent.Code;
+            find_InPort(session).SetNumberActiveSession(CountSessions);
+            find_OutPort(session).SetNumberActiveSession(CountSessions);
+            //Ports.Single(x => x.Number.Number == outNumber && x.Number.Code == outCode).SetNumberActiveSession(CountSessions);
+            //Ports.Single(x => x.Number.Number == inNumber && x.Number.Code == inCode).SetNumberActiveSession(CountSessions);
+            Sessions.Add(session);
+            CountSessions = ++CountSessions;
+        }
+        //public static IEnumerable<int> IndexesWhere<T>(this IEnumerable<T> source, Func<T, bool> predicate)
+        //{
+        //    int index = 0;
+        //    foreach (T element in source)
+        //    {
+        //        if (predicate(element))
+        //        {
+        //            yield return index;
+        //        }
+        //        index++;
+        //    }
+        //}
+
 
         //public Port AddNumber(TelephoneNumber number,Port abonent)
         //{

@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace ATXEmulation.ATX.Exchanges
 {
-    public enum SessionSatusValue
+    public enum SessionStatusValue
     {
-        Uncompleated,
+        Wait,
+        OpenChanel,
         Compleated
     }
 }

@@ -37,7 +37,7 @@ namespace ATXEmulation.ATX.Exchanges
             set;
         }
 
-        public SessionSatusValue Status
+        public SessionStatusValue Status
         {
             get;
             set;

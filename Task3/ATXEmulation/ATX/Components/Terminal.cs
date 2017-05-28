@@ -61,14 +61,11 @@ namespace ATXEmulation.ATX.Components
             Console.WriteLine("{0} call.......",Id);
             OnAnswered();
         }
-
-
         public void Connecting()
         {
             Console.WriteLine("Terminal {0} has connected",Id);
             OnConnected();
         }
-
         public void Disconnecting()
         {
             Console.WriteLine("Terminal {0} has disconnected", Id);

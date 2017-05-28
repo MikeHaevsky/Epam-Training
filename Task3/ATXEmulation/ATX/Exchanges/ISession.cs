@@ -24,7 +24,7 @@ namespace ATXEmulation.ATX.Exchanges
             get;
             set;
         }
-        SessionSatusValue Status
+        SessionStatusValue Status
         {
             get;
             set;

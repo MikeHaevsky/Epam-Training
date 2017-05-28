@@ -1,4 +1,5 @@
 ﻿using ATXEmulation.ATX;
+using ATXEmulation.ATX.Exchanges;
 using ATXEmulation.ATX.Components;
 using System;
 using System.Collections.Generic;
@@ -32,24 +33,41 @@ namespace ATXEmulation
             {
                 new Port(new TelephoneNumber(375, 8680737), "Mike"),
                 new Port(new TelephoneNumber(375, 5860786), "Vadim"),
-                new Port(new TelephoneNumber(375, 7868348), "Valery")};
+                new Port(new TelephoneNumber(375, 7868348), "Valery"),
+                new Port(new TelephoneNumber(375, 8833548), "Eugeny")
+            };
             station.Terminals = new List<ITerminal>()
             {
                 new Terminal(1),
                 new Terminal(2),
                 new Terminal(3),
+                new Terminal(4)
             };
+            //station.Sessions=new List<ISession>()
+            //{
+            //    new Call(new TelephoneNumber(999,9999999),
+            //        new TelephoneNumber(999,9999999),
+            //        new DateTime,
+            //        new SessionStatusValue,
+            //        new int);
+            //}
             station.Connect(station.Ports.ElementAt(0));
             station.Ports.ElementAt(0).RegistrateTerminal(station.Terminals.ElementAt(0));
             station.Connect(station.Ports.ElementAt(1));
             station.Ports.ElementAt(1).RegistrateTerminal(station.Terminals.ElementAt(1));
-            station.Connect(station.Ports.ElementAt(1));
+            station.Connect(station.Ports.ElementAt(2));
             station.Ports.ElementAt(2).RegistrateTerminal(station.Terminals.ElementAt(2));
+            station.Connect(station.Ports.ElementAt(3));
+            station.Ports.ElementAt(3).RegistrateTerminal(station.Terminals.ElementAt(3));
             station.Terminals.ElementAt(0).Connecting();
             station.Terminals.ElementAt(1).Connecting();
             station.Terminals.ElementAt(2).Connecting();
+            station.Terminals.ElementAt(3).Connecting();
             TelephoneNumber calledNumber = new TelephoneNumber(375, 7868348);
             station.Terminals.ElementAt(0).BeginCall(calledNumber);
+            station.Terminals.ElementAt(2).EndingCall();
+            calledNumber = new TelephoneNumber(375, 8833848);
+            station.Terminals.ElementAt(1).BeginCall(calledNumber);
             //station.Terminals.ElementAt(1).BeginCall(new TelephoneNumber());
             //i = ++i;
             //Terminal terminal = new Terminal(i);
