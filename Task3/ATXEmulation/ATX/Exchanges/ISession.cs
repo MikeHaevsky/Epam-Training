@@ -19,7 +19,7 @@ namespace ATXEmulation.ATX.Exchanges
             get;
             set;
         }
-        DateTime Date
+        DateTime StartTimeSession
         {
             get;
             set;

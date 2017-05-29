@@ -46,6 +46,31 @@ namespace ATXEmulation.ATX
             port.Connected -= ConnectToStation;
             port.Disconnected -= DisconnectFromStation;
         }
+        public void GetHistory()
+        {
+            CallSessions.Select(items=>items);
+        }
+        public void FilteredHistoryOverTheDateSpan(ICollection<Call> sessions,DateTime date1,DateTime date2)
+        {
+            sessions.Where(item => (item.StartTimeSession > date1) && (item.StartTimeSession < date2));
+                //return _airplanes.Where(item => (item.FuelConsumption > x) & (item.FuelConsumption < y)).Select(item => string.Format("{1}{0} | FuelConsumption:{2} \n", item.Model, item.Producer, item.FuelConsumption));
+        }
+        public void FilteredHistoryOverTheCurrentDate(ICollection<Call> sessions, DateTime date)
+        {
+            sessions.Where(item=>(item.StartTimeSession==date));
+        }
+        public void FilteredHistiryOverTheDuration(ICollection<Call> sessions, TimeSpan duration1, TimeSpan duration2)
+        {
+            sessions.Where(item=>(item.Duration>duration1)&&(item.Duration<duration2));
+        }
+        public void FilteredHistoryOverTheAbonent(ICollection<Call> sessions, TelephoneNumber abonent)
+        {
+            sessions.Where(item => item.SecondAbonent == abonent);
+        }
+        public void GetCallHistory(TelephoneNumber number)
+        {
+            Sessions.Where(item => item.FirstAbonent==number);
+        }
         //public void ConnectBilling(BillingSystem billingSystem)
         //{
 
@@ -76,47 +101,29 @@ namespace ATXEmulation.ATX
         {
             int outNumber = call.SecondAbonent.Number;
             short outCode=call.SecondAbonent.Code;
-            //Port port=Ports.Where(x=>x.Number==outNumber).Select();
-            //Port port = Ports.FirstOrDefault(x => x.Number == outNumber);
-            //Ports.Single(x=>x.Number.Number==outNumber&&x.Number.Code==outCode);
-
-            //Port port = Ports.Single(x=>x.Number.Number==outNumber&&x.Number.Code==outCode);
-            //Ports.Single(x=>x.Number.Number==outNumber&&x.Number.Code==outCode).Dispose();
             try
             {
-                //Ports.FirstOrDefault(x => x.Number == call.SecondAbonent).IncomingCalledPort(call.SecondAbonent);
-                //Ports.Single(x=>x.Status==PortStatusValue.);
                 if (find_OutPort(call).Status == PortStatusValue.Free)
                 {
                     save_Session(call);
-                    //Console.WriteLine("Wait...");
                     find_OutPort(call).IncomingCalledPort(call.FirstAbonent);
-                    //call.Status = SessionSatusValue.Wait;
-                    
                 }
                 else
                 {
                     Console.WriteLine("Abonent is busy now...\nCallback later");
                     call.Status = SessionStatusValue.Compleated;
                 }
-                //Ports.Single(x => x.Number == call.SecondAbonent).IncomingCalledPort(call.SecondAbonent);
-                //Ports.Single(x => x.Number.Number == outNumber && x.Number.Code == outCode).IncomingCalledPort(call.SecondAbonent);
-                Console.WriteLine("working");
+                Console.WriteLine("wait for answer...");
             }
             catch
             {
                 Console.WriteLine("Please, check the called number");
-                //Call endedCall = call;
-                //Sessions.Add(call);
             }
             finally
             {
-                //Sessions = new List<Call>(new Call(call));
-                //Sessions.Add(call);
-                //save_Session(call);
             }
-            //Port sPort = _ports.FirstOrDefault(x => x.Number == CallNumber);
         }
+        
         private EventHandler<TelephoneNumber> _incomingCall;
         public event EventHandler<TelephoneNumber> IncomingCall
         {
@@ -134,6 +141,7 @@ namespace ATXEmulation.ATX
             if (_incomingCall != null)
                 _incomingCall(this, number);
         }
+        
         public void port_Answered(object sender, int numberSession)
         {
             Sessions.ElementAt(numberSession).Status = SessionStatusValue.OpenChanel;
@@ -142,35 +150,27 @@ namespace ATXEmulation.ATX
         {
             Sessions.ElementAt(numberSession).Status = SessionStatusValue.Compleated;
             Call call = Sessions.ElementAt(numberSession) as Call;
-            //hardcode time
-            call.TimeOverSeconds = 180;
+            call.EndTimeSession = DateTime.Now;
+            call.GetDuration();
             onVoteBilling(call);
             find_InPort(Sessions.ElementAt(numberSession)).Status = PortStatusValue.Free;
             find_OutPort(Sessions.ElementAt(numberSession)).Status = PortStatusValue.Free;
         }
         private Port find_OutPort(ISession session)
         {
-            int outNumber = session.SecondAbonent.Number;
-            short outCode = session.SecondAbonent.Code;
-            return Ports.Single(x => x.Number.Number == outNumber && x.Number.Code == outCode);
+            return Ports.Single(x => x.Number==session.SecondAbonent);
         }
         public void BlockingPort(TelephoneNumber number)
         {
-            int num = number.Number;
-            short code = number.Code;
-            Ports.Single(x => x.Number.Number == num && x.Number.Code == code).Status = PortStatusValue.Blocked;
+            Ports.Single(x => x.Number==number).LockStatus = PortBlockedValue.Blocked;
         }
         public void UnblockingPort(TelephoneNumber number)
         {
-            int num = number.Number;
-            short code = number.Code;
-            Ports.Single(x => x.Number.Number == num && x.Number.Code == code).Status = PortStatusValue.Free;
+            Ports.Single(x => x.Number==number).LockStatus = PortBlockedValue.Unblocked;
         }
         private Port find_InPort(ISession session)
         {
-            int inNumber = session.FirstAbonent.Number;
-            short inCode = session.FirstAbonent.Code;
-            return Ports.Single(x => x.Number.Number == inNumber && x.Number.Code == inCode);
+            return Ports.Single(x => x.Number == session.FirstAbonent);
         }
         public void save_Session(TextMessage session)
         {
@@ -194,6 +194,7 @@ namespace ATXEmulation.ATX
             Sessions.Add(session);
             CountSessions = ++CountSessions;
         }
+        
         #region Events for Billing
         private EventHandler<Call> _voteBilling;
         public event EventHandler<Call> VoteBilling

@@ -49,6 +49,7 @@
     <Compile Include="ATX\Components\Channel.cs" />
     <Compile Include="ATX\Components\ITerminal.cs" />
     <Compile Include="ATX\Components\Port.cs" />
+    <Compile Include="ATX\Components\PortBlockStatus.cs" />
     <Compile Include="ATX\Components\PortStatusValue.cs" />
     <Compile Include="ATX\Components\TelephoneNumber.cs" />
     <Compile Include="ATX\Components\Terminal.cs" />

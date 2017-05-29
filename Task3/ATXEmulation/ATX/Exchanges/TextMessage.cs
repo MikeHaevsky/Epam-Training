@@ -31,7 +31,7 @@ namespace ATXEmulation.ATX.Exchanges
             set;
         }
 
-        public DateTime Date
+        public DateTime StartTimeSession
         {
             get;
             set;

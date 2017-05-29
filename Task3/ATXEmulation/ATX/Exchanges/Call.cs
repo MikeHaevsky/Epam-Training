@@ -22,7 +22,12 @@ namespace ATXEmulation.ATX.Exchanges
             set;
         }
 
-        public DateTime Date
+        public DateTime StartTimeSession
+        {
+            get;
+            set;
+        }
+        public DateTime EndTimeSession
         {
             get;
             set;
@@ -34,15 +39,24 @@ namespace ATXEmulation.ATX.Exchanges
             set;
         }
         //must be TimeSpan but...
-        public int TimeOverSeconds
-        {
-            get;
-            set;
-        }
+        //public int TimeOverSeconds
+        //{
+        //    get;
+        //    set;
+        //}
         public double Coast
         {
             get;
             set;
+        }
+        public TimeSpan Duration
+        {
+            get;
+            set;
+        }
+        public void GetDuration()
+        {
+            Duration = EndTimeSession - StartTimeSession;
         }
     }
 }

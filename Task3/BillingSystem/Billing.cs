@@ -13,7 +13,7 @@ namespace BillingSystem
 {
     public class Billing
     {
-        private Timer _timer;
+        //private Timer _timer;
         public ICollection<ITarif> Tarifs
         {
             get;
@@ -59,10 +59,10 @@ namespace BillingSystem
             double coast;
             int tarif = FindUser(call).TarifId;
             double s = FindUser(call).Money;
-            coast = Tarifs.ElementAt(tarif).GetCoastSession(call.TimeOverSeconds);
+            coast = Tarifs.ElementAt(tarif).GetCoastSession(call.Duration.Minutes);
             s = +coast;
             call.Coast = coast;
-            OnVoreDemo(call);
+            OnVoteDemo(call);
         }
         public User FindUser(Call call)
         {
@@ -92,7 +92,7 @@ namespace BillingSystem
                 _voteDemo -= value;
             }
         }
-        private void OnVoreDemo(Call call)
+        private void OnVoteDemo(Call call)
         {
             if (_voteDemo != null)
                 _voteDemo(this, call);

@@ -71,10 +71,10 @@ namespace Demo
         {
             Station.Terminals.ElementAt(id).EndingCall();
         }
-        public static void AbonentCall(int id, TelephoneNumber number)
-        {
-            Station.Terminals.ElementAt(id).BeginCall(number);
-        }
+        //public static void AbonentCall(int id, TelephoneNumber number)
+        //{
+        //    Station.Terminals.ElementAt(id).BeginCall(number);
+        //}
         public static void AbonentDrop(int id)
         {
             Station.Terminals.ElementAt(id).EndingCall();
@@ -83,7 +83,7 @@ namespace Demo
         {
             Station.Terminals.ElementAt(id).BeginCall(number);
         }
-        public static void ReturnCall(object sender, Call call)
+        public static void ReturnCallSession(object sender, Call call)
         {
             Station.CallSessions.Add(call);
         }
@@ -100,13 +100,13 @@ namespace Demo
         #region Billing events
         public static void BillingConnect(Billing billing)
         {
-            billing.VoteDemo += ReturnCall;
+            billing.VoteDemo += ReturnCallSession;
             billing.BlockedClient += BlockAbonent;
             billing.UnblockClient += UnblockAbonent;
         }
         public static void BillingDisconnect(Billing billing)
         {
-            billing.VoteDemo -= ReturnCall;
+            billing.VoteDemo -= ReturnCallSession;
             billing.BlockedClient -= BlockAbonent;
             billing.UnblockClient -= UnblockAbonent;
         }

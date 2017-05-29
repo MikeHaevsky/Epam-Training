@@ -17,12 +17,12 @@ namespace BillingSystem.Components
             
         //}
 
-        double ITarif.GetCoastSession(int time)
+        public double GetCoastSession(int duration)
         {
-            return time * 0.5 / 60;
+            return duration * 0.5 / 60;
         }
 
-        void ITarif.DebitMoney(double sum)
+        public void DebitMoney(double sum)
         {
             throw new NotImplementedException();
         }

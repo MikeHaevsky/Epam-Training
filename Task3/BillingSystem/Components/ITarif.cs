@@ -8,7 +8,7 @@ namespace BillingSystem.Components
 {
     public interface ITarif
     {
-        double GetCoastSession(int time);
+        double GetCoastSession(int duration);
         void DebitMoney(double sum);
     }
 }

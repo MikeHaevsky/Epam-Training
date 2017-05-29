@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace ATXEmulation.ATX.Components
 {
-    public enum PortStatusValue
+    public enum PortBlockedValue
     {
-        Disconnected,
-        Free,
-        Busy
+        Unblocked,
+        Blocked
     }
 }

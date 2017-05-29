@@ -19,6 +19,11 @@ namespace ATXEmulation.ATX.Components
             get;
             set;
         }
+        public PortBlockedValue LockStatus
+        {
+            get;
+            set;
+        }
         public string Abonent
         {
             get;
@@ -39,13 +44,23 @@ namespace ATXEmulation.ATX.Components
             this.Abonent = abonent;
             //this.Status = status;
         }
+
         #region Send from terminal
         public void TerminalCall(object sender,Call call)
         {
-            call.Date = DateTime.Now;
-            call.FirstAbonent = Number;
-            Status = PortStatusValue.Busy;
-            OnCalled(call);
+            switch (LockStatus)
+            {
+                case PortBlockedValue.Blocked:
+                    Console.WriteLine("You blocked!!!Need more gold!");
+                    break;
+                default:
+                    call.StartTimeSession = DateTime.Now;
+                    call.FirstAbonent = Number;
+                    Status = PortStatusValue.Busy;
+                    OnCalled(call);
+                    break;
+
+            }
         }
         public void IncomingCalledPort(TelephoneNumber number)
         {
@@ -58,17 +73,15 @@ namespace ATXEmulation.ATX.Components
                 case PortStatusValue.Disconnected:
                     Console.WriteLine("...");
                     break;
-                case  PortStatusValue.Free:
+                case PortStatusValue.Free:
                     Console.WriteLine("...");
                     break;
-                case PortStatusValue.Blocked:
-                    Console.WriteLine("You blocked. Need more gold!");
-                    break;
                 default:
-                    Status = PortStatusValue.Free;            
+                    Status = PortStatusValue.Free;
                     OnDropped(NumberActiveSession);
                     break;
             }
+                Console.WriteLine("You blocked. Need more gold!");
             //if (Status == PortStatusValue.Disconnected)
             //    Console.WriteLine("You blocked. Need more gold!");
             //Status = PortStatusValue.Free;            
@@ -81,23 +94,25 @@ namespace ATXEmulation.ATX.Components
         }
         public void TerminalConnect(object sender, EventArgs e)
         {
-            switch (Status)
+            if (LockStatus == PortBlockedValue.Unblocked)
             {
-                case PortStatusValue.Blocked:
-                    Console.WriteLine("You can accept only incoming calls.");
-                    break;
-                case PortStatusValue.Free:
-                    Console.WriteLine("You're already connected");
-                    break;
-                case PortStatusValue.Disconnected:
-                    Console.WriteLine("Connected");
-                    Status = PortStatusValue.Free;
-                    OnConnected();
-                    break;
-                default:
-                    Console.WriteLine("Finish your operation and try later.");
-                    break;
+                switch (Status)
+                {
+                    case PortStatusValue.Free:
+                        Console.WriteLine("You're already connected");
+                        break;
+                    case PortStatusValue.Disconnected:
+                        Console.WriteLine("Connected");
+                        Status = PortStatusValue.Free;
+                        OnConnected();
+                        break;
+                    default:
+                        Console.WriteLine("Finish your operation and try later.");
+                        break;
+                }
             }
+            else
+                Console.WriteLine("Connection...You can accept only incoming calls.");
             //if (Status == PortStatusValue.Busy)
             //    Console.WriteLine("Finish your operation and try later.");
             //else
@@ -112,9 +127,6 @@ namespace ATXEmulation.ATX.Components
         {
             switch (Status)
             {
-                case PortStatusValue.Blocked:
-                    Console.WriteLine("You can accept only incoming calls.");
-                    break;
                 case PortStatusValue.Disconnected:
                     Console.WriteLine("You're already disconnected");
                     break;
@@ -137,8 +149,9 @@ namespace ATXEmulation.ATX.Components
             //    OnDisconnected();
             //}
         }
-#endregion
-        #region Send to terminal
+        
+        #endregion
+
         public void RegistrateTerminal(ITerminal terminal)
         {
             terminal.Connected += TerminalConnect;
@@ -157,27 +170,7 @@ namespace ATXEmulation.ATX.Components
             terminal.Answered -= TerminalAnswer;
             IncomingCalled += terminal.IncomingCall;
         }
-        //private void terminal_Connected(object sender, EventArgs e)
-        //{
-        //    ITerminal terminal=sender as ITerminal;
-        //    if (terminal != null)
-        //    {
-        //        terminal.Called += OnCalled;
-        //        terminal.Dropped += OnDropped;
-        //        terminal.Answered += OnAnswered;
-        //    }
-        //}
-        //private void terminal_Disconnected(object sender, EventArgs e)
-        //{
-        //    ITerminal terminal = sender as ITerminal;
-        //    if (terminal != null)
-        //    {
-        //        terminal.Called -= OnCalled;
-        //        terminal.Dropped -= OnDropped;
-        //        terminal.Answered -= OnAnswered;
-        //    }
-        //}
-#endregion
+
         #region Events
 
         private EventHandler <Call> _called;
