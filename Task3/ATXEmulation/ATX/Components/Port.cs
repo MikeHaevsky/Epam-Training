@@ -53,8 +53,26 @@ namespace ATXEmulation.ATX.Components
         }
         public void TerminalDrop(object sender, EventArgs e)
         {
-            Status = PortStatusValue.Free;            
-            OnDropped(NumberActiveSession);
+            switch (Status)
+            {
+                case PortStatusValue.Disconnected:
+                    Console.WriteLine("...");
+                    break;
+                case  PortStatusValue.Free:
+                    Console.WriteLine("...");
+                    break;
+                case PortStatusValue.Blocked:
+                    Console.WriteLine("You blocked. Need more gold!");
+                    break;
+                default:
+                    Status = PortStatusValue.Free;            
+                    OnDropped(NumberActiveSession);
+                    break;
+            }
+            //if (Status == PortStatusValue.Disconnected)
+            //    Console.WriteLine("You blocked. Need more gold!");
+            //Status = PortStatusValue.Free;            
+            //OnDropped(NumberActiveSession);
         }
         public void TerminalAnswer(object sender,EventArgs e)
         {
@@ -63,28 +81,61 @@ namespace ATXEmulation.ATX.Components
         }
         public void TerminalConnect(object sender, EventArgs e)
         {
-            if (Status == PortStatusValue.Busy)
-                Console.WriteLine("Finish your operation and try later.");
-            else
+            switch (Status)
             {
-                if (Status == PortStatusValue.Free)
+                case PortStatusValue.Blocked:
+                    Console.WriteLine("You can accept only incoming calls.");
+                    break;
+                case PortStatusValue.Free:
                     Console.WriteLine("You're already connected");
-                Status = PortStatusValue.Free;
-                OnConnected();
+                    break;
+                case PortStatusValue.Disconnected:
+                    Console.WriteLine("Connected");
+                    Status = PortStatusValue.Free;
+                    OnConnected();
+                    break;
+                default:
+                    Console.WriteLine("Finish your operation and try later.");
+                    break;
             }
-
+            //if (Status == PortStatusValue.Busy)
+            //    Console.WriteLine("Finish your operation and try later.");
+            //else
+            //{
+            //    if (Status == PortStatusValue.Free)
+            //        Console.WriteLine("You're already connected");
+            //    Status = PortStatusValue.Free;
+            //    OnConnected();
+            //}
         }
         public void TerminalDisconnect(object sender, EventArgs e)
         {
-            if (Status == PortStatusValue.Busy)
-                Console.WriteLine("Finish your operation and try later.");
-            else
+            switch (Status)
             {
-                if (Status == PortStatusValue.Disconnected)
+                case PortStatusValue.Blocked:
+                    Console.WriteLine("You can accept only incoming calls.");
+                    break;
+                case PortStatusValue.Disconnected:
                     Console.WriteLine("You're already disconnected");
-                Status = PortStatusValue.Disconnected;
-                OnDiscconnected();
+                    break;
+                case PortStatusValue.Free:
+                    Console.WriteLine("Disconnected");
+                    Status = PortStatusValue.Free;
+                    OnDisconnected();
+                    break;
+                default:
+                    Console.WriteLine("Finish your operation and try later.");
+                    break;
             }
+            //if (Status == PortStatusValue.Busy)
+            //    Console.WriteLine("Finish your operation and try later.");
+            //else
+            //{
+            //    if (Status == PortStatusValue.Disconnected)
+            //        Console.WriteLine("You're already disconnected");
+            //    Status = PortStatusValue.Disconnected;
+            //    OnDisconnected();
+            //}
         }
 #endregion
         #region Send to terminal
@@ -228,7 +279,7 @@ namespace ATXEmulation.ATX.Components
             if (_connected != null)
                 _connected(this, null);
         }
-        private void OnDiscconnected()
+        private void OnDisconnected()
         {
             if (_disconnected != null)
                 _disconnected(this, null);

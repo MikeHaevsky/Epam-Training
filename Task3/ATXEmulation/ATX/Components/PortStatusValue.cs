@@ -10,6 +10,7 @@ namespace ATXEmulation.ATX.Components
     {
         Disconnected=0,
         Free=1,
-        Busy=2
+        Busy=2,
+        Blocked=3
     }
 }

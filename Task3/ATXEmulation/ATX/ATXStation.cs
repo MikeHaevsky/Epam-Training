@@ -11,9 +11,6 @@ namespace ATXEmulation.ATX
 {
     public class ATXStation
     {
-        private ICollection<Port> _ports;
-        private ICollection<ITerminal> _terminals;
-        //private ICollection<ISession> _sessions;
         private int CountSessions=0;
         public ATXStation()
         {
@@ -21,25 +18,13 @@ namespace ATXEmulation.ATX
         }
         public ICollection<Port> Ports
         {
-            get
-            {
-                return _ports;
-            }
-            set
-            {
-                _ports = value;
-            }
+            get;
+            set;
         }
         public ICollection<ITerminal> Terminals
         {
-            get
-            {
-                return _terminals;
-            }
-            set
-            {
-                _terminals = value;
-            }
+            get;
+            set;
         }
         public ICollection<ISession> Sessions
         {
@@ -157,10 +142,9 @@ namespace ATXEmulation.ATX
         {
             Sessions.ElementAt(numberSession).Status = SessionStatusValue.Compleated;
             Call call = Sessions.ElementAt(numberSession) as Call;
+            //hardcode time
             call.TimeOverSeconds = 180;
             onVoteBilling(call);
-            //Sessions.Cast<Call>(x=>x.ElementAt(numberSession));
-            //Sessions.ElementAt(numberSession).
             find_InPort(Sessions.ElementAt(numberSession)).Status = PortStatusValue.Free;
             find_OutPort(Sessions.ElementAt(numberSession)).Status = PortStatusValue.Free;
         }
@@ -169,6 +153,18 @@ namespace ATXEmulation.ATX
             int outNumber = session.SecondAbonent.Number;
             short outCode = session.SecondAbonent.Code;
             return Ports.Single(x => x.Number.Number == outNumber && x.Number.Code == outCode);
+        }
+        public void BlockingPort(TelephoneNumber number)
+        {
+            int num = number.Number;
+            short code = number.Code;
+            Ports.Single(x => x.Number.Number == num && x.Number.Code == code).Status = PortStatusValue.Blocked;
+        }
+        public void UnblockingPort(TelephoneNumber number)
+        {
+            int num = number.Number;
+            short code = number.Code;
+            Ports.Single(x => x.Number.Number == num && x.Number.Code == code).Status = PortStatusValue.Free;
         }
         private Port find_InPort(ISession session)
         {

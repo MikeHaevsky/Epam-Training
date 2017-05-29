@@ -87,17 +87,17 @@ namespace Demo
         {
             Station.CallSessions.Add(call);
         }
-        public static void BlockAbonent(object sender, EventArgs e)
+        public static void BlockAbonent(object sender, TelephoneNumber number)
         {
-            //Station.Ports
+            Station.BlockingPort(number);
         }
-        public static void UnblockAbonent(object sender, EventArgs e)
+        public static void UnblockAbonent(object sender, TelephoneNumber number)
         {
-            //Station.Ports
+            Station.UnblockingPort(number);
         }
         #endregion
 
-        #region Billing methods
+        #region Billing events
         public static void BillingConnect(Billing billing)
         {
             billing.VoteDemo += ReturnCall;
@@ -112,49 +112,5 @@ namespace Demo
         }
 
         #endregion
-        private static void ShowEvent(EventHandler asd, EventArgs e)
-        {
-            Console.WriteLine("{0}", asd);
-        }
-        private static void ShowMessage(string message)
-        {
-            Console.WriteLine(message);
-        }
-        
-        #region Methods Billing
-
-
-        //public void ConnectBillingSystem(System billingSystem)
-        //{
-            
-        //}
-        //public void DisconnectVilingSystem()
-        //{
-
-        //}
-
-        #endregion
-
-        #region Events
-
-        //private EventHandler<Call> _modifyCall;
-        //public event EventHandler<Call> ModifyCall
-        //{
-        //    add
-        //    {
-        //        _modifyCall += value;
-        //    }
-        //    remove
-        //    {
-        //        _modifyCall -= value;
-        //    }
-        //}
-
-        #endregion
-        //public static void AbonentCall(this TelephoneNumber number, int id)
-        //{
-        //    ATXProgram.AbonentCall(id, number);
-        //}
-        //public static ATXEmulation.ATX.ATXStation station { get; set; }
     }
 }

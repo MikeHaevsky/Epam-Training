@@ -63,8 +63,6 @@ namespace BillingSystem
             s = +coast;
             call.Coast = coast;
             OnVoreDemo(call);
-            //return call;
-            //OnModifyCall(call);
         }
         public User FindUser(Call call)
         {
@@ -73,13 +71,13 @@ namespace BillingSystem
             return Users.Single(x => x.number.Number == number && x.number.Code == code);
         }
   
-        public void Block()
+        public void Block(TelephoneNumber number)
         {
-            OnBlockedClient();
+            OnBlockedClient(number);
         }
-        public void Unblock()
+        public void Unblock(TelephoneNumber number)
         {
-            OnUnblockClient();
+            OnUnblockClient(number);
         }
 
         private EventHandler<Call> _voteDemo;
@@ -127,8 +125,8 @@ namespace BillingSystem
         //        _modifyCall(this, call);
         //}
 
-        private EventHandler _blokedClient;
-        public event EventHandler BlockedClient
+        private EventHandler<TelephoneNumber> _blokedClient;
+        public event EventHandler<TelephoneNumber> BlockedClient
         {
             add
             {
@@ -139,14 +137,14 @@ namespace BillingSystem
                 _blokedClient -= value;
             }
         }
-        public void OnBlockedClient()
+        public void OnBlockedClient(TelephoneNumber number)
         {
             if (_blokedClient != null)
-                _blokedClient(this, null);
+                _blokedClient(this, number);
         }
 
-        private EventHandler _unblockedClient;
-        public event EventHandler UnblockClient
+        private EventHandler <TelephoneNumber> _unblockedClient;
+        public event EventHandler<TelephoneNumber> UnblockClient
         {
             add
             {
@@ -157,10 +155,10 @@ namespace BillingSystem
                 _unblockedClient -= value;
             }
         }
-        public void OnUnblockClient()
+        public void OnUnblockClient(TelephoneNumber number)
         {
             if (_unblockedClient != null)
-                _unblockedClient(this, null);
+                _unblockedClient(this, number);
         }
 
 

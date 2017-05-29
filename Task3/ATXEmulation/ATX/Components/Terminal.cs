@@ -10,21 +10,14 @@ namespace ATXEmulation.ATX.Components
 {
     public class Terminal:ITerminal
     {
-        private int _id;
         public int Id
         {
-            get
-            {
-                return _id;
-            }
-            set
-            {
-                _id = value;
-            }
+            get;
+            set;
         }
         public Terminal(int i)
         {
-            _id = i;
+            Id = i;
         }
         #region Methods
         public void BeginCall(TelephoneNumber number)
