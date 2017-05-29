@@ -48,19 +48,23 @@ namespace ATXEmulation.ATX.Components
         #region Send from terminal
         public void TerminalCall(object sender,Call call)
         {
-            switch (LockStatus)
+            if (Status == PortStatusValue.Free)
             {
-                case PortBlockedValue.Blocked:
-                    Console.WriteLine("You blocked!!!Need more gold!");
-                    break;
-                default:
-                    call.StartTimeSession = DateTime.Now;
-                    call.FirstAbonent = Number;
-                    Status = PortStatusValue.Busy;
-                    OnCalled(call);
-                    break;
-
+                switch (LockStatus)
+                {
+                    case PortBlockedValue.Blocked:
+                        Console.WriteLine("You blocked!!!Need more gold!");
+                        break;
+                    default:
+                        call.StartTimeSession = DateTime.Now;
+                        call.FirstAbonent = Number;
+                        Status = PortStatusValue.Busy;
+                        OnCalled(call);
+                        break;
+                }
             }
+            else
+                Console.WriteLine("Please, connect or compleate your operation");
         }
         public void IncomingCalledPort(TelephoneNumber number)
         {
@@ -81,7 +85,7 @@ namespace ATXEmulation.ATX.Components
                     OnDropped(NumberActiveSession);
                     break;
             }
-                Console.WriteLine("You blocked. Need more gold!");
+                //Console.WriteLine("You blocked. Need more gold!");
             //if (Status == PortStatusValue.Disconnected)
             //    Console.WriteLine("You blocked. Need more gold!");
             //Status = PortStatusValue.Free;            
@@ -149,6 +153,11 @@ namespace ATXEmulation.ATX.Components
             //    OnDisconnected();
             //}
         }
+        public void TerminalGetDetalization(object sender, EventArgs e)
+        {
+            Port port=new Port(this.Number,this.Abonent);
+            OnDetalization(port);
+        }
         
         #endregion
 
@@ -159,6 +168,7 @@ namespace ATXEmulation.ATX.Components
             terminal.Called += TerminalCall;
             terminal.Dropped += TerminalDrop;
             terminal.Answered += TerminalAnswer;
+            terminal.GetCallDetalization += TerminalGetDetalization;
             IncomingCalled += terminal.IncomingCall;
         }
         public void AbortRegistrateTerminal(ITerminal terminal)
@@ -277,6 +287,25 @@ namespace ATXEmulation.ATX.Components
             if (_disconnected != null)
                 _disconnected(this, null);
         }
+        
+        private EventHandler<Port> _detalization;
+        public event EventHandler<Port> Detalization
+        {
+            add
+            {
+                _detalization += value;
+            }
+            remove
+            {
+                _detalization -= value;
+            }
+        }
+        private void OnDetalization(Port port)
+        {
+            if (_detalization != null)
+                _detalization(this, port);
+        }
+
         #endregion
         public void Dispose()
         {

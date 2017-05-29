@@ -8,8 +8,8 @@ namespace ATXEmulation.ATX.Components
 {
     public enum PortStatusValue
     {
-        Disconnected,
-        Free,
-        Busy
+        Disconnected=0,
+        Free=1,
+        Busy=2
     }
 }

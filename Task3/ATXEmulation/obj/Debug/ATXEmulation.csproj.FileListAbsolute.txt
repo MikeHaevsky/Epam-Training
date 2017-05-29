@@ -8,3 +8,4 @@ c:\Users\Администратор\Documents\Visual Studio 2013\Projects\Epam-T
 c:\Users\Администратор\Documents\Visual Studio 2013\Projects\Epam-Training\Task3\ATXEmulation\bin\Debug\ATXEmulation.pdb
 c:\Users\Администратор\Documents\Visual Studio 2013\Projects\Epam-Training\Task3\ATXEmulation\obj\Debug\ATXEmulation.dll
 c:\Users\Администратор\Documents\Visual Studio 2013\Projects\Epam-Training\Task3\ATXEmulation\obj\Debug\ATXEmulation.pdb
+c:\Users\Администратор\Documents\Visual Studio 2013\Projects\Epam-Training\Task3\ATXEmulation\obj\Debug\ATXEmulation.csprojResolveAssemblyReference.cache

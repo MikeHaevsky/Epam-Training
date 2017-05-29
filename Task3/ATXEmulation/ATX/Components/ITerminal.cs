@@ -15,13 +15,15 @@ namespace ATXEmulation.ATX.Components
         void IncomingCall(object sender,TelephoneNumber number);
         void Connecting();
         void Disconnecting();
+        void GetDetalization();
         #region events
         event EventHandler <Call> Called;
         //event EventHandler <TelephoneNumber> IncomingCalled;
         event EventHandler Dropped;       
         event EventHandler Answered;        
         event EventHandler Connected;
-        event EventHandler Disconnected;        
+        event EventHandler Disconnected;
+        event EventHandler GetCallDetalization;
         #endregion
     }
 }

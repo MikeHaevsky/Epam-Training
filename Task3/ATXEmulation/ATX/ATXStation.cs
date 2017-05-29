@@ -46,35 +46,54 @@ namespace ATXEmulation.ATX
             port.Connected -= ConnectToStation;
             port.Disconnected -= DisconnectFromStation;
         }
-        public void GetHistory()
+        
+        #region For Detalization
+
+        public void GetDetalization(object sender, Port port)
         {
-            CallSessions.Select(items=>items);
+            GetCallHistory(port);
+
         }
-        public void FilteredHistoryOverTheDateSpan(ICollection<Call> sessions,DateTime date1,DateTime date2)
+        public void FilteredOverTheCurrentDate(IEnumerable<Call> sessions, DateTime date)
+        {
+            sessions.Where(item => (item.StartTimeSession == date));
+        }
+        public void FilteredOverTheDateSpan(IEnumerable<Call> sessions, DateTime date1, DateTime date2)
         {
             sessions.Where(item => (item.StartTimeSession > date1) && (item.StartTimeSession < date2));
-                //return _airplanes.Where(item => (item.FuelConsumption > x) & (item.FuelConsumption < y)).Select(item => string.Format("{1}{0} | FuelConsumption:{2} \n", item.Model, item.Producer, item.FuelConsumption));
+            //return _airplanes.Where(item => (item.FuelConsumption > x) & (item.FuelConsumption < y)).Select(item => string.Format("{1}{0} | FuelConsumption:{2} \n", item.Model, item.Producer, item.FuelConsumption));
         }
-        public void FilteredHistoryOverTheCurrentDate(ICollection<Call> sessions, DateTime date)
+        public void FilteredOverTheAbonent(ICollection<Call> sessions, TelephoneNumber abonent)
         {
-            sessions.Where(item=>(item.StartTimeSession==date));
+            sessions.Where(item => item.SecondAbonent == abonent);
         }
+        public IEnumerable<Call> GetCallHistory(Port port)
+        {
+            return CallSessions.Where(item => item.FirstAbonent == port.Number);
+        }
+        public string ShowDetalization(IEnumerable<Call> calls)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("Your call history\r\n");
+            foreach (Call call in calls)
+            {
+                sb.Append(string.Format("Call to: {0} - Start: {1} - End: {2} - Duration: {3} - Cost: {4}\r\n",
+                    call.SecondAbonent, call.StartTimeSession, call.EndTimeSession,call.Duration,call.Coast)); 
+            }
+            return sb.ToString();
+        }
+
+        #endregion
+
         public void FilteredHistiryOverTheDuration(ICollection<Call> sessions, TimeSpan duration1, TimeSpan duration2)
         {
             sessions.Where(item=>(item.Duration>duration1)&&(item.Duration<duration2));
         }
-        public void FilteredHistoryOverTheAbonent(ICollection<Call> sessions, TelephoneNumber abonent)
-        {
-            sessions.Where(item => item.SecondAbonent == abonent);
-        }
+        
         public void GetCallHistory(TelephoneNumber number)
         {
             Sessions.Where(item => item.FirstAbonent==number);
         }
-        //public void ConnectBilling(BillingSystem billingSystem)
-        //{
-
-        //}
         public void ConnectToStation(object sender, EventArgs e)
         {
             Port port = sender as Port;
@@ -83,6 +102,7 @@ namespace ATXEmulation.ATX
                 port.Called+=port_Called;
                 port.Answered+=port_Answered;
                 port.Dropped+=port_Dropped;
+                port.Detalization += GetDetalization;
                 //IncomingCall += port.IncomingCalledPort;
             }
         }
@@ -94,6 +114,7 @@ namespace ATXEmulation.ATX
                 port.Called -= port_Called;
                 port.Answered -= port_Answered;
                 port.Dropped -= port_Dropped;
+                port.Detalization -= GetDetalization;
                 //IncomingCall -= port.IncomingCalledPort;
             }
         }
@@ -213,69 +234,9 @@ namespace ATXEmulation.ATX
             if (_voteBilling != null)
                 _voteBilling(this, call);
         }
+
+        private EventHandler
         //public 
         #endregion
-        //public static IEnumerable<int> IndexesWhere<T>(this IEnumerable<T> source, Func<T, bool> predicate)
-        //{
-        //    int index = 0;
-        //    foreach (T element in source)
-        //    {
-        //        if (predicate(element))
-        //        {
-        //            yield return index;
-        //        }
-        //        index++;
-        //    }
-        //}
-
-
-        //public Port AddNumber(TelephoneNumber number,Port abonent)
-        //{
-        //    Terminal terminal = new Terminal(count);
-        //    Port port = new Port(number,abonent.Abonent);
-        //    PhoneBook.Add(terminal.Id, abonent.Abonent);
-        //    return port;
-        //}
-        //public int GetSomePort(int portNumber)
-        //{
-        //    return Ports.ElementAt(portNumber).Id;
-        //    //return Ports.Where(x => x.Id == pNumber).Select(y => y.Id);
-        //}
-        //public PortStatusValue GetSomePortStatus(int pNumber)
-        //{
-        //    return Ports.ElementAt(pNumber).Status;
-        //    //return Ports.Where(x=>x.Id == pNumber).Select(y=>y.State);
-        //}
-        //public int GetFreePort()
-        //{
-        //    //for(int i=0, i<this.PortsCount(),i++){}
-        //}
-        //public string GetFreePorts()
-        //{
-        //    return String.Join("\n",Ports.Where(x => x.Status==PortStatusValue.Free).Select(y => y.Id));
-        //}
-        //public int PortsCount()
-        //{
-        //    return Ports.Count;
-        //}
-        //private static void ShowMessage(string message)
-        //{
-        //    Console.WriteLine(message);
-        //}
-
-        //public delegate void NewPortsHandler(object sender, PortEventArgs e);
-        //public delegate void NewTerminalHandler(object sender, TerminalEventArgs e);
-
-        //public int GetNumberValue()
-        //{
-        //    return Terminals.
-        //}
-        //public static bool IsFree(this int portNumber)
-        //{
-        //    if (Ports.ElementAt(portNumber).Status == PortStatusValue.Free)
-        //        return true;
-        //    else
-        //        return false;
-        //}   
-    }
+        }
 }

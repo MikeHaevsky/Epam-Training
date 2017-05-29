@@ -64,6 +64,10 @@ namespace ATXEmulation.ATX.Components
             Console.WriteLine("Terminal {0} has disconnected", Id);
             OnDisconnected();
         }
+        public void GetDetalization()
+        {
+            OnGetDetalization();
+        }
         #endregion
         #region Events
         
@@ -169,6 +173,23 @@ namespace ATXEmulation.ATX.Components
         {
             if (_disconnected != null)
                 _disconnected(this, null);
+        }
+        private EventHandler _getCallDetalization;
+        public event EventHandler GetCallDetalization
+        {
+            add
+            {
+                _getCallDetalization += value;
+            }
+            remove
+            {
+                _getCallDetalization -= value;
+            }
+        }
+        private void OnGetDetalization()
+        {
+            if (_getCallDetalization != null)
+                _getCallDetalization(this, null);
         }
         #endregion
         public void Dispose()

@@ -48,7 +48,8 @@ namespace BillingSystem
             double coast;
             int tarif = FindUser(call).TarifId;
             double s = FindUser(call).Money;
-            coast = Tarifs.ElementAt(tarif).GetCoastSession(call.Duration.Minutes);
+            int seconds = call.Duration.Seconds;
+            coast = Tarifs.ElementAt(tarif).GetCoastSession(seconds);
             s = +coast;
             call.Coast = coast;
             OnVoteDemo(call);

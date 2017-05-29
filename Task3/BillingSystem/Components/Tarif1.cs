@@ -24,7 +24,7 @@ namespace BillingSystem.Components
 
         public void DebitMoney(double sum)
         {
-            throw new NotImplementedException();
+            ;
         }
     }
 }

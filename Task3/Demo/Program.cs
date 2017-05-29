@@ -15,54 +15,41 @@ namespace Demo
     {
         static void Main(string[] args)
         {
+            TelephoneNumber Number1 = new TelephoneNumber(375, 8680737);
+            TelephoneNumber Number2 = new TelephoneNumber(375, 7868348);
+            TelephoneNumber Number3 = new TelephoneNumber(375, 5554433);
+            TelephoneNumber Number4 = new TelephoneNumber(375, 5860786);
+            TelephoneNumber Number5 = new TelephoneNumber(375, 8833548);
             RunATXStation();
             RunBillingSystem();
             BillSystem.BillingConnect();
-            //AddMike();
-            Number1().AddSubject("Mike", 1).AbonentConnect();
-            Number2().AddSubject("Valary", 1).AbonentConnect();
-            Number3().AddSubject("Puntuth", 1).AbonentConnect();
-            Number4().AddSubject("Eugenij", 1).AbonentConnect();
-            //AbonentConnect(0);
-            //AbonentConnect(1);
-            //AbonentConnect(2);
-            //AbonentConnect(3);
-            //TelephoneNumber number = new TelephoneNumber(375, 7868348);
-            //number.AbonentCall(0);
-            //AbonentDrop(0);
-            //number = new TelephoneNumber(375, 8833548);
-            //number.AbonentCall(1);
-            //AbonentDrop(1);
-            //AbonentDisconnect(0);
-            //AbonentDisconnect(1);
-            //AbonentDisconnect(2);
-            //AbonentDisconnect(3);
+            Number1.AddSubject("Mike", 1);
+            Number2.AddSubject("Valary", 1);
+            Number3.AddSubject("Sergei", 1);
+            Number4.AddSubject("Pontuth", 1);
+            Number5.AddSubject("Eugenij", 1);
+            Client1.AbonentConnect();
+            Client2.AbonentConnect();
+            Client3.AbonentConnect();
+            Client4.AbonentConnect();
+            Client5.AbonentConnect();
+            Client1.AbonentCall(Number2);
+            Client1.AbonentCall(Number3);
+            Client2.AbonentDrop();
         }
+
+        
 
         #region For Demonstration
 
-        private static int  Client1=0;
-        private static int Client2=1;
-        private static int Client3=2;
-        private static int Client4=3;
-        private static int countClient;
+        private static int Client1 = 0;
+        private static int Client2 = 1;
+        private static int Client3 = 2;
+        private static int Client4 = 3;
+        private static int Client5 = 4;
+        private static int countPort = 0;
+        private static int countClient=0;
 
-        public static TelephoneNumber Number1()
-        {
-            return new TelephoneNumber(375, 8680737);
-        }
-        public static TelephoneNumber Number2()
-        {
-            return new TelephoneNumber(375, 7653457);
-        }
-        public static TelephoneNumber Number3()
-        {
-            return new TelephoneNumber(375, 5860786);
-        }
-        public static TelephoneNumber Number4()
-        {
-            return new TelephoneNumber(375, 8833548);
-        }
         #endregion
 
         public static ATXStation Station
@@ -106,7 +93,7 @@ namespace Demo
             Station.Ports.ElementAt(id).RegistrateTerminal(Station.Terminals.ElementAt(id));
             Station.Terminals.ElementAt(id).Connecting();
         }
-        public static void AbonentDisconnect(int id)
+        public static void AbonentDisconnect(this int id)
         {
             Station.Terminals.ElementAt(id).EndingCall();
         }
@@ -114,11 +101,11 @@ namespace Demo
         //{
         //    Station.Terminals.ElementAt(id).BeginCall(number);
         //}
-        public static void AbonentDrop(int id)
+        public static void AbonentDrop(this int id)
         {
             Station.Terminals.ElementAt(id).EndingCall();
         }
-        public static void AbonentCall(this TelephoneNumber number, int id)
+        public static void AbonentCall(this int id, TelephoneNumber number)
         {
             Station.Terminals.ElementAt(id).BeginCall(number);
         }
@@ -139,9 +126,10 @@ namespace Demo
             if (user.Number.IsOnStation() == false)
             {
                 Port port = new Port(user.Number, user.Name);
-                Terminal terminal=new Terminal(0);
+                Terminal terminal=new Terminal(countPort);
                 Station.Ports.Add(port);
                 Station.Terminals.Add(terminal);
+                countPort++;
             }
             else
             {
@@ -192,7 +180,7 @@ namespace Demo
         {
             User user = new User(name, number,tarifId);
             BillSystem.AddClient(user);
-            countClient = countClient++;
+            countClient++;
             return countClient;
         }
 
@@ -206,6 +194,7 @@ namespace Demo
             billing.UnblockClient += UnblockAbonent;
             billing.AddUser += AddPortStation;
             billing.RemoveUser += RemovePortStation;
+            BillSystem.ConnectToStation(Station);
         }
         public static void BillingDisconnect(Billing billing)
         {
@@ -214,6 +203,7 @@ namespace Demo
             billing.UnblockClient -= UnblockAbonent;
             billing.AddUser -= AddPortStation;
             billing.RemoveUser -= RemovePortStation;
+            BillSystem.DisconnectFromStation(Station);
         }
 
         #endregion
