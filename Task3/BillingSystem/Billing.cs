@@ -26,34 +26,23 @@ namespace BillingSystem
         }
         public Billing()
         {
-            Timer _timer = new Timer();
+            //Timer _timer = new Timer();
             Users = new List<User>();
         }
-        public void AddClient(object sender, Port port)
+        public void AddClient(User user)
         {
-            User user = new User();
-            user.Name = port.Abonent;
-            user.number = port.Number;
             Users.Add(user);
+            OnAddUser(user);
         }
-        public void RemoveClient(object sender, Port port)
+        public void RemoveClient(User user)
         {
-            User user = new User();
-            user.Name = port.Abonent;
-            user.number = port.Number;
             Users.Remove(user);
+            OnRemoveUser(user);
         }
         public void PutMoney(object sender,TelephoneNumber number)
         {
             //Users.Single(x => x.number == number).Money;
         }
-        //public static User InitializeUser(this Port port)
-        //{
-        //    User user = new User();
-        //    user.Name = port.Abonent;
-        //    user.number = port.Number;
-        //    return user;
-        //}
         public void GetCoastCall(object sender, Call call)
         {
             double coast;
@@ -66,9 +55,7 @@ namespace BillingSystem
         }
         public User FindUser(Call call)
         {
-            int number = call.FirstAbonent.Number;
-            short code = call.FirstAbonent.Code;
-            return Users.Single(x => x.number.Number == number && x.number.Code == code);
+            return Users.Single(x => x.Number==call.FirstAbonent);
         }
   
         public void Block(TelephoneNumber number)
@@ -105,25 +92,10 @@ namespace BillingSystem
         {
             station.VoteBilling -= GetCoastCall;
         }
-        //#region Events
 
-        //private EventHandler <Call> _modifyCall;
-        //public event EventHandler<Call> ModifyCall
-        //{
-        //    add
-        //    {
-        //        _modifyCall += value;
-        //    }
-        //    remove
-        //    {
-        //        _modifyCall -= value;
-        //    }
-        //}
-        //public void OnModifyCall(Call call)
-        //{
-        //    if (_modifyCall != null)
-        //        _modifyCall(this, call);
-        //}
+        #region Events
+
+        #region BlockedClient
 
         private EventHandler<TelephoneNumber> _blokedClient;
         public event EventHandler<TelephoneNumber> BlockedClient
@@ -143,6 +115,10 @@ namespace BillingSystem
                 _blokedClient(this, number);
         }
 
+        #endregion
+
+        #region UnblockedClient
+
         private EventHandler <TelephoneNumber> _unblockedClient;
         public event EventHandler<TelephoneNumber> UnblockClient
         {
@@ -161,7 +137,52 @@ namespace BillingSystem
                 _unblockedClient(this, number);
         }
 
+        #endregion
 
-        //#endregion
+        #region AddUser
+
+        private EventHandler<User> _addUser;
+        public event EventHandler<User> AddUser
+        {
+            add
+            {
+                _addUser += value;
+            }
+            remove
+            {
+                _addUser -= value;
+            }
+        }
+        private void OnAddUser(User user)
+        {
+            if (_addUser != null)
+                _addUser(this, user);
+        }
+
+        #endregion
+
+        #region RemoveUser
+
+        private EventHandler<User> _removeUser;
+        public event EventHandler<User> RemoveUser
+        {
+            add
+            {
+                _removeUser += value;
+            }
+            remove
+            {
+                _removeUser -= value;
+            }
+        }
+        private void OnRemoveUser(User user)
+        {
+            if (_removeUser != null)
+                _removeUser(this, user);
+        }
+
+        #endregion
+
+        #endregion
     }
 }

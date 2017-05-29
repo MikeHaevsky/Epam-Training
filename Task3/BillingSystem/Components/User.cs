@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace BillingSystem.Components
 {
-    public class User
+    public class User:EventArgs
     {
         public String Name
         {
             get;
             set;
         }
-        public TelephoneNumber number
+        public TelephoneNumber Number
         {
             get;
             set;
@@ -33,6 +33,12 @@ namespace BillingSystem.Components
         {
             get;
             set;
+        }
+        public User(string name, TelephoneNumber number, int tarifId)
+        {
+            Name = name;
+            Number = number;
+            TarifId = tarifId;
         }
     }
 }

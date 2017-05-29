@@ -34,9 +34,9 @@ namespace ATXEmulation.ATX.Components
         }
         public TelephoneNumber(short code, int number)
         {
-            if (code > 99 && code <999)
+            if (code < 99 && code >999)
                 throw new ArgumentException("Code must contain 3 numerics");
-            if (number < 9999999 && number>999999)
+            if (number < 999999 && number>9999999)
                 throw new ArgumentException("Number must contain 7 numerics");
             else
             {
