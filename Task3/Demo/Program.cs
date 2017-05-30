@@ -23,19 +23,31 @@ namespace Demo
             RunATXStation();
             RunBillingSystem();
             BillSystem.BillingConnect();
-            Number1.AddSubject("Mike", 1);
-            Number2.AddSubject("Valary", 1);
-            Number3.AddSubject("Sergei", 1);
-            Number4.AddSubject("Pontuth", 1);
-            Number5.AddSubject("Eugenij", 1);
+            BillSystem.AddTarifs();
+            Number1.AddSubject("Mike", 0);
+            Number2.AddSubject("Valary", 0);
+            Number3.AddSubject("Sergei", 0);
+            Number4.AddSubject("Pontuth", 0);
+            Number5.AddSubject("Eugenij", 0);
             Client1.AbonentConnect();
             Client2.AbonentConnect();
             Client3.AbonentConnect();
             Client4.AbonentConnect();
             Client5.AbonentConnect();
             Client1.AbonentCall(Number2);
-            Client1.AbonentCall(Number3);
+            //Client1.AbonentCall(Number3);
+            System.Threading.Thread.Sleep(10000);
             Client2.AbonentDrop();
+            Client1.AbonentCall(Number3);
+            System.Threading.Thread.Sleep(1000);
+            Client1.AbonentDrop();
+            Client1.AbonentCall(Number4);
+            System.Threading.Thread.Sleep(15000);
+            Client1.AbonentDrop();
+            Client1.AbonentCall(Number5);
+            System.Threading.Thread.Sleep(8000);
+            Client1.AbonentDrop();
+            Client1.AbonentDetalization();
         }
 
         
@@ -101,6 +113,10 @@ namespace Demo
         //{
         //    Station.Terminals.ElementAt(id).BeginCall(number);
         //}
+        public static void AbonentDetalization(this int id)
+        {
+            Station.Terminals.ElementAt(id).GetDetalization();
+        }
         public static void AbonentDrop(this int id)
         {
             Station.Terminals.ElementAt(id).EndingCall();
@@ -166,6 +182,7 @@ namespace Demo
         public static void RunBillingSystem()
         {
             Billing billingSystem = new Billing();
+            billingSystem.Tarifs = new List<ITarif>();
             //billingSystem.Users = new List<User>()
             //{
                 
@@ -182,6 +199,11 @@ namespace Demo
             BillSystem.AddClient(user);
             countClient++;
             return countClient;
+        }
+        public static void AddTarifs(this Billing billingSystem)
+        {
+            Tarif1 tarif1=new Tarif1();
+            billingSystem.Tarifs.Add(tarif1);
         }
 
         #endregion

@@ -60,5 +60,9 @@ namespace ATXEmulation.ATX.Components
         {
             return base.GetHashCode();
         }
+        public override string ToString()
+        {
+            return string.Format("{0}-{1}",Code,Number);
+        }
     }
 }

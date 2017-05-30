@@ -12,6 +12,7 @@ namespace ATXEmulation.ATX
     public class ATXStation
     {
         private int CountSessions=0;
+        private Port detalizationPort;
         public ATXStation()
         {
             Sessions = new List<ISession>();
@@ -49,23 +50,78 @@ namespace ATXEmulation.ATX
         
         #region For Detalization
 
-        public void GetDetalization(object sender, Port port)
+        public void GetDetalization(object sender, EventArgs e)
         {
-            GetCallHistory(port);
-
+            //port.Clean();
+            Port port = sender as Port;
+            this.ChooseFilter += port.SendToTerminalDetalization;
+            port.SetFilter += this.GetDetalization;
+            detalizationPort = port;
+            string details = ShowDetalization(GetCallHistory(port));
+            OnChooseFilter(details);
+            this.ChooseFilter -= port.SendToTerminalDetalization;
+            port.SetFilter -= this.Filtered;
         }
-        public void FilteredOverTheCurrentDate(IEnumerable<Call> sessions, DateTime date)
+        public void GetDetalization(object sender, FilterDetalization filter)
         {
-            sessions.Where(item => (item.StartTimeSession == date));
+            switch (filter.Type)
+            {
+                case FilterTypes.CurrentDate:
+                    string[] a = filter.Value.Split('|');
+                    DateTime startDate = Convert.ToDateTime(a[0]);
+                    DateTime endDate = Convert.ToDateTime(a[1]);
+                    string details = ShowDetalization(FilteredOverTheCurrentDate(GetCallHistory(detalizationPort), startDate,endDate));
+                    OnChooseFilter(details);
+                    break;
+                case FilterTypes.Duration:
+                    TimeSpan duration;
+                    //TimeSpan time;
+                    try
+                    {
+                        TimeSpan.TryParse(filter.Value, out duration);
+                        string[] b = filter.Value.Split('|');
+                        //DateTime fTime = Convert.ToDateTime(a[0]);
+                        //DateTime sTime = Convert.ToDateTime(a[1]);
+                        TimeSpan fTime,sTime;
+                        TimeSpan.TryParse(b[0], out fTime);
+                        TimeSpan.TryParse(b[1], out sTime);
+                        string details1 = ShowDetalization(FilteredOverTheDuration(GetCallHistory(detalizationPort), fTime,sTime));
+                        OnChooseFilter(details1);
+                    }
+                    catch
+                    {
+                        string details2="incorrect format";
+                        OnChooseFilter(details2);
+                    };
+                    break;
+                default:
+                    string[] c= filter.Value.Split('|');
+                    int number,i;
+                    int.TryParse(c[0],out i);
+                    int.TryParse(c[1],out number);
+                    short code=Convert.ToInt16(i);
+                    TelephoneNumber telNumber = new TelephoneNumber(code, number);
+                    string details3 = ShowDetalization(FilteredOverTheAbonent(GetCallHistory(detalizationPort), telNumber));
+                    OnChooseFilter(details3);
+                    break;
+            }
         }
-        public void FilteredOverTheDateSpan(IEnumerable<Call> sessions, DateTime date1, DateTime date2)
+        public void Filtered(object sender, FilterDetalization filter)
         {
-            sessions.Where(item => (item.StartTimeSession > date1) && (item.StartTimeSession < date2));
+            //FilteredOverTheCurrentDate
+        }
+        public IEnumerable<Call> FilteredOverTheCurrentDate(IEnumerable<Call> sessions, DateTime date1, DateTime date2)
+        {
+            return sessions.Where(item => (item.StartTimeSession > date1) && (item.StartTimeSession < date2));
             //return _airplanes.Where(item => (item.FuelConsumption > x) & (item.FuelConsumption < y)).Select(item => string.Format("{1}{0} | FuelConsumption:{2} \n", item.Model, item.Producer, item.FuelConsumption));
         }
-        public void FilteredOverTheAbonent(ICollection<Call> sessions, TelephoneNumber abonent)
+        public IEnumerable<Call> FilteredOverTheAbonent(IEnumerable<Call> sessions, TelephoneNumber abonent)
         {
-            sessions.Where(item => item.SecondAbonent == abonent);
+            return sessions.Where(item => item.SecondAbonent == abonent);
+        }
+        public IEnumerable<Call> FilteredOverTheDuration(IEnumerable<Call> sessions, TimeSpan fTime, TimeSpan sTime)
+        {
+            return sessions.Where(item => (item.Duration > fTime)&&(item.Duration<sTime));
         }
         public IEnumerable<Call> GetCallHistory(Port port)
         {
@@ -77,7 +133,7 @@ namespace ATXEmulation.ATX
             sb.Append("Your call history\r\n");
             foreach (Call call in calls)
             {
-                sb.Append(string.Format("Call to: {0} - Start: {1} - End: {2} - Duration: {3} - Cost: {4}\r\n",
+                sb.Append(string.Format("Call to:{0} | Start:{1}| End: {2}| Duration: {3}| Cost: {4}\r\n",
                     call.SecondAbonent, call.StartTimeSession, call.EndTimeSession,call.Duration,call.Coast)); 
             }
             return sb.ToString();
@@ -215,7 +271,30 @@ namespace ATXEmulation.ATX
             Sessions.Add(session);
             CountSessions = ++CountSessions;
         }
+
+        #region Events for port
+
+        private EventHandler <string> _chooseFilter;
+        public event EventHandler<string> ChooseFilter
+        {
+            add
+            {
+                _chooseFilter += value;
+            }
+            remove
+            {
+                _chooseFilter -= value;
+            }
+        }
+        private void OnChooseFilter(string detalization)
+        {
+            if (_chooseFilter != null)
+                _chooseFilter(this, detalization);
+        }
+
         
+        #endregion
+
         #region Events for Billing
         private EventHandler<Call> _voteBilling;
         public event EventHandler<Call> VoteBilling
@@ -235,7 +314,7 @@ namespace ATXEmulation.ATX
                 _voteBilling(this, call);
         }
 
-        private EventHandler
+        //private EventHandler
         //public 
         #endregion
         }

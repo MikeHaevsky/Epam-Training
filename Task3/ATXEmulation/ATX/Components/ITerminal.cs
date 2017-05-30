@@ -16,6 +16,8 @@ namespace ATXEmulation.ATX.Components
         void Connecting();
         void Disconnecting();
         void GetDetalization();
+        void ChooseDetlizationFilter(object sender, string detalization);
+
         #region events
         event EventHandler <Call> Called;
         //event EventHandler <TelephoneNumber> IncomingCalled;
@@ -24,6 +26,7 @@ namespace ATXEmulation.ATX.Components
         event EventHandler Connected;
         event EventHandler Disconnected;
         event EventHandler GetCallDetalization;
+        event EventHandler<FilterDetalization> SetFilter;
         #endregion
     }
 }

@@ -53,11 +53,12 @@
     <Compile Include="ATX\Components\PortStatusValue.cs" />
     <Compile Include="ATX\Components\TelephoneNumber.cs" />
     <Compile Include="ATX\Components\Terminal.cs" />
+    <Compile Include="ATX\Exchanges\FilterDetalization.cs" />
+    <Compile Include="ATX\Exchanges\FilterTypes.cs" />
     <Compile Include="ATX\Exchanges\TextMessage.cs" />
     <Compile Include="ATX\Exchanges\SessionStatusValue.cs" />
     <Compile Include="ATX\Exchanges\Call.cs" />
     <Compile Include="ATX\Exchanges\ISession.cs" />
-    <Compile Include="ATXProgram.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

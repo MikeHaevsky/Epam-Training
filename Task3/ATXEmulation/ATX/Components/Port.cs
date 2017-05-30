@@ -155,12 +155,19 @@ namespace ATXEmulation.ATX.Components
         }
         public void TerminalGetDetalization(object sender, EventArgs e)
         {
-            Port port=new Port(this.Number,this.Abonent);
-            OnDetalization(port);
+            //Port port=new Port(this.Number,this.Abonent);
+            //Port port =sender as Port;
+            OnDetalization();
         }
-        
+        public void TerminalSendFilter(object sender, FilterDetalization filter)
+        {
+            OnSetFilter(filter);
+        }       
         #endregion
-
+        public void SendToTerminalDetalization(object sender, string detalization)
+        {
+            OnSendDetalization(detalization);
+        }
         public void RegistrateTerminal(ITerminal terminal)
         {
             terminal.Connected += TerminalConnect;
@@ -169,7 +176,11 @@ namespace ATXEmulation.ATX.Components
             terminal.Dropped += TerminalDrop;
             terminal.Answered += TerminalAnswer;
             terminal.GetCallDetalization += TerminalGetDetalization;
+            terminal.SetFilter += TerminalSendFilter;
+
             IncomingCalled += terminal.IncomingCall;
+            SendDetalization += terminal.ChooseDetlizationFilter;
+
         }
         public void AbortRegistrateTerminal(ITerminal terminal)
         {
@@ -178,7 +189,10 @@ namespace ATXEmulation.ATX.Components
             terminal.Called -= TerminalCall;
             terminal.Dropped -= TerminalDrop;
             terminal.Answered -= TerminalAnswer;
-            IncomingCalled += terminal.IncomingCall;
+            terminal.SetFilter -= TerminalSendFilter;
+
+            IncomingCalled -= terminal.IncomingCall;
+            SendDetalization -= terminal.ChooseDetlizationFilter;
         }
 
         #region Events
@@ -288,8 +302,8 @@ namespace ATXEmulation.ATX.Components
                 _disconnected(this, null);
         }
         
-        private EventHandler<Port> _detalization;
-        public event EventHandler<Port> Detalization
+        private EventHandler _detalization;
+        public event EventHandler Detalization
         {
             add
             {
@@ -300,13 +314,71 @@ namespace ATXEmulation.ATX.Components
                 _detalization -= value;
             }
         }
-        private void OnDetalization(Port port)
+        private void OnDetalization()
         {
             if (_detalization != null)
-                _detalization(this, port);
+                _detalization(this, null);
+        }
+        private EventHandler<FilterDetalization> _filterDetalization;
+        public event EventHandler<FilterDetalization> FilterDetalization
+        {
+            add 
+            {
+                _filterDetalization += value;
+            }
+            remove
+            {
+                _filterDetalization -= value;
+            }
+        }
+        private void OnDetalization(FilterDetalization filter)
+        {
+            if (_detalization != null)
+                _detalization(this, filter);
+        }
+
+        private EventHandler<string> _sendDetalization;
+        public event EventHandler<string> SendDetalization
+        {
+            add
+            {
+                _sendDetalization += value;
+            }
+            remove
+            {
+                _sendDetalization -= value;
+            }
+        }
+        private void OnSendDetalization(string detalization)
+        {
+            if (_sendDetalization != null)
+                _sendDetalization(this, detalization);
+        }
+
+        private EventHandler<FilterDetalization> _setFilter;
+        public event EventHandler<FilterDetalization> SetFilter
+        {
+            add
+            {
+                _setFilter += value;
+            }
+            remove
+            {
+                _setFilter -= value;
+            }
+        }
+        private void OnSetFilter(FilterDetalization filter)
+        {
+            if (_setFilter != null)
+                _setFilter(this, filter);
         }
 
         #endregion
+        public void Clean()
+        {
+            //_setFilter = null;
+            //_sendDetalization = null;
+        }
         public void Dispose()
         {
             _answered=null;
@@ -315,6 +387,9 @@ namespace ATXEmulation.ATX.Components
             _disconnected = null;
             _dropped = null;
             _incomingCalled = null;
+            //_detalization = null;
+            //_sendDetalization = null;
+            //_setFilter = null;
         }
     }
 }

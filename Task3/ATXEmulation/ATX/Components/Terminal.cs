@@ -68,6 +68,49 @@ namespace ATXEmulation.ATX.Components
         {
             OnGetDetalization();
         }
+        public void ChooseDetlizationFilter(object sender, string detalization)
+        {
+            Console.WriteLine(detalization);
+            Console.WriteLine("\nIf  you want to filtered this information, press:\n" +
+                "1. over the date\n"+
+                "2. over the abonent\n"+
+                "3. over the duration\n"+
+                "press other key to exit...");
+            ConsoleKeyInfo key=Console.ReadKey(true);
+            switch (key.Key)
+            {
+                case ConsoleKey.D1:
+                    Console.WriteLine("Write start date (in format: MM/DD/YYYY hh:mm:ss.ms;where ms ##):");
+                    string startDate=Console.ReadLine();
+                    Console.WriteLine("Write end date (in format: MM/DD/YYYY hh:mm:ss.ms;where ms ##):");
+                    string endDate=Console.ReadLine();
+                    string s1 = string.Concat(startDate + "|" + endDate);
+                    FilterDetalization filter1 = new FilterDetalization(FilterTypes.CurrentDate,s1);
+                    OnSetFilter(filter1);
+                    break;
+                case ConsoleKey.D2:
+                    Console.WriteLine("Write abonent code(in format: ###):");
+                    string code=Console.ReadLine();
+                    Console.WriteLine("Write abonent number(in format: #######):");
+                    string number = Console.ReadLine();
+                    string s2 = string.Concat(code + "|" + number);
+                    FilterDetalization filter2 = new FilterDetalization(FilterTypes.OverAbonentNumber,s2);
+                    OnSetFilter(filter2);
+                    break;
+                case ConsoleKey.D3:
+                    Console.WriteLine("Write lover duration(in format: hh:mm:ss.ms):");
+                    string LoverDuration=Console.ReadLine();
+                    Console.WriteLine("Write upper duration(in format: hh:mm:ss.ms):");
+                    string upperDuration=Console.ReadLine();
+                    string s3 = string.Concat(LoverDuration + "|" + upperDuration);
+                    FilterDetalization filter3 = new FilterDetalization(FilterTypes.Duration,s3);
+                    OnSetFilter(filter3);
+                    break;
+                default:
+                    break;
+            }
+
+        }
         #endregion
         #region Events
         
@@ -191,6 +234,25 @@ namespace ATXEmulation.ATX.Components
             if (_getCallDetalization != null)
                 _getCallDetalization(this, null);
         }
+
+        private EventHandler<FilterDetalization> _setFilter;
+        public event EventHandler<FilterDetalization> SetFilter
+        {
+            add
+            {
+                _setFilter = value;
+            }
+            remove
+            {
+                _setFilter -= value;
+            }
+        }
+        private void OnSetFilter(FilterDetalization filter)
+        {
+            if (_setFilter != null)
+                _setFilter(this, filter);
+        }
+
         #endregion
         public void Dispose()
         {
