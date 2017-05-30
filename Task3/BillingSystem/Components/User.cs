@@ -34,11 +34,28 @@ namespace BillingSystem.Components
             get;
             set;
         }
+        public DateTime RegistrationDate
+        {
+            get;
+            private set;
+        }
         public User(string name, TelephoneNumber number, int tarifId)
         {
             Name = name;
             Number = number;
             TarifId = tarifId;
+            RegistrationDate = DateTime.Now;
+        }
+        public void DebitMoney()
+        {
+            Money = Money - Balans;
+        }
+        public bool IsUserNeedLock()
+        {
+            if ((Money < 0) && (DateTime.Now > RegistrationDate.AddMonths(1)))
+                return true;
+            else
+                return false;
         }
     }
 }

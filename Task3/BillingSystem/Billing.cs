@@ -13,7 +13,6 @@ namespace BillingSystem
 {
     public class Billing
     {
-        //private Timer _timer;
         public ICollection<ITarif> Tarifs
         {
             get;
@@ -26,8 +25,26 @@ namespace BillingSystem
         }
         public Billing()
         {
-            //Timer _timer = new Timer();
             Users = new List<User>();
+        }
+        public void SwitchTarif(TelephoneNumber number)
+        {
+            DateTime judgmentDay = FindUser(number).RegistrationDate.AddMonths(1);
+            if (FindUser(number).RegistrationDate > judgmentDay)
+            {
+                String.Join("\n",Tarifs.Select(item=>item.Tittle));
+                int i = Tarifs.Count;
+                Console.WriteLine("Choose number your new Tarif1");
+                int j = Convert.ToInt32(Console.ReadLine());
+                if (i >= j)
+                    FindUser(number).TarifId = j;
+                else
+                    Console.WriteLine("Write correct tarif number");
+            }
+            else
+            {
+                Console.WriteLine("This operathion is blocked now. You can switch tarif after a month.");
+            }
         }
         public void AddClient(User user)
         {
@@ -39,9 +56,25 @@ namespace BillingSystem
             Users.Remove(user);
             OnRemoveUser(user);
         }
-        public void PutMoney(object sender,TelephoneNumber number)
+        public void PutMoney(TelephoneNumber number,double money)
         {
-            //Users.Single(x => x.number == number).Money;
+            Users.Single(x => x.Number == number).Money+=money;
+        }
+        public void DebitBalans(TelephoneNumber number)
+        {
+            FindUser(number).DebitMoney();
+            if (FindUser(number).Money<0)
+                OnBlockedClient(number);
+            else
+                OnUnblockClient(number);
+        }
+        public void TimerAction(object sender, EventArgs e)
+        {           
+            foreach (User item in Users)
+            {
+                if (item.IsUserNeedLock() == true)
+                    OnBlockedClient(item.Number);
+            }
         }
         public void GetCoastCall(object sender, Call call)
         {
@@ -58,16 +91,10 @@ namespace BillingSystem
         {
             return Users.Single(x => x.Number==call.FirstAbonent);
         }
-  
-        public void Block(TelephoneNumber number)
+        public User FindUser(TelephoneNumber number)
         {
-            OnBlockedClient(number);
+            return Users.Single(x => x.Number == number);
         }
-        public void Unblock(TelephoneNumber number)
-        {
-            OnUnblockClient(number);
-        }
-
         private EventHandler<Call> _voteDemo;
         public event EventHandler<Call> VoteDemo
         {

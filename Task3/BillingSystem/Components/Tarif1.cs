@@ -8,23 +8,22 @@ namespace BillingSystem.Components
 {
     public class Tarif1:ITarif
     {
-        //public double GetCoastSession(int time)
-        //{
-        //    return time*0.5/60;
-        //}
-        //public void DebitMoney(double sum)
-        //{
-            
-        //}
-
+        private string _tittle;
+        public int Period=1;
+        public string Tittle
+        {
+            get
+            {
+                return _tittle;
+            }
+            set
+            {
+                _tittle="Tarif 0.5 by the minutes";
+            }
+        }
         public double GetCoastSession(int duration)
         {
             return duration * 0.5 / 60;
-        }
-
-        public void DebitMoney(double sum)
-        {
-            ;
         }
     }
 }

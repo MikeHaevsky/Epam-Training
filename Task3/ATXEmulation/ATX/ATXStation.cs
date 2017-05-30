@@ -52,7 +52,6 @@ namespace ATXEmulation.ATX
 
         public void GetDetalization(object sender, EventArgs e)
         {
-            //port.Clean();
             Port port = sender as Port;
             this.ChooseFilter += port.SendToTerminalDetalization;
             port.SetFilter += this.GetDetalization;
@@ -75,13 +74,10 @@ namespace ATXEmulation.ATX
                     break;
                 case FilterTypes.Duration:
                     TimeSpan duration;
-                    //TimeSpan time;
                     try
                     {
                         TimeSpan.TryParse(filter.Value, out duration);
                         string[] b = filter.Value.Split('|');
-                        //DateTime fTime = Convert.ToDateTime(a[0]);
-                        //DateTime sTime = Convert.ToDateTime(a[1]);
                         TimeSpan fTime,sTime;
                         TimeSpan.TryParse(b[0], out fTime);
                         TimeSpan.TryParse(b[1], out sTime);

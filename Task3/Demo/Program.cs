@@ -8,6 +8,7 @@ using ATXEmulation.ATX.Exchanges;
 using ATXEmulation.ATX.Components;
 using BillingSystem;
 using BillingSystem.Components;
+using System.Timers;
 
 namespace Demo
 {
@@ -15,6 +16,9 @@ namespace Demo
     {
         static void Main(string[] args)
         {
+            Timer timer = new Timer(86400000);
+            timer.AutoReset = true;
+            timer.Elapsed+=BillSystem.TimerAction;
             TelephoneNumber Number1 = new TelephoneNumber(375, 8680737);
             TelephoneNumber Number2 = new TelephoneNumber(375, 7868348);
             TelephoneNumber Number3 = new TelephoneNumber(375, 5554433);
@@ -64,6 +68,7 @@ namespace Demo
 
         #endregion
 
+
         public static ATXStation Station
         {
             get;
@@ -109,10 +114,6 @@ namespace Demo
         {
             Station.Terminals.ElementAt(id).EndingCall();
         }
-        //public static void AbonentCall(int id, TelephoneNumber number)
-        //{
-        //    Station.Terminals.ElementAt(id).BeginCall(number);
-        //}
         public static void AbonentDetalization(this int id)
         {
             Station.Terminals.ElementAt(id).GetDetalization();
@@ -183,14 +184,6 @@ namespace Demo
         {
             Billing billingSystem = new Billing();
             billingSystem.Tarifs = new List<ITarif>();
-            //billingSystem.Users = new List<User>()
-            //{
-                
-            //    new User("Mike",new TelephoneNumber(375,8680737),1),
-            //    new User("Valery",new TelephoneNumber(375,7868348),1),
-            //    new User("Vadim",new TelephoneNumber(375,5860786),1),
-            //    new User("Eugenij",new TelephoneNumber(375,8833548),1)
-            //};
             BillSystem = billingSystem;
         }
         public static int AddSubject(this TelephoneNumber number, string name,int tarifId)
@@ -203,7 +196,9 @@ namespace Demo
         public static void AddTarifs(this Billing billingSystem)
         {
             Tarif1 tarif1=new Tarif1();
+            Tarif2 tarif2 = new Tarif2();
             billingSystem.Tarifs.Add(tarif1);
+            billingSystem.Tarifs.Add(tarif2);
         }
 
         #endregion
