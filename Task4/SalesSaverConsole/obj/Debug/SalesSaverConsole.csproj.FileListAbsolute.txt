@@ -14,3 +14,19 @@ D:\test1\experiment\Task4\SalesSaverConsole\obj\Debug\SalesSaverConsole.exe
 D:\test1\experiment\Task4\SalesSaverConsole\obj\Debug\SalesSaverConsole.pdb
 D:\test1\experiment\Task4\SalesSaverConsole\bin\Debug\SalesSaverBL.dll
 D:\test1\experiment\Task4\SalesSaverConsole\bin\Debug\SalesSaverBL.pdb
+C:\Users\Администратор\Documents\Visual Studio 2013\Projects\Epam-Training\Task4\SalesSaverConsole\bin\Debug\SalesSaverConsole.exe.config
+C:\Users\Администратор\Documents\Visual Studio 2013\Projects\Epam-Training\Task4\SalesSaverConsole\obj\Debug\SalesSaverConsole.exe
+C:\Users\Администратор\Documents\Visual Studio 2013\Projects\Epam-Training\Task4\SalesSaverConsole\obj\Debug\SalesSaverConsole.pdb
+C:\Users\Администратор\Documents\Visual Studio 2013\Projects\Epam-Training\Task4\SalesSaverConsole\bin\Debug\SalesSaverConsole.exe
+C:\Users\Администратор\Documents\Visual Studio 2013\Projects\Epam-Training\Task4\SalesSaverConsole\bin\Debug\SalesSaverConsole.pdb
+C:\Users\Администратор\Documents\Visual Studio 2013\Projects\Epam-Training\Task4\SalesSaverConsole\bin\Debug\EntityFramework.dll
+C:\Users\Администратор\Documents\Visual Studio 2013\Projects\Epam-Training\Task4\SalesSaverConsole\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Администратор\Documents\Visual Studio 2013\Projects\Epam-Training\Task4\SalesSaverConsole\bin\Debug\SalesSaverBL.dll
+C:\Users\Администратор\Documents\Visual Studio 2013\Projects\Epam-Training\Task4\SalesSaverConsole\bin\Debug\SalesSaverDAL.dll
+C:\Users\Администратор\Documents\Visual Studio 2013\Projects\Epam-Training\Task4\SalesSaverConsole\bin\Debug\AutoMapper.dll
+C:\Users\Администратор\Documents\Visual Studio 2013\Projects\Epam-Training\Task4\SalesSaverConsole\bin\Debug\SalesSaverBL.pdb
+C:\Users\Администратор\Documents\Visual Studio 2013\Projects\Epam-Training\Task4\SalesSaverConsole\bin\Debug\EntityFramework.xml
+C:\Users\Администратор\Documents\Visual Studio 2013\Projects\Epam-Training\Task4\SalesSaverConsole\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Администратор\Documents\Visual Studio 2013\Projects\Epam-Training\Task4\SalesSaverConsole\bin\Debug\SalesSaverDAL.pdb
+C:\Users\Администратор\Documents\Visual Studio 2013\Projects\Epam-Training\Task4\SalesSaverConsole\bin\Debug\AutoMapper.xml
+C:\Users\Администратор\Documents\Visual Studio 2013\Projects\Epam-Training\Task4\SalesSaverConsole\obj\Debug\SalesSaverConsole.csprojResolveAssemblyReference.cache

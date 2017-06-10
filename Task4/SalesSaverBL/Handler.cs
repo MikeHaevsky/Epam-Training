@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace SalesSaverBL
@@ -26,13 +27,14 @@ namespace SalesSaverBL
             get;
             set;
         }
+        public static Mutex mut = new Mutex();
         public Handler()
         {
             DataMapper = new BLMapper();
             DB = new SalesSaverDBContext();
             OperationModel = new Model.Operation();
         }
-        public void ReadCSV(string filePath)
+        public void ProcessedCSV(string filePath)
         {
             using (StreamReader reader = new StreamReader(filePath))
             {
@@ -45,22 +47,21 @@ namespace SalesSaverBL
                     string line = reader.ReadLine();
                     string [] lineElements = line.Split(separator);
 
-                    using (SalesSaverDBContext db = new SalesSaverDBContext())
-                    {
-                        SalesSaverBL.Model.Manager managerBL = new SalesSaverBL.Model.Manager(filenameElements[0]);
-                        Validate(managerBL);
+                    mut.WaitOne();
+                    SalesSaverBL.Model.Manager managerBL = new SalesSaverBL.Model.Manager(filenameElements[0]);
+                    Validate(managerBL);
 
-                        SalesSaverBL.Model.Client clientBL = new Model.Client(lineElements[1]);
-                        Validate(clientBL);
+                    SalesSaverBL.Model.Client clientBL = new Model.Client(lineElements[1]);
+                    Validate(clientBL);
 
-                        SalesSaverBL.Model.Product productBL = new SalesSaverBL.Model.Product(lineElements[2]);
-                        Validate(productBL);
+                    SalesSaverBL.Model.Product productBL = new SalesSaverBL.Model.Product(lineElements[2]);
+                    Validate(productBL);
 
-                        OperationModel.Data = lineElements[0].CreateDate();
-                        OperationModel.Cost = lineElements[3].CreateCost();
-                        DB.Operations.Add(this.DataMapper.Mapping(OperationModel));
-                        DB.SaveChanges();
-                    }
+                    OperationModel.Data = lineElements[0].CreateDate();
+                    OperationModel.Cost = lineElements[3].CreateCost();
+                    DB.Operations.Add(this.DataMapper.Mapping(OperationModel));
+                    DB.SaveChanges();
+                    mut.ReleaseMutex();
                 }
             }
         }

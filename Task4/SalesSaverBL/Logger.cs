@@ -10,6 +10,11 @@ namespace SalesSaverBL
 {
     public class Logger
     {
+        public bool Wait
+        {
+            get;
+            set;
+        }
         public bool RunConsole;
         FileSystemWatcher watcher;
         object obj = new object();
@@ -23,8 +28,6 @@ namespace SalesSaverBL
             watcher = new FileSystemWatcher(Resource.WorkFolder,Resource.WatchedExtension);
             watcher.Deleted += Watcher_Deleted;
             watcher.Created += Watcher_Created;
-            watcher.Changed += Watcher_Changed;
-            watcher.Renamed += Watcher_Renamed;
         }
         public void Start()
         {
@@ -39,33 +42,18 @@ namespace SalesSaverBL
             watcher.EnableRaisingEvents = false;
             enabled = false;
         }
-        private void Watcher_Renamed(object sender, RenamedEventArgs e)
-        {
-            string fileEvent = "renamed on " + e.FullPath;
-            string filePath = e.OldFullPath;
-            RecordEntry(fileEvent, filePath);
-            if (this.RunConsole == true)
-                Console.WriteLine("File {0} was {1} and processed",filePath,fileEvent);
-        }
-        private void Watcher_Changed(object sender, FileSystemEventArgs e)
-        {
-            string fileEvent = "edited";
-            string filePath = e.FullPath;
-            RecordEntry(fileEvent, filePath);
-            if (this.RunConsole == true)
-                Console.WriteLine("File {0} was {1} and processed", filePath, fileEvent);
-        }
         private void Watcher_Created(object sender, FileSystemEventArgs e)
         {
+            Task.Run(() => RunProcessing(e.FullPath));
+        }
+        private void RunProcessing(string filePath)
+        {
             string fileEvent = "added";
-            string filePath = e.FullPath;
             RecordEntry(fileEvent, filePath);
             if (this.RunConsole == true)
                 Console.WriteLine("File {0} was {1} and processed", filePath, fileEvent);
             Handler handler = new Handler();
-            handler.ReadCSV(filePath);
-            //filePath.ReadCSV().WriteLog();
-            //CSVHandler.CSVReader reader = new CSVHandler.CSVReader(filePath);
+            handler.ProcessedCSV(filePath);
         }
         private void Watcher_Deleted(object sender, FileSystemEventArgs e)
         {
@@ -90,7 +78,6 @@ namespace SalesSaverBL
         private void ReadWrite(object FilePath)
         {
             Thread.Sleep(1000);
-            //CSVHandler.CSVReader reader = new CSVHandler.CSVReader(FilePath);
         }
     }
 }
