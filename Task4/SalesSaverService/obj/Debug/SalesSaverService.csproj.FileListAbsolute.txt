@@ -1,0 +1,15 @@
+D:\test1\experiment\Task4\SalesSaverService\bin\Debug\SalesSaverService.dll
+D:\test1\experiment\Task4\SalesSaverService\bin\Debug\SalesSaverService.pdb
+D:\test1\experiment\Task4\SalesSaverService\bin\Debug\EntityFramework.dll
+D:\test1\experiment\Task4\SalesSaverService\bin\Debug\EntityFramework.SqlServer.dll
+D:\test1\experiment\Task4\SalesSaverService\bin\Debug\SalesSaverDAL.dll
+D:\test1\experiment\Task4\SalesSaverService\bin\Debug\AutoMapper.dll
+D:\test1\experiment\Task4\SalesSaverService\bin\Debug\EntityFramework.xml
+D:\test1\experiment\Task4\SalesSaverService\bin\Debug\EntityFramework.SqlServer.xml
+D:\test1\experiment\Task4\SalesSaverService\bin\Debug\SalesSaverDAL.pdb
+D:\test1\experiment\Task4\SalesSaverService\bin\Debug\AutoMapper.xml
+D:\test1\experiment\Task4\SalesSaverService\obj\Debug\SalesSaverService.csprojResolveAssemblyReference.cache
+D:\test1\experiment\Task4\SalesSaverService\obj\Debug\SalesSaverService.dll
+D:\test1\experiment\Task4\SalesSaverService\obj\Debug\SalesSaverService.pdb
+D:\test1\experiment\Task4\SalesSaverService\bin\Debug\SalesSaverBL.dll
+D:\test1\experiment\Task4\SalesSaverService\bin\Debug\SalesSaverBL.pdb

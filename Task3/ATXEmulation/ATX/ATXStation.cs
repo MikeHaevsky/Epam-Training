@@ -108,7 +108,7 @@ namespace ATXEmulation.ATX
         }
         public IEnumerable<Call> FilteredOverTheCurrentDate(IEnumerable<Call> sessions, DateTime date1, DateTime date2)
         {
-            return sessions.Where(item => (item.StartTimeSession > date1) && (item.StartTimeSession < date2));
+            return sessions.Where(item => (item.StartTimeSession > date1) && (item.StartTimeSession < date2)).ToList();
             //return _airplanes.Where(item => (item.FuelConsumption > x) & (item.FuelConsumption < y)).Select(item => string.Format("{1}{0} | FuelConsumption:{2} \n", item.Model, item.Producer, item.FuelConsumption));
         }
         public IEnumerable<Call> FilteredOverTheAbonent(IEnumerable<Call> sessions, TelephoneNumber abonent)

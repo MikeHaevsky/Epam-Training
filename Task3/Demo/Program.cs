@@ -16,9 +16,9 @@ namespace Demo
     {
         static void Main(string[] args)
         {
-            Timer timer = new Timer(86400000);
-            timer.AutoReset = true;
-            timer.Elapsed+=BillSystem.TimerAction;
+            //Timer timer = new Timer(86400000);
+            //timer.AutoReset = true;
+            //timer.Elapsed+=BillSystem.TimerAction;
             TelephoneNumber Number1 = new TelephoneNumber(375, 8680737);
             TelephoneNumber Number2 = new TelephoneNumber(375, 7868348);
             TelephoneNumber Number3 = new TelephoneNumber(375, 5554433);

@@ -1,0 +1,10 @@
+D:\test1\experiment\Task4\SalesSaverDAL\bin\Debug\SalesSaverDAL.dll.config
+D:\test1\experiment\Task4\SalesSaverDAL\bin\Debug\SalesSaverDAL.dll
+D:\test1\experiment\Task4\SalesSaverDAL\bin\Debug\SalesSaverDAL.pdb
+D:\test1\experiment\Task4\SalesSaverDAL\bin\Debug\EntityFramework.dll
+D:\test1\experiment\Task4\SalesSaverDAL\bin\Debug\EntityFramework.SqlServer.dll
+D:\test1\experiment\Task4\SalesSaverDAL\bin\Debug\EntityFramework.xml
+D:\test1\experiment\Task4\SalesSaverDAL\bin\Debug\EntityFramework.SqlServer.xml
+D:\test1\experiment\Task4\SalesSaverDAL\obj\Debug\SalesSaverDAL.csprojResolveAssemblyReference.cache
+D:\test1\experiment\Task4\SalesSaverDAL\obj\Debug\SalesSaverDAL.dll
+D:\test1\experiment\Task4\SalesSaverDAL\obj\Debug\SalesSaverDAL.pdb
