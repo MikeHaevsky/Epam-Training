@@ -23,10 +23,6 @@ namespace SalesSaverBL
             {
                 return date;
             }
-            else
-            {
-                Console.WriteLine("Incorrect Date value.");
-            }
             return date;
         }
         public static int CreateCost(this string lineElement)
@@ -36,17 +32,13 @@ namespace SalesSaverBL
             {
                 return cost;
             }
-            else
-            {
-                Console.WriteLine("Incorrect Cost value.");
-            }
             return cost;
         }
         public static void InitializeSetting(string key)
         {
             try
             {
-                string value = "D:\\SalesSaver";
+                string value = @Resource.DefaultWorkDerictory;
                 var configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
                 var settings = configFile.AppSettings.Settings;
                 if (settings[key] == null)
@@ -64,7 +56,7 @@ namespace SalesSaverBL
             catch
             {
                 Console.WriteLine("Error writing app settings");
-                FolderSetting = "D:\\SalesSaver";
+                FolderSetting = @Resource.DefaultWorkDerictory;
             }
         }
     }

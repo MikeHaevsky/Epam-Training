@@ -28,3 +28,4 @@ C:\Users\Администратор\Documents\Visual Studio 2013\Projects\Epam-T
 C:\Users\Администратор\Documents\Visual Studio 2013\Projects\Epam-Training\Task4\SalesSaverService\obj\Debug\SalesSaverService.csprojResolveAssemblyReference.cache
 C:\Users\Администратор\Documents\Visual Studio 2013\Projects\Epam-Training\Task4\SalesSaverService\obj\Debug\SalesSaverService.dll
 C:\Users\Администратор\Documents\Visual Studio 2013\Projects\Epam-Training\Task4\SalesSaverService\obj\Debug\SalesSaverService.pdb
+C:\Users\Администратор\Documents\Visual Studio 2013\Projects\Epam-Training\Task4\SalesSaverService\bin\Debug\SalesSaverService.dll.config

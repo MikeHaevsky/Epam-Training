@@ -10,7 +10,11 @@ namespace SalesSaverBL
 {
     public class Logger
     {
-        public bool RunConsole;
+        public bool IsRunConsole
+        {
+            get;
+            set;
+        }
         FileSystemWatcher watcher;
         object obj = new object();
         bool enabled = true;
@@ -46,17 +50,17 @@ namespace SalesSaverBL
         {
             string fileEvent = "added";
             RecordEntry(fileEvent, filePath);
-            if (this.RunConsole == true)
+            if (this.IsRunConsole == true)
                 Console.WriteLine("File {0} was {1} and processed", filePath, fileEvent);
             Handler handler = new Handler();
-            handler.ProcessedCSV(filePath);
+            handler.ProcessedCSV(filePath,IsRunConsole);
         }
         private void Watcher_Deleted(object sender, FileSystemEventArgs e)
         {
             string fileEvent = "deleted";
             string filePath = e.FullPath;
             RecordEntry(fileEvent, filePath);
-            if (this.RunConsole == true)
+            if (this.IsRunConsole == true)
                 Console.WriteLine("File {0} was {1}", filePath, fileEvent);
         }
         private void RecordEntry(string fileEvent, string filePath)

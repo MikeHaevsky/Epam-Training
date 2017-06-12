@@ -61,6 +61,15 @@ namespace SalesSaverBL {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to D:\\SalesSaver.
+        /// </summary>
+        internal static string DefaultWorkDerictory {
+            get {
+                return ResourceManager.GetString("DefaultWorkDerictory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to _.
         /// </summary>
         internal static string FileNameSeparator {
@@ -75,6 +84,15 @@ namespace SalesSaverBL {
         internal static string LogFileName {
             get {
                 return ResourceManager.GetString("LogFileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to \ProcessingFileLogs.
+        /// </summary>
+        internal static string LogProcessingFolder {
+            get {
+                return ResourceManager.GetString("LogProcessingFolder", resourceCulture);
             }
         }
         

@@ -13,7 +13,7 @@ namespace SalesSaverConsole
         static void Main(string[] args)
         {
             Logger logger=new Logger();
-            logger.RunConsole = true;
+            logger.IsRunConsole = true;
             Thread loggerThread = new Thread(new ThreadStart(logger.Start));
             loggerThread.Start();
             Console.ReadKey(true);

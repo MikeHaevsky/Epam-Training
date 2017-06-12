@@ -26,6 +26,7 @@ namespace SalesSaverService
         protected override void OnStart(string[] args)
         {
             logger = new Logger();
+            logger.IsRunConsole = false;
             Thread loggerThread = new Thread(new ThreadStart(logger.Start));
             loggerThread.Start();
         }

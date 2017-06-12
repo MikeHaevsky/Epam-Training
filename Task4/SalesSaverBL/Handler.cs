@@ -22,6 +22,11 @@ namespace SalesSaverBL
             get;
             set;
         }
+        private ProcessingLogger ProcessLogger
+        {
+            get;
+            set;
+        }
         private SalesSaverBL.Model.Operation OperationModel
         {
             get;
@@ -35,10 +40,11 @@ namespace SalesSaverBL
             DB = new SalesSaverDBContext();
             OperationModel = new Model.Operation();
         }
-        public void ProcessedCSV(string filePath)
+        public void ProcessedCSV(string filePath,bool isRunConsole)
         {
             using (StreamReader reader = new StreamReader(filePath))
             {
+                ProcessLogger = new ProcessingLogger(filePath,isRunConsole);
                 string fileName = Path.GetFileName(filePath);
                 char separator = Convert.ToChar(@Resource.StringSeparator);
                 char separatorName = Convert.ToChar(@Resource.FileNameSeparator);
@@ -59,7 +65,11 @@ namespace SalesSaverBL
                     Validate(productBL);
 
                     OperationModel.Data = lineElements[0].CreateDate();
+                    Validate(OperationModel.Data);
+
                     OperationModel.Cost = lineElements[3].CreateCost();
+                    Validate(OperationModel.Cost);
+
                     DB.Operations.Add(this.DataMapper.Mapping(OperationModel));
                     DB.SaveChanges();
                     mut.ReleaseMutex();
@@ -74,10 +84,12 @@ namespace SalesSaverBL
             if (managerDAL != null)
             {
                 OperationModel.ManagerId = managerDAL.Id;
+                ProcessLogger.WriteProcessingMessage(string.Concat("Manager ",managerBL.Nickname," is valid"));
             }
             else
             {
                 DB.Managers.Add(this.DataMapper.Mapping(managerBL));
+                ProcessLogger.WriteProcessingMessage(string.Concat("Manager ",managerBL.Nickname," added"));
             }
         }
         public void Validate(SalesSaverBL.Model.Client clientBL)
@@ -86,11 +98,13 @@ namespace SalesSaverBL
             if (clientDAL != null)
             {
                 OperationModel.ClientId = clientDAL.Id;
+                ProcessLogger.WriteProcessingMessage(string.Concat("Client ", clientBL.Nickname, " is valid"));
             }
             else
             {
                 SalesSaverDAL.Models.Client client1 = this.DataMapper.Mapping(clientBL);
                 DB.Clients.Add(this.DataMapper.Mapping(clientBL));
+                ProcessLogger.WriteProcessingMessage(string.Concat("Client ", clientBL.Nickname, " added"));
             }
         }
         public void Validate(SalesSaverBL.Model.Product productBL)
@@ -99,10 +113,26 @@ namespace SalesSaverBL
             if (productDAL != null)
             {
                 OperationModel.ProductId = productDAL.Id;
+                ProcessLogger.WriteProcessingMessage(string.Concat("Product ", productBL.Name, " is valid"));
             }
             else
             {
                 DB.Products.Add(this.DataMapper.Mapping(productBL));
+                ProcessLogger.WriteProcessingMessage(string.Concat("Product ", productBL.Name, " added"));
+            }
+        }
+        public void Validate(DateTime date)
+        {
+            if (date<(DateTime.Now-TimeSpan.FromHours(100))&&(date>(DateTime.Now)))
+            {
+                ProcessLogger.WriteProcessingMessage(string.Concat("The Date:", date, " is incorrect"));
+            }
+        }
+        public void Validate(int cost)
+        {
+            if (cost <= 0)
+            {
+                ProcessLogger.WriteProcessingMessage(string.Concat("The Cost:", cost, " is incorrect"));
             }
         }
         #endregion
