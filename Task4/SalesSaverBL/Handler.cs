@@ -12,22 +12,23 @@ namespace SalesSaverBL
 {
     public class Handler
     {
-        public SalesSaverDBContext DB
+        private SalesSaverDBContext DB
         {
             get;
             set;
         }
-        public BLMapper DataMapper
+        private BLMapper DataMapper
         {
             get;
-            private set;
+            set;
         }
-        public SalesSaverBL.Model.Operation OperationModel
+        private SalesSaverBL.Model.Operation OperationModel
         {
             get;
             set;
         }
         public static Mutex mut = new Mutex();
+
         public Handler()
         {
             DataMapper = new BLMapper();

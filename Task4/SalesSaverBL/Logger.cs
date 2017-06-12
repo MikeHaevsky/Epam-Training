@@ -10,22 +10,18 @@ namespace SalesSaverBL
 {
     public class Logger
     {
-        public bool Wait
-        {
-            get;
-            set;
-        }
         public bool RunConsole;
         FileSystemWatcher watcher;
         object obj = new object();
         bool enabled = true;
         public Logger()
         {
-            if (!Directory.Exists(Resource.WorkFolder))
+            BLHelper.InitializeSetting("WorkFolder");
+            if (!Directory.Exists(BLHelper.FolderSetting))
             {
-                Directory.CreateDirectory(Resource.WorkFolder);
+                Directory.CreateDirectory(BLHelper.FolderSetting);
             }
-            watcher = new FileSystemWatcher(Resource.WorkFolder,Resource.WatchedExtension);
+            watcher = new FileSystemWatcher(BLHelper.FolderSetting, Resource.WatchedExtension);
             watcher.Deleted += Watcher_Deleted;
             watcher.Created += Watcher_Created;
         }
@@ -67,17 +63,14 @@ namespace SalesSaverBL
         {
             lock (obj)
             {
-                using (StreamWriter writer = new StreamWriter(Resource.LogFile, true))
+                string logFile = String.Concat(BLHelper.FolderSetting, Resource.LogFileName);
+                using (StreamWriter writer = new StreamWriter(logFile, true))
                 {
                     writer.WriteLine(String.Format("{0} file {1} has {2}",
                         DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss"), filePath, fileEvent));
                     writer.Flush();
                 }
             }
-        }
-        private void ReadWrite(object FilePath)
-        {
-            Thread.Sleep(1000);
         }
     }
 }

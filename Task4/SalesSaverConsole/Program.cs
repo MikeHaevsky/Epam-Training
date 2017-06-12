@@ -17,7 +17,6 @@ namespace SalesSaverConsole
             Thread loggerThread = new Thread(new ThreadStart(logger.Start));
             loggerThread.Start();
             Console.ReadKey(true);
-            //loggerThread.s
         }
     }
 }

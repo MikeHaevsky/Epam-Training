@@ -120,16 +120,13 @@
   <data name="FileNameSeparator" xml:space="preserve">
     <value>_</value>
   </data>
-  <data name="LogFile" xml:space="preserve">
-    <value>D:\\templog.txt</value>
+  <data name="LogFileName" xml:space="preserve">
+    <value>\templog.txt</value>
   </data>
   <data name="StringSeparator" xml:space="preserve">
     <value>,</value>
   </data>
   <data name="WatchedExtension" xml:space="preserve">
     <value>*.csv</value>
-  </data>
-  <data name="WorkFolder" xml:space="preserve">
-    <value>D:\SalesSaver</value>
   </data>
 </root>

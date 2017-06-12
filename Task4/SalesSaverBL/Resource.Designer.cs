@@ -70,11 +70,11 @@ namespace SalesSaverBL {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to D:\\templog.txt.
+        ///   Looks up a localized string similar to \templog.txt.
         /// </summary>
-        internal static string LogFile {
+        internal static string LogFileName {
             get {
-                return ResourceManager.GetString("LogFile", resourceCulture);
+                return ResourceManager.GetString("LogFileName", resourceCulture);
             }
         }
         
@@ -93,15 +93,6 @@ namespace SalesSaverBL {
         internal static string WatchedExtension {
             get {
                 return ResourceManager.GetString("WatchedExtension", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to D:\SalesSaver.
-        /// </summary>
-        internal static string WorkFolder {
-            get {
-                return ResourceManager.GetString("WorkFolder", resourceCulture);
             }
         }
     }
