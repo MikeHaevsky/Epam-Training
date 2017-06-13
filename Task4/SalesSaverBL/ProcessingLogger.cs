@@ -27,7 +27,7 @@ namespace SalesSaverBL
             int i = str.Count();
             string fileLogName=str[i-1];
             ProcessingLogFileName = string.Concat(processingLogFolder, "\\", fileLogName);
-            if (!Directory.Exists(processingLogFolder))
+            if (!Directory.Exists(@processingLogFolder))
             {
                 Directory.CreateDirectory(processingLogFolder);
             }

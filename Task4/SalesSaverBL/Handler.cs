@@ -80,7 +80,7 @@ namespace SalesSaverBL
         #region Validate
         public void Validate(SalesSaverBL.Model.Manager managerBL)
         {
-            SalesSaverDAL.Models.Manager managerDAL = DB.Managers.DefaultIfEmpty().FirstOrDefault(x => x.Nickname == managerBL.Nickname);
+            SalesSaverDAL.Models.Manager managerDAL = DB.Managers.FirstOrDefault(x => x.Nickname == managerBL.Nickname);
             if (managerDAL != null)
             {
                 OperationModel.ManagerId = managerDAL.Id;
@@ -94,7 +94,7 @@ namespace SalesSaverBL
         }
         public void Validate(SalesSaverBL.Model.Client clientBL)
         {
-            SalesSaverDAL.Models.Client clientDAL = DB.Clients.DefaultIfEmpty().FirstOrDefault(x => x.Nickname == clientBL.Nickname);
+            SalesSaverDAL.Models.Client clientDAL = DB.Clients.FirstOrDefault(x => x.Nickname == clientBL.Nickname);
             if (clientDAL != null)
             {
                 OperationModel.ClientId = clientDAL.Id;
@@ -109,7 +109,7 @@ namespace SalesSaverBL
         }
         public void Validate(SalesSaverBL.Model.Product productBL)
         {
-            SalesSaverDAL.Models.Product productDAL = DB.Products.DefaultIfEmpty().FirstOrDefault(x => x.Name == productBL.Name);
+            SalesSaverDAL.Models.Product productDAL = DB.Products.FirstOrDefault(x => x.Name == productBL.Name);
             if (productDAL != null)
             {
                 OperationModel.ProductId = productDAL.Id;
@@ -123,9 +123,13 @@ namespace SalesSaverBL
         }
         public void Validate(DateTime date)
         {
-            if (date<(DateTime.Now-TimeSpan.FromHours(100))&&(date>(DateTime.Now)))
+            if (date>(DateTime.Now))
             {
                 ProcessLogger.WriteProcessingMessage(string.Concat("The Date:", date, " is incorrect"));
+            }
+            else
+            {
+                ProcessLogger.WriteProcessingMessage(string.Concat("The Date:", date, " added"));
             }
         }
         public void Validate(int cost)
@@ -133,6 +137,10 @@ namespace SalesSaverBL
             if (cost <= 0)
             {
                 ProcessLogger.WriteProcessingMessage(string.Concat("The Cost:", cost, " is incorrect"));
+            }
+            else
+            {
+                ProcessLogger.WriteProcessingMessage(string.Concat("The Cost:", cost, " added"));
             }
         }
         #endregion

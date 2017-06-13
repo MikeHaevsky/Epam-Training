@@ -19,7 +19,7 @@ namespace SalesSaverService
             InitializeComponent();
             ServiceInstaller serviceInstaller = new ServiceInstaller();
             ServiceProcessInstaller processInstaller = new ServiceProcessInstaller();
-            processInstaller.Account = ServiceAccount.LocalSystem;
+            processInstaller.Account = ServiceAccount.User;
             serviceInstaller.StartType = ServiceStartMode.Manual;
             serviceInstaller.ServiceName = "ServiceWatcher";
             Installers.Add(serviceInstaller);
