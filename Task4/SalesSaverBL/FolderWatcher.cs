@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SalesSaverBL
 {
-    public class Logger
+    public class FolderWatcher
     {
         public bool IsRunConsole
         {
@@ -16,9 +16,13 @@ namespace SalesSaverBL
             set;
         }
         FileSystemWatcher watcher;
-        object obj = new object();
         bool enabled = true;
-        public Logger()
+        private WatcherLogger WatLogger
+        {
+            get;
+            set;
+        }
+        public FolderWatcher()
         {
             BLHelper.InitializeSetting("WorkFolder");
             if (!Directory.Exists(BLHelper.FolderSetting))
@@ -31,6 +35,8 @@ namespace SalesSaverBL
         }
         public void Start()
         {
+            WatLogger = new WatcherLogger();
+            WatLogger.IsRunConsole = this.IsRunConsole;
             watcher.EnableRaisingEvents = true;
             while (enabled)
             {
@@ -49,9 +55,7 @@ namespace SalesSaverBL
         private void RunProcessing(string filePath)
         {
             string fileEvent = "added";
-            RecordEntry(fileEvent, filePath);
-            if (this.IsRunConsole == true)
-                Console.WriteLine("File {0} was {1} and processed", filePath, fileEvent);
+            WatLogger.RecordEntry(fileEvent, filePath);
             Handler handler = new Handler();
             handler.ProcessedCSV(filePath,IsRunConsole);
         }
@@ -59,22 +63,8 @@ namespace SalesSaverBL
         {
             string fileEvent = "deleted";
             string filePath = e.FullPath;
-            RecordEntry(fileEvent, filePath);
-            if (this.IsRunConsole == true)
-                Console.WriteLine("File {0} was {1}", filePath, fileEvent);
+            WatLogger.RecordEntry(fileEvent, filePath);
         }
-        private void RecordEntry(string fileEvent, string filePath)
-        {
-            lock (obj)
-            {
-                string logFile = String.Concat(BLHelper.FolderSetting, Resource.LogFileName);
-                using (StreamWriter writer = new StreamWriter(logFile, true))
-                {
-                    writer.WriteLine(String.Format("{0} file {1} has {2}",
-                        DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss"), filePath, fileEvent));
-                    writer.Flush();
-                }
-            }
-        }
+        
     }
 }

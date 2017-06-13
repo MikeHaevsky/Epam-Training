@@ -36,7 +36,6 @@ namespace SalesSaverBL
         {
             try
             {
-                Console.WriteLine(message);
                 using (StreamWriter writer = new StreamWriter(ProcessingLogFileName, true))
                 {
                     writer.WriteLine(message);

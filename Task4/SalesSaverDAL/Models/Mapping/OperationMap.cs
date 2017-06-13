@@ -7,14 +7,11 @@ namespace SalesSaverDAL.Models.Mapping
     {
         public OperationMap()
         {
-            // Primary Key
             this.HasKey(t => t.Id);
 
-            // Properties
             this.Property(t => t.Id)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
-            // Table & Column Mappings
             this.ToTable("Operations");
             this.Property(t => t.Id).HasColumnName("Id");
             this.Property(t => t.Data).HasColumnName("Data");
@@ -23,7 +20,6 @@ namespace SalesSaverDAL.Models.Mapping
             this.Property(t => t.ProductId).HasColumnName("ProductId");
             this.Property(t => t.Cost).HasColumnName("Cost");
 
-            // Relationships
             this.HasRequired(t => t.Client)
                 .WithMany(t => t.Operations)
                 .HasForeignKey(d => d.ClientId);

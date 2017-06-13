@@ -12,10 +12,9 @@ namespace SalesSaverConsole
     {
         static void Main(string[] args)
         {
-            Logger logger=new Logger();
-            logger.IsRunConsole = true;
-            Thread loggerThread = new Thread(new ThreadStart(logger.Start));
-            loggerThread.Start();
+            FolderWatcher folderWatcher = new FolderWatcher();
+            folderWatcher.IsRunConsole = true;
+            Task.Run(() => folderWatcher.Start());
             Console.ReadKey(true);
         }
     }

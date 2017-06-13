@@ -14,7 +14,7 @@ namespace SalesSaverService
 {
     partial class ServiceWatcher : ServiceBase
     {
-        Logger logger;
+        FolderWatcher folderWatcher;
         public ServiceWatcher()
         {
             InitializeComponent();
@@ -25,15 +25,14 @@ namespace SalesSaverService
 
         protected override void OnStart(string[] args)
         {
-            logger = new Logger();
-            logger.IsRunConsole = false;
-            Thread loggerThread = new Thread(new ThreadStart(logger.Start));
-            loggerThread.Start();
+            folderWatcher = new FolderWatcher();
+            folderWatcher.IsRunConsole = false;
+            Task.Run(() => folderWatcher.Start());
         }
 
         protected override void OnStop()
         {
-            logger.Stop();
+            folderWatcher.Stop();
             Thread.Sleep(1000);
         }
     }

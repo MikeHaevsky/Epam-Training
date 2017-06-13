@@ -7,10 +7,8 @@ namespace SalesSaverDAL.Models.Mapping
     {
         public ClientMap()
         {
-            // Primary Key
             this.HasKey(t => t.Id);
 
-            // Properties
             this.Property(t => t.Id)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
@@ -19,7 +17,6 @@ namespace SalesSaverDAL.Models.Mapping
                 .IsFixedLength()
                 .HasMaxLength(15);
 
-            // Table & Column Mappings
             this.ToTable("Clients");
             this.Property(t => t.Id).HasColumnName("Id");
             this.Property(t => t.Nickname).HasColumnName("Nickname");

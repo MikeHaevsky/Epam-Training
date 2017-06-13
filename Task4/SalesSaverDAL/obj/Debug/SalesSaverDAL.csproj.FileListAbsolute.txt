@@ -15,6 +15,5 @@ C:\Users\Администратор\Documents\Visual Studio 2013\Projects\Epam-T
 C:\Users\Администратор\Documents\Visual Studio 2013\Projects\Epam-Training\Task4\SalesSaverDAL\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\Администратор\Documents\Visual Studio 2013\Projects\Epam-Training\Task4\SalesSaverDAL\bin\Debug\EntityFramework.xml
 C:\Users\Администратор\Documents\Visual Studio 2013\Projects\Epam-Training\Task4\SalesSaverDAL\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\Администратор\Documents\Visual Studio 2013\Projects\Epam-Training\Task4\SalesSaverDAL\obj\Debug\SalesSaverDAL.csprojResolveAssemblyReference.cache
 C:\Users\Администратор\Documents\Visual Studio 2013\Projects\Epam-Training\Task4\SalesSaverDAL\obj\Debug\SalesSaverDAL.dll
 C:\Users\Администратор\Documents\Visual Studio 2013\Projects\Epam-Training\Task4\SalesSaverDAL\obj\Debug\SalesSaverDAL.pdb

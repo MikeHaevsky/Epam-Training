@@ -55,7 +55,7 @@
     <Compile Include="BLHelper.cs" />
     <Compile Include="BLMapper.cs" />
     <Compile Include="Handler.cs" />
-    <Compile Include="Logger.cs" />
+    <Compile Include="FolderWatcher.cs" />
     <Compile Include="Model\Client.cs" />
     <Compile Include="Model\Manager.cs" />
     <Compile Include="Model\Operation.cs" />
@@ -67,6 +67,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource.resx</DependentUpon>
     </Compile>
+    <Compile Include="WatcherLogger.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SalesSaverDAL\SalesSaverDAL.csproj">
